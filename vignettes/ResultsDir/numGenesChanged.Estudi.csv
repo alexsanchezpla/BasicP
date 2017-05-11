@@ -1,0 +1,13 @@
+,AvsB,AvsL,BvsL
+upReg-B>0,151,48,55
+downReg-B>0,152,55,78
+upReg-Adjusted-p-val < 0.01,120,17,24
+downReg-Adjusted-p-val < 0.01,122,19,29
+upReg-Adjusted-p-val < 0.05,363,52,77
+downReg-Adjusted-p-val < 0.05,451,57,105
+upReg-Adjusted-p-val < 0.25,1330,434,694
+downReg-Adjusted-p-val < 0.25,1981,453,551
+upReg-P value < 0.01,516,263,330
+downReg-P value < 0.01,702,283,302
+upReg-P value < 0.05,1069,663,932
+downReg-P value < 0.05,1559,771,714
