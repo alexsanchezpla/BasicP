@@ -1,0 +1,113 @@
+----------------------------------------------------------------------
+Type Of Filtering	Threshold	Genes Number	Number Of Samples
+----------------------------------------------------------------------
+Non-filtering	---	22283	15
+By Affymetrix Controls	---	19843	15
+By Signal	50	19843	15
+By Variability	50	9922	15
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Non-filtering	---	22283	15
+By Affymetrix Controls	---	19843	15
+By Signal	50	19843	15
+By Variability	50	9922	15
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Non-filtering	---	22283	15
+By Affymetrix Controls	---	19843	15
+By Signal	50	19843	15
+By Variability	50	9922	15
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Non-filtering	---	22283	15
+By Affymetrix Controls	---	19843	15
+By Signal	50	19843	15
+By Variability	50	9922	15
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Non-filtering	---	22283	15
+By Affymetrix Controls	---	19843	15
+By Signal	50	19843	15
+By Variability	50	9922	15
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Non-filtering	---	22283	15
+By Affymetrix Controls	---	19843	15
+By Signal	50	19843	15
+By Variability	50	9922	15
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Non-filtering	---	22283	15
+By Affymetrix Controls	---	19843	15
+By Signal	50	19843	15
+By Variability	50	9922	15
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Non-filtering	---	22283	15
+By Affymetrix Controls	---	19843	15
+By Signal	50	19843	15
+By Variability	50	9922	15
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Non-filtering	---	22283	15
+By Affymetrix Controls	---	19843	15
+By Signal	50	19843	15
+By Variability	50	9922	15
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Non-filtering	---	22283	15
+By Affymetrix Controls	---	19843	15
+By Signal	50	19843	15
+By Variability	50	9922	15
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Non-filtering	---	22283	15
+By Affymetrix Controls	---	19843	15
+By Signal	50	19843	15
+By Variability	50	9922	15
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Non-filtering	---	22283	15
+By Affymetrix Controls	---	19843	15
+By Signal	50	19843	15
+By Variability	50	9922	15
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Non-filtering	---	22283	15
+By Affymetrix Controls	---	19843	15
+By Signal	50	19843	15
+By Variability	50	9922	15
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Non-filtering	---	22283	15
+By Affymetrix Controls	---	19843	15
+By Signal	50	19843	15
+By Variability	50	9922	15
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Non-filtering	---	22283	15
+By Affymetrix Controls	---	19843	15
+By Signal	50	19843	15
+By Variability	50	9922	15
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Non-filtering	---	22283	15
+By Affymetrix Controls	---	19843	15
+By Signal	50	19843	15
+By Variability	50	9922	15
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Non-filtering	---	22283	15
+By Affymetrix Controls	---	19843	15
+By Signal	50	19843	15
+By Variability	50	9922	15
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Non-filtering	---	22283	15
+By Affymetrix Controls	---	19843	15
+By Signal	50	19843	15
+By Variability	50	9922	15
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Non-filtering	---	22283	15
+By Affymetrix Controls	---	19843	15
+By Signal	50	19843	15
+By Variability	50	9922	15
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Non-filtering	---	22283	15
+By Affymetrix Controls	---	19843	15
+By Signal	50	19843	15
+By Variability	50	9922	15
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Non-filtering	---	22283	15
+By Affymetrix Controls	---	19843	15
+By Signal	50	19843	15
+By Variability	50	9922	15
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Non-filtering	---	22283	15
+By Affymetrix Controls	---	19843	15
+By Signal	50	19843	15
+By Variability	50	9922	15
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

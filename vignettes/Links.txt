@@ -1,0 +1,5 @@
+normalized.all.csv	DATA		Normalized values for all genes
+normalized.filtered.csv	DATA		Normalized values for filtered genes
+normalized.filtered.csv	DATA		Normalized values for filtered genes
+normalized.all.csv	DATA		Normalized values for all genes
+normalized.all.csv	DATA		Normalized values for all genes

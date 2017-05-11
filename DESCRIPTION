@@ -1,0 +1,14 @@
+Package: BasicP
+Type: Package
+Title: Function to support a microarray data analysis pipeline
+Version: 0.1.1
+Author: Alex Sanchez and other people at UEB
+Maintainer: Alex Sanchez <asanchez@ub.edu>
+Description: Function to support a microarray data analysis pipeline.
+License: GPL 2
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
+Suggests: knitr,
+    rmarkdown
+VignetteBuilder: knitr
