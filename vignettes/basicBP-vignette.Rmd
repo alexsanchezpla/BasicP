@@ -153,7 +153,7 @@ BasicP::saveData(expres = exprs(eset_norm), expres.csv.FileName = normalized.all
 
 Setting design and contrasts matrix to proceed with the linear model analysis.
 
-```{r echo=FALSE, include=FALSE}
+```{r}
 targets <- read.table(file ="./celfiles/targets.txt" , header = TRUE, sep = "\t")
 column2design<- 5
 lev <- targets[,column2design] 
@@ -166,14 +166,6 @@ print(design)
 cont.matrix<-makeContrasts(AvsB= (A -B), AvsL= (A-L), BvsL=(B-L),levels=design)
 print(cont.matrix)
 
-#Function to make a list for make the dolmAnalysis.
-add2parsList <- function(oneList,object)
-{
-  pos <- length(oneList) + 1
-  oneList[[pos]] <- object
-  names(oneList)[pos] <- oneList[[pos]]$comparisonName
-  return(oneList)
-}
 ```
 
 Linear model analysis.Function included in dolmAnalysis.
@@ -200,14 +192,29 @@ fitMain <- lmAnalysis(exprs.filtered = exprs.filtered, design = design, cont.mat
 ```
   
   
-## `doLmAnalysis'Vignette Info`
+  
+  
 
+```{r echo=FALSE, include=FALSE}
+#Function to make a list for make the dolmAnalysis.
+add2parsList <- function(oneList,object)
+{
+  pos <- length(oneList) + 1
+  oneList[[pos]] <- object
+  names(oneList)[pos] <- oneList[[pos]]$comparisonName
+  return(oneList)
+}
+
+```
+
+
+## `doLmAnalysis'Vignette Info`
 Function to analyze the linerar model with the different parameters.
 
 ```{r}
 lmParsList <- list()
 Estudi <- list(dades = NULL,
-               expresFileName = exprs.filtered,
+               expresFileName = "exprs.filtered.Rda",
                targets = targets,
                designMat = design,
                contMat = cont.matrix,
