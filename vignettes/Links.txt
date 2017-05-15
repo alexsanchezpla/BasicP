@@ -1,11 +1,47 @@
 normalized.all.csv	DATA		Normalized values for all genes
-normalized.filtered.csv	DATA		Normalized values for filtered genes
-normalized.filtered.csv	DATA		Normalized values for filtered genes
-normalized.all.csv	DATA		Normalized values for all genes
-normalized.all.csv	DATA		Normalized values for all genes
-normalized.all.csv	DATA		Normalized values for all genes
+Estudi.AvsB.html	ANALYSIS		Test parameters and ranked list of genes for the comparison Estudi.AvsB
+volcano.Estudi.AvsB.pdf	ANALYSIS		Volcano Plot for the comparison Estudi.AvsB
+ExpressAndTop.Estudi.AvsB.csv	ANALYSIS		TopTable and normalized expression values for the comparison AvsB
+Estudi.AvsL.html	ANALYSIS		Test parameters and ranked list of genes for the comparison Estudi.AvsL
+volcano.Estudi.AvsL.pdf	ANALYSIS		Volcano Plot for the comparison Estudi.AvsL
+ExpressAndTop.Estudi.AvsL.csv	ANALYSIS		TopTable and normalized expression values for the comparison AvsL
+Estudi.BvsL.html	ANALYSIS		Test parameters and ranked list of genes for the comparison Estudi.BvsL
+volcano.Estudi.BvsL.pdf	ANALYSIS		Volcano Plot for the comparison Estudi.BvsL
+ExpressAndTop.Estudi.BvsL.csv	ANALYSIS		TopTable and normalized expression values for the comparison BvsL
+numGenesChanged.Estudi.csv	ANALYSIS		Number of selectable genes in comparisons Estudi
+Estudi.AvsB.html	ANALYSIS		Test parameters and ranked list of genes for the comparison Estudi.AvsB
+volcano.Estudi.AvsB.pdf	ANALYSIS		Volcano Plot for the comparison Estudi.AvsB
+ExpressAndTop.Estudi.AvsB.csv	ANALYSIS		TopTable and normalized expression values for the comparison AvsB
+Estudi.AvsL.html	ANALYSIS		Test parameters and ranked list of genes for the comparison Estudi.AvsL
+volcano.Estudi.AvsL.pdf	ANALYSIS		Volcano Plot for the comparison Estudi.AvsL
+ExpressAndTop.Estudi.AvsL.csv	ANALYSIS		TopTable and normalized expression values for the comparison AvsL
+Estudi.BvsL.html	ANALYSIS		Test parameters and ranked list of genes for the comparison Estudi.BvsL
+volcano.Estudi.BvsL.pdf	ANALYSIS		Volcano Plot for the comparison Estudi.BvsL
+ExpressAndTop.Estudi.BvsL.csv	ANALYSIS		TopTable and normalized expression values for the comparison BvsL
+numGenesChanged.Estudi.csv	ANALYSIS		Number of selectable genes in comparisons Estudi
+designMatrix.Estudi.csv	ANALYSIS		Design Matrix for comparison Estudi
+contrastMatrix.Estudi.csv	ANALYSIS		Contrast Matrix for comparison Estudi
 normalized.all.csv	DATA		Normalized values for all genes
 Estudi.AvsB.html	ANALYSIS		Test parameters and ranked list of genes for the comparison Estudi.AvsB
+volcano.Estudi.AvsB.pdf	ANALYSIS		Volcano Plot for the comparison Estudi.AvsB
+ExpressAndTop.Estudi.AvsB.csv	ANALYSIS		TopTable and normalized expression values for the comparison AvsB
+Estudi.AvsL.html	ANALYSIS		Test parameters and ranked list of genes for the comparison Estudi.AvsL
+volcano.Estudi.AvsL.pdf	ANALYSIS		Volcano Plot for the comparison Estudi.AvsL
+ExpressAndTop.Estudi.AvsL.csv	ANALYSIS		TopTable and normalized expression values for the comparison AvsL
+Estudi.BvsL.html	ANALYSIS		Test parameters and ranked list of genes for the comparison Estudi.BvsL
+volcano.Estudi.BvsL.pdf	ANALYSIS		Volcano Plot for the comparison Estudi.BvsL
+ExpressAndTop.Estudi.BvsL.csv	ANALYSIS		TopTable and normalized expression values for the comparison BvsL
+numGenesChanged.Estudi.csv	ANALYSIS		Number of selectable genes in comparisons Estudi
+Estudi.AvsB.html	ANALYSIS		Test parameters and ranked list of genes for the comparison Estudi.AvsB
+volcano.Estudi.AvsB.pdf	ANALYSIS		Volcano Plot for the comparison Estudi.AvsB
+ExpressAndTop.Estudi.AvsB.csv	ANALYSIS		TopTable and normalized expression values for the comparison AvsB
+Estudi.AvsL.html	ANALYSIS		Test parameters and ranked list of genes for the comparison Estudi.AvsL
+volcano.Estudi.AvsL.pdf	ANALYSIS		Volcano Plot for the comparison Estudi.AvsL
+ExpressAndTop.Estudi.AvsL.csv	ANALYSIS		TopTable and normalized expression values for the comparison AvsL
+Estudi.BvsL.html	ANALYSIS		Test parameters and ranked list of genes for the comparison Estudi.BvsL
+volcano.Estudi.BvsL.pdf	ANALYSIS		Volcano Plot for the comparison Estudi.BvsL
+ExpressAndTop.Estudi.BvsL.csv	ANALYSIS		TopTable and normalized expression values for the comparison BvsL
+numGenesChanged.Estudi.csv	ANALYSIS		Number of selectable genes in comparisons Estudi
 Estudi.AvsB.html	ANALYSIS		Test parameters and ranked list of genes for the comparison Estudi.AvsB
 volcano.Estudi.AvsB.pdf	ANALYSIS		Volcano Plot for the comparison Estudi.AvsB
 ExpressAndTop.Estudi.AvsB.csv	ANALYSIS		TopTable and normalized expression values for the comparison AvsB
@@ -27,6 +63,31 @@ Estudi.BvsL.html	ANALYSIS		Test parameters and ranked list of genes for the comp
 volcano.Estudi.BvsL.pdf	ANALYSIS		Volcano Plot for the comparison Estudi.BvsL
 ExpressAndTop.Estudi.BvsL.csv	ANALYSIS		TopTable and normalized expression values for the comparison BvsL
 numGenesChanged.Estudi.csv	ANALYSIS		Number of selectable genes in comparisons Estudi
+Estudi.AvsB.html	ANALYSIS		Test parameters and ranked list of genes for the comparison Estudi.AvsB
+volcano.Estudi.AvsB.pdf	ANALYSIS		Volcano Plot for the comparison Estudi.AvsB
+ExpressAndTop.Estudi.AvsB.csv	ANALYSIS		TopTable and normalized expression values for the comparison AvsB
+Estudi.AvsL.html	ANALYSIS		Test parameters and ranked list of genes for the comparison Estudi.AvsL
+volcano.Estudi.AvsL.pdf	ANALYSIS		Volcano Plot for the comparison Estudi.AvsL
+ExpressAndTop.Estudi.AvsL.csv	ANALYSIS		TopTable and normalized expression values for the comparison AvsL
+Estudi.BvsL.html	ANALYSIS		Test parameters and ranked list of genes for the comparison Estudi.BvsL
+volcano.Estudi.BvsL.pdf	ANALYSIS		Volcano Plot for the comparison Estudi.BvsL
+ExpressAndTop.Estudi.BvsL.csv	ANALYSIS		TopTable and normalized expression values for the comparison BvsL
+numGenesChanged.Estudi.csv	ANALYSIS		Number of selectable genes in comparisons Estudi
+designMatrix.Estudi.csv	ANALYSIS		Design Matrix for comparison Estudi
+contrastMatrix.Estudi.csv	ANALYSIS		Contrast Matrix for comparison Estudi
+Estudi.AvsB.html	ANALYSIS		Test parameters and ranked list of genes for the comparison Estudi.AvsB
+volcano.Estudi.AvsB.pdf	ANALYSIS		Volcano Plot for the comparison Estudi.AvsB
+ExpressAndTop.Estudi.AvsB.csv	ANALYSIS		TopTable and normalized expression values for the comparison AvsB
+Estudi.AvsL.html	ANALYSIS		Test parameters and ranked list of genes for the comparison Estudi.AvsL
+volcano.Estudi.AvsL.pdf	ANALYSIS		Volcano Plot for the comparison Estudi.AvsL
+ExpressAndTop.Estudi.AvsL.csv	ANALYSIS		TopTable and normalized expression values for the comparison AvsL
+Estudi.BvsL.html	ANALYSIS		Test parameters and ranked list of genes for the comparison Estudi.BvsL
+volcano.Estudi.BvsL.pdf	ANALYSIS		Volcano Plot for the comparison Estudi.BvsL
+ExpressAndTop.Estudi.BvsL.csv	ANALYSIS		TopTable and normalized expression values for the comparison BvsL
+numGenesChanged.Estudi.csv	ANALYSIS		Number of selectable genes in comparisons Estudi
+designMatrix.Estudi.csv	ANALYSIS		Design Matrix for comparison Estudi
+contrastMatrix.Estudi.csv	ANALYSIS		Contrast Matrix for comparison Estudi
+Annotations.html	ANNOT		Gene annotations for all genes analyzed
 normalized.all.csv	DATA		Normalized values for all genes
 Estudi.AvsB.html	ANALYSIS		Test parameters and ranked list of genes for the comparison Estudi.AvsB
 volcano.Estudi.AvsB.pdf	ANALYSIS		Volcano Plot for the comparison Estudi.AvsB
@@ -38,7 +99,6 @@ Estudi.BvsL.html	ANALYSIS		Test parameters and ranked list of genes for the comp
 volcano.Estudi.BvsL.pdf	ANALYSIS		Volcano Plot for the comparison Estudi.BvsL
 ExpressAndTop.Estudi.BvsL.csv	ANALYSIS		TopTable and normalized expression values for the comparison BvsL
 numGenesChanged.Estudi.csv	ANALYSIS		Number of selectable genes in comparisons Estudi
-normalized.all.csv	DATA		Normalized values for all genes
 Estudi.AvsB.html	ANALYSIS		Test parameters and ranked list of genes for the comparison Estudi.AvsB
 volcano.Estudi.AvsB.pdf	ANALYSIS		Volcano Plot for the comparison Estudi.AvsB
 ExpressAndTop.Estudi.AvsB.csv	ANALYSIS		TopTable and normalized expression values for the comparison AvsB
@@ -49,3 +109,6 @@ Estudi.BvsL.html	ANALYSIS		Test parameters and ranked list of genes for the comp
 volcano.Estudi.BvsL.pdf	ANALYSIS		Volcano Plot for the comparison Estudi.BvsL
 ExpressAndTop.Estudi.BvsL.csv	ANALYSIS		TopTable and normalized expression values for the comparison BvsL
 numGenesChanged.Estudi.csv	ANALYSIS		Number of selectable genes in comparisons Estudi
+designMatrix.Estudi.csv	ANALYSIS		Design Matrix for comparison Estudi
+contrastMatrix.Estudi.csv	ANALYSIS		Contrast Matrix for comparison Estudi
+Annotations.html	ANNOT		Gene annotations for all genes analyzed

@@ -1,8 +1,9 @@
 ## ----echo=FALSE, include=FALSE-------------------------------------------
 require(devtools)
-install("/home/mguerrero/Dropbox/Practiques Grau (Biotec-UVic)-Mercedes_Guerrero/BasicP")
+install("/home/mguerrero/Dropbox/Practiques-Grau_Biotec-UVic_Mercedes_Guerrero/BasicP")
 require(affy)
 require(oligo) #ExonStudy
+require("limma")
 
 ## ----message=FALSE-------------------------------------------------------
 readCELS <- TRUE 
@@ -102,4 +103,82 @@ outputDir <- "./ResultsDir"
 
 BasicP::saveData(expres = exprs(eset_norm), expres.csv.FileName = normalized.all.FileName, csvType=fileType, description = "Normalized values for all genes", anotPackage = NULL, symbolsVector = symbolsTable, SYMBOL = "SYMBOL", expres.bin.FileName = expres.all.FileName, linksFile = linksFileName, outputDir = outputDir)
 
+
+## ------------------------------------------------------------------------
+targets <- read.table(file ="./celfiles/targets.txt" , header = TRUE, sep = "\t")
+column2design<- 5
+lev <- targets[,column2design] 
+design <- model.matrix( ~ 0 + lev)        
+colnames(design) <- levels(lev)
+rownames(design) <- targets$ShortName
+numParameters <- ncol(design)
+print(design)
+
+cont.matrix<-makeContrasts(AvsB= (A -B), AvsL= (A-L), BvsL=(B-L),levels=design)
+print(cont.matrix)
+
+
+## ------------------------------------------------------------------------
+load("./ResultsDir/exprs.filtered.Rda")
+contrasts2test <- 1:ncol(cont.matrix)
+anotPackage = NULL
+comparison =  "Estudi"
+outputDir = "./ResultsDir"
+ENTREZIDs = "entrezTable"
+SYMBOLIDs = "symbolsTable"
+linksFile = "Links.txt"
+fitFileName = "fit.Rda"
+csvType= "csv"
+rows2HTML= NULL
+anotFileName <- "Annotations"
+runMulticore = 0 
+toTIFF= FALSE
+
+fitMain <- 
+  lmAnalysis(exprs.filtered = exprs.filtered, design = design, cont.matrix = cont.matrix, contrasts2test = contrasts2test, anotPackage = anotPackage, outputDir = outputDir, comparison = comparison, Expressions_And_Top = TRUE , showParams = FALSE , use.dupCorr = FALSE, block = NULL, nDups = 1 , ENTREZIDs = ENTREZIDs, SYMBOLIDs = SYMBOLIDs, linksFile = linksFile,fitFileName = fitFileName , csvType=csvType, rows2HTML = NULL, anotFileName = anotFileName)
+
+
+
+## ----echo=FALSE, include=FALSE-------------------------------------------
+#Function to make a list for make the dolmAnalysis.
+add2parsList <- function(oneList,object)
+{
+  pos <- length(oneList) + 1
+  oneList[[pos]] <- object
+  names(oneList)[pos] <- oneList[[pos]]$comparisonName
+  return(oneList)
+}
+
+
+## ------------------------------------------------------------------------
+lmParsList <- list()
+Estudi <- list(dades = NULL,
+               expresFileName = "exprs.filtered.Rda",
+               targets = targets,
+               designMat = design,
+               contMat = cont.matrix,
+               whichContrasts = 1:ncol(cont.matrix),
+               anotPack = NULL,
+               outputDir = outputDir,
+               ExpressionsAndTop = TRUE,
+               showLmParams = FALSE, 
+               use.dupCorr = FALSE,
+               block = NULL,
+               nDups = 1,
+               comparisonName = comparison,  
+               ENTREZIDs = "entrezTable",
+               SYMBOLIDs = "symbolsTable",
+               fileOfLinks = linksFile,
+               fitFileName = fitFileName,
+               csvType=csvType,
+               rows2HTML = NULL,
+               anotFilename = anotFileName
+               )
+
+lmParsList <- add2parsList(lmParsList, Estudi)
+               
+for(ix in 1:length(lmParsList))
+{
+  fit.Main   <- doLmAnalysis(lmParsList[ix])
+}
 

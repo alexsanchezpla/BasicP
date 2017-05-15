@@ -240,9 +240,18 @@ lmParsList <- add2parsList(lmParsList, Estudi)
                
 for(ix in 1:length(lmParsList))
 {
-  fit.Main   <- doLmAnalysis(lmParsList[ix])
+  fit.Main   <- BasicP::doLmAnalysis(lmParsList[ix])
 }
-
-
 ```
+
+## `doGeneAnnotation'Vignette Info`
+Function to annotate the genes.
+
+
+```{r}
+anotList <- list(fitMain = NULL, fitFileName = fitFileName, my.IDs = entrezs, anotPackage = "org.Hs.eg", toHTML = TRUE, outputDir = outputDir, anotFilename = "Annotations", titleAnotations = "Annotations for all genes analyzed", specie = "homo sapiens", info2show = c( "Affymetrix", "EntrezGene", "GeneSymbol", "GeneName", "KEGG", "GO"), linksFile = linksFile, numGenesPerPage = NULL)
+
+doGeneAnnotation(anotList)
+```
+
 

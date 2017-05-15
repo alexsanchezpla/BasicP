@@ -608,8 +608,8 @@ doLmAnalysis <- function (lmPar)
   designMatrixName = paste("designMatrix",p$comparisonName, sep=".")
   contrastMatrixName = paste("contrastMatrix",p$comparisonName, sep=".")
 
-  write2csv(p$designMat, fileName = designMatrixName, csv = p$csvType, outputDir = resultsDir)
-  write2csv(p$contMat, fileName = contrastMatrixName, csv = p$csvType, outputDir = resultsDir)
+  write2csv(p$designMat, fileName = designMatrixName, csv = p$csvType, outputDir = outputDir)
+  write2csv(p$contMat, fileName = contrastMatrixName, csv = p$csvType, outputDir = outputDir)
 
   csvType <- ifelse(is.null(p$csvType), "csv2", p$csvType)
   addToLinksFile(p$fileOfLinks, paste(designMatrixName, substr(csvType, 1, 3),  sep="."), categ = "ANALYSIS",

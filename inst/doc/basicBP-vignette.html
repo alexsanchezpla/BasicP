@@ -12,7 +12,7 @@
 
 <meta name="author" content="Alex Sanchez and Mercedes Guerrero" />
 
-<meta name="date" content="2017-05-05" />
+<meta name="date" content="2017-05-15" />
 
 <title>Basic examples of using BasicP functions</title>
 
@@ -70,7 +70,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">Basic examples of using BasicP functions</h1>
 <h4 class="author"><em>Alex Sanchez and Mercedes Guerrero</em></h4>
-<h4 class="date"><em>2017-05-05</em></h4>
+<h4 class="date"><em>2017-05-15</em></h4>
 
 
 
@@ -213,6 +213,98 @@ linksFileName &lt;-<span class="st"> &quot;Links.txt&quot;</span>
 outputDir &lt;-<span class="st"> &quot;./ResultsDir&quot;</span>
 
 BasicP::<span class="kw">saveData</span>(<span class="dt">expres =</span> <span class="kw">exprs</span>(eset_norm), <span class="dt">expres.csv.FileName =</span> normalized.all.FileName, <span class="dt">csvType=</span>fileType, <span class="dt">description =</span> <span class="st">&quot;Normalized values for all genes&quot;</span>, <span class="dt">anotPackage =</span> <span class="ot">NULL</span>, <span class="dt">symbolsVector =</span> symbolsTable, <span class="dt">SYMBOL =</span> <span class="st">&quot;SYMBOL&quot;</span>, <span class="dt">expres.bin.FileName =</span> expres.all.FileName, <span class="dt">linksFile =</span> linksFileName, <span class="dt">outputDir =</span> outputDir)</code></pre></div>
+</div>
+<div id="lmanalysisvignette-info" class="section level2">
+<h2><code>lmAnalysis'Vignette Info</code></h2>
+<p>Setting design and contrasts matrix to proceed with the linear model analysis.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">targets &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">file =</span><span class="st">&quot;./celfiles/targets.txt&quot;</span> , <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)
+column2design&lt;-<span class="st"> </span><span class="dv">5</span>
+lev &lt;-<span class="st"> </span>targets[,column2design] 
+design &lt;-<span class="st"> </span><span class="kw">model.matrix</span>( ~<span class="st"> </span><span class="dv">0</span> +<span class="st"> </span>lev)        
+<span class="kw">colnames</span>(design) &lt;-<span class="st"> </span><span class="kw">levels</span>(lev)
+<span class="kw">rownames</span>(design) &lt;-<span class="st"> </span>targets$ShortName
+numParameters &lt;-<span class="st"> </span><span class="kw">ncol</span>(design)
+<span class="kw">print</span>(design)</code></pre></div>
+<pre><code>##      A B L
+## PF14 1 0 0
+## PF19 1 0 0
+## PF23 1 0 0
+## PF39 1 0 0
+## PF46 1 0 0
+## PF24 0 1 0
+## PF25 0 1 0
+## PF28 0 1 0
+## PF34 0 1 0
+## PF42 0 1 0
+## PF15 0 0 1
+## PF32 0 0 1
+## PF33 0 0 1
+## PF43 0 0 1
+## PF47 0 0 1
+## attr(,&quot;assign&quot;)
+## [1] 1 1 1
+## attr(,&quot;contrasts&quot;)
+## attr(,&quot;contrasts&quot;)$lev
+## [1] &quot;contr.treatment&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cont.matrix&lt;-<span class="kw">makeContrasts</span>(<span class="dt">AvsB=</span> (A -B), <span class="dt">AvsL=</span> (A-L), <span class="dt">BvsL=</span>(B-L),<span class="dt">levels=</span>design)
+<span class="kw">print</span>(cont.matrix)</code></pre></div>
+<pre><code>##       Contrasts
+## Levels AvsB AvsL BvsL
+##      A    1    1    0
+##      B   -1    0    1
+##      L    0   -1   -1</code></pre>
+<p>Linear model analysis.Function included in dolmAnalysis.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="st">&quot;./ResultsDir/exprs.filtered.Rda&quot;</span>)
+contrasts2test &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="kw">ncol</span>(cont.matrix)
+anotPackage =<span class="st"> </span><span class="ot">NULL</span>
+comparison =<span class="st">  &quot;Estudi&quot;</span>
+outputDir =<span class="st"> &quot;./ResultsDir&quot;</span>
+ENTREZIDs =<span class="st"> &quot;entrezTable&quot;</span>
+SYMBOLIDs =<span class="st"> &quot;symbolsTable&quot;</span>
+linksFile =<span class="st"> &quot;Links.txt&quot;</span>
+fitFileName =<span class="st"> &quot;fit.Rda&quot;</span>
+csvType=<span class="st"> &quot;csv&quot;</span>
+rows2HTML=<span class="st"> </span><span class="ot">NULL</span>
+anotFileName &lt;-<span class="st"> &quot;Annotations&quot;</span>
+runMulticore =<span class="st"> </span><span class="dv">0</span> 
+toTIFF=<span class="st"> </span><span class="ot">FALSE</span>
+
+fitMain &lt;-<span class="st"> </span>
+<span class="st">  </span><span class="kw">lmAnalysis</span>(<span class="dt">exprs.filtered =</span> exprs.filtered, <span class="dt">design =</span> design, <span class="dt">cont.matrix =</span> cont.matrix, <span class="dt">contrasts2test =</span> contrasts2test, <span class="dt">anotPackage =</span> anotPackage, <span class="dt">outputDir =</span> outputDir, <span class="dt">comparison =</span> comparison, <span class="dt">Expressions_And_Top =</span> <span class="ot">TRUE</span> , <span class="dt">showParams =</span> <span class="ot">FALSE</span> , <span class="dt">use.dupCorr =</span> <span class="ot">FALSE</span>, <span class="dt">block =</span> <span class="ot">NULL</span>, <span class="dt">nDups =</span> <span class="dv">1</span> , <span class="dt">ENTREZIDs =</span> ENTREZIDs, <span class="dt">SYMBOLIDs =</span> SYMBOLIDs, <span class="dt">linksFile =</span> linksFile,<span class="dt">fitFileName =</span> fitFileName , <span class="dt">csvType=</span>csvType, <span class="dt">rows2HTML =</span> <span class="ot">NULL</span>, <span class="dt">anotFileName =</span> anotFileName)</code></pre></div>
+</div>
+<div id="dolmanalysisvignette-info" class="section level2">
+<h2><code>doLmAnalysis'Vignette Info</code></h2>
+<p>Function to analyze the linerar model with the different parameters.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lmParsList &lt;-<span class="st"> </span><span class="kw">list</span>()
+Estudi &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">dades =</span> <span class="ot">NULL</span>,
+               <span class="dt">expresFileName =</span> <span class="st">&quot;exprs.filtered.Rda&quot;</span>,
+               <span class="dt">targets =</span> targets,
+               <span class="dt">designMat =</span> design,
+               <span class="dt">contMat =</span> cont.matrix,
+               <span class="dt">whichContrasts =</span> <span class="dv">1</span>:<span class="kw">ncol</span>(cont.matrix),
+               <span class="dt">anotPack =</span> <span class="ot">NULL</span>,
+               <span class="dt">outputDir =</span> outputDir,
+               <span class="dt">ExpressionsAndTop =</span> <span class="ot">TRUE</span>,
+               <span class="dt">showLmParams =</span> <span class="ot">FALSE</span>, 
+               <span class="dt">use.dupCorr =</span> <span class="ot">FALSE</span>,
+               <span class="dt">block =</span> <span class="ot">NULL</span>,
+               <span class="dt">nDups =</span> <span class="dv">1</span>,
+               <span class="dt">comparisonName =</span> comparison,  
+               <span class="dt">ENTREZIDs =</span> <span class="st">&quot;entrezTable&quot;</span>,
+               <span class="dt">SYMBOLIDs =</span> <span class="st">&quot;symbolsTable&quot;</span>,
+               <span class="dt">fileOfLinks =</span> linksFile,
+               <span class="dt">fitFileName =</span> fitFileName,
+               <span class="dt">csvType=</span>csvType,
+               <span class="dt">rows2HTML =</span> <span class="ot">NULL</span>,
+               <span class="dt">anotFilename =</span> anotFileName
+               )
+
+lmParsList &lt;-<span class="st"> </span><span class="kw">add2parsList</span>(lmParsList, Estudi)
+               
+for(ix in <span class="dv">1</span>:<span class="kw">length</span>(lmParsList))
+{
+  fit.Main   &lt;-<span class="st"> </span><span class="kw">doLmAnalysis</span>(lmParsList[ix])
+}</code></pre></div>
 </div>
 
 
