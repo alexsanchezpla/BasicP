@@ -1,0 +1,25 @@
+INFO [2017-05-16 14:14:55] [[1]]
+INFO [2017-05-16 14:14:55] list(A = which(res.selected[, 1] != 0), B = which(res.selected[, 
+INFO [2017-05-16 14:14:55]     2] != 0))
+INFO [2017-05-16 14:14:55] 
+INFO [2017-05-16 14:14:55] $category.names
+INFO [2017-05-16 14:14:55] colnames(res.selected)[1:2]
+INFO [2017-05-16 14:14:55] 
+INFO [2017-05-16 14:14:55] $fill
+INFO [2017-05-16 14:14:55] c(vennColors[1], vennColors[2])
+INFO [2017-05-16 14:14:55] 
+INFO [2017-05-16 14:14:55] $alpha
+INFO [2017-05-16 14:14:55] [1] 0.3
+INFO [2017-05-16 14:14:55] 
+INFO [2017-05-16 14:14:55] $main
+INFO [2017-05-16 14:14:55] paste(comparisonName, titleText, sep = " ")
+INFO [2017-05-16 14:14:55] 
+INFO [2017-05-16 14:14:55] $resolution
+INFO [2017-05-16 14:14:55] [1] 600
+INFO [2017-05-16 14:14:55] 
+INFO [2017-05-16 14:14:55] $cat.cex
+INFO [2017-05-16 14:14:55] my.cex
+INFO [2017-05-16 14:14:55] 
+INFO [2017-05-16 14:14:55] $filename
+INFO [2017-05-16 14:14:55] NULL
+INFO [2017-05-16 14:14:55] 

@@ -49,7 +49,6 @@ doGeneAnnotation <- function(AnotList)
                                    specie = organisme,
                                    info2show = p$info2show,
                                    linksFile = p$linksFile,
-                                   maxGenes = p$numGenesPerPage
-  )
+                                   maxGenes = p$numGenesPerPage)
   return(genesAnnotated)
 }

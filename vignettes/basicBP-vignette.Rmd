@@ -186,14 +186,10 @@ anotFileName <- "Annotations"
 runMulticore = 0 
 toTIFF= FALSE
 
-fitMain <- lmAnalysis(exprs.filtered = exprs.filtered, design = design, cont.matrix = cont.matrix, contrasts2test = contrasts2test, anotPackage = anotPackage, outputDir = outputDir, comparison = comparison, Expressions_And_Top = TRUE , showParams = FALSE , use.dupCorr = FALSE, block = NULL, nDups = 1 , ENTREZIDs = ENTREZIDs, SYMBOLIDs = SYMBOLIDs, linksFile = linksFile,fitFileName = fitFileName , csvType=csvType, rows2HTML = NULL, anotFileName = anotFileName)
+fitMain <- BasicP::lmAnalysis(exprs.filtered = exprs.filtered, design = design, cont.matrix = cont.matrix, contrasts2test = contrasts2test, anotPackage = anotPackage, outputDir = outputDir, comparison = comparison, Expressions_And_Top = TRUE , showParams = FALSE , use.dupCorr = FALSE, block = NULL, nDups = 1 , ENTREZIDs = ENTREZIDs, SYMBOLIDs = SYMBOLIDs, linksFile = linksFile,fitFileName = fitFileName , csvType=csvType, rows2HTML = NULL, anotFileName = anotFileName)
 
 
 ```
-  
-  
-  
-  
 
 ```{r echo=FALSE, include=FALSE}
 #Function to make a list for make the dolmAnalysis.
@@ -244,14 +240,120 @@ for(ix in 1:length(lmParsList))
 }
 ```
 
+## `GeneAnnotation'Vignette Info`
+Function that annotates genes. Inside doGeneAnnotation
+
+
+```{r}
+genes2annotate <- entrezs[unique(rownames(fitMain$p.value))]
+
+GeneAnnotation(egIDs = genes2annotate, anotPackage = "org.Hs.eg", toHTML = TRUE, outputDir = outputDir, filename = "Annotations",  myTitle = "Annotations for all genes analyzed", specie = "homo sapiens", info2show = c( "Affymetrix", "EntrezGene", "GeneSymbol", "GeneName", "KEGG", "GO"), linksFile = linksFile, maxGenes = NULL)
+```
+
 ## `doGeneAnnotation'Vignette Info`
 Function to annotate the genes.
 
 
 ```{r}
+organisme = "hsa"
 anotList <- list(fitMain = NULL, fitFileName = fitFileName, my.IDs = entrezs, anotPackage = "org.Hs.eg", toHTML = TRUE, outputDir = outputDir, anotFilename = "Annotations", titleAnotations = "Annotations for all genes analyzed", specie = "homo sapiens", info2show = c( "Affymetrix", "EntrezGene", "GeneSymbol", "GeneName", "KEGG", "GO"), linksFile = linksFile, numGenesPerPage = NULL)
 
 doGeneAnnotation(anotList)
 ```
 
+## `multipleComp'Vignette Info`
+Function to make multiple comparations. Inside doMultCompAnalysis.
+
+```{r}
+
+compName <- c("Group1")
+wCont <- 1:3
+pValCutOff <- c(0.01)
+adjMethod <- c("none")
+minLogFoldChange <- c(1)
+load("./ResultsDir/Symbols.Rda")
+titleText = paste("for", ifelse(adjMethod=="none","p-values","adj. p-values"), "<", pValCutOff, "and |logFC| >", minLogFoldChange, sep = " ")
+geneListFName = paste("geneList",compName,ifelse(adjMethod=="none","pvalues","adj-pvalues"),"LT",pValCutOff,"Rda",sep = ".")
+
+geneList <-  BasicP::multipleComp(fitMain = fitMain, whichContrasts = wCont, comparisonName = compName, titleText = titleText, outputDir = outputDir,  anotPackage = "org.Hs.eg", my.symbols = symbolsTable, linksFile = linksFile, multCompMethod = "separate", adjustMethod = adjMethod, selectionType = "any", P.Value.cutoff = pValCutOff, plotVenn = TRUE, colsVenn = NULL, vennColors = c("red","yellow","green","blue","pink") , cexVenn = 1, geneListFName=geneListFName, csvType=csvType, minLFC=minLogFoldChange)
+
+```
+
+## `doMultCompAnalysis'Vignette Info`
+Function to perform Multi comparations analysis.
+
+
+```{r}
+mcParsList <- list()
+compName <- c("Group1", "Group2")
+wCont <- 1:ncol(cont.matrix)
+pValCutOff <- c(0.01, 0.01) 
+adjMethod <- c("none", "none")
+minLogFoldChange <- c(1, 1) 
+for(i in 1:length(compName))
+{  
+mci <- list(fitMain = fitMain,
+              fitFileName = fitFileName,
+              whichContrasts = wCont[[i]],
+              comparisonName = compName[i],
+              titleText = paste("for",ifelse(adjMethod[i]=="none",
+              "p-values","adj. p-values"), "<", pValCutOff[i], "and |logFC| >",
+               minLogFoldChange[i], sep = " "),
+             
+              anotPackage = "org.Hs.eg",
+              my.symbols = symbolsTable,
+              outputDir = outputDir,
+              fileOfLinks = linksFile,
+              multCompMethod = "separate",
+              adjustMethod = adjMethod[i], 
+              selectionType = "any",
+              P.Value.cutoff = pValCutOff[i],
+              plotVenn = TRUE,
+              colsVenn = NULL,
+	      vennColors= c("red","yellow","green","blue","pink"),  
+              cexVenn = 1,
+              geneListFName = paste("geneList",compName[i],
+              ifelse(adjMethod[i]=="none","pvalues","adj-pvalues"),
+              "LT",pValCutOff[i],"Rda",sep = "."),
+	      
+              minLogFC = minLogFoldChange[i],
+              csvType = csvType)
+
+  mcParsList <- add2parsList(mcParsList, mci)
+}
+
+for(ix in 1:length(mcParsList))
+{
+  geneList.MCi <- BasicP::doMultCompAnalysis(mcParsList[ix])   
+}
+```
+
+## `clusterAnalysis'Vignette Info`
+Function to draw the clusters.Inside doClusterAnalysis.
+
+```{r}
+
+ clust <- clusterAnalysis(expres = expres, 
+                           genes = genes2cluster, 
+                           samples = p$samples2cluster, 
+                           sampleNames = p$sampleNames,
+                           comparisonName = p$comparisonName,
+                           anotPackage = p$anotPackage,
+                           my.symbols = SymbolIDs, # era p$my.symbols,
+                           outputDir = p$outputDir, 
+                           fileOfLinks = p$fileOfLinks,                              
+                           numClusters = p$numClusters,
+                           rowDistance = p$rowDistance,
+                           colDistance = p$colDistance,
+                           RowVals = p$RowVals,
+                           ColVals = p$ColVals,
+                           escala = p$escala,
+                           colorsSet = p$colorsSet,
+                           densityInfo = p$densityInfo,
+                           colsForGroups = p$colsForGroups,
+                           cexForColumns = p$cexForColumns,
+                           cexForRows = p$cexForRows,
+                           Title = p$Title,
+                           csvType = p$csvType)
+```
 
