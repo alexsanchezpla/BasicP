@@ -15,6 +15,7 @@ install("/home/mguerrero/Dropbox/Practiques-Grau_Biotec-UVic_Mercedes_Guerrero/B
 require(affy)
 require(oligo) #ExonStudy
 require("limma")
+require(gplots)
 ```
 
 The goal of this Vignette is to illustrate the use of some functions exported from the package.
@@ -146,6 +147,8 @@ linksFileName <- "Links.txt"
 outputDir <- "./ResultsDir"
 
 BasicP::saveData(expres = exprs(eset_norm), expres.csv.FileName = normalized.all.FileName, csvType=fileType, description = "Normalized values for all genes", anotPackage = NULL, symbolsVector = symbolsTable, SYMBOL = "SYMBOL", expres.bin.FileName = expres.all.FileName, linksFile = linksFileName, outputDir = outputDir)
+
+BasicP::saveData(expres = exprs.filtered, expres.csv.FileName = "normalized.filtered", csvType = fileType, description = "Normalized values for filtered genes", anotPackage = NULL, symbolsVector = symbolsTable, SYMBOL = "SYMBOL", expres.bin.FileName = "exprs.filtered.Rda",  linksFile = linksFileName, outputDir = outputDir)
 
 ```
 
@@ -332,28 +335,82 @@ for(ix in 1:length(mcParsList))
 Function to draw the clusters.Inside doClusterAnalysis.
 
 ```{r}
+s2clust <-  which(as.logical(apply(design[,as.logical(apply(abs(as.matrix(cont.matrix[,wCont[[i]]])),1,sum))],1,sum)))
+geneListFName = paste("geneList",  compName[i],     ifelse(adjMethod[i]=="none","pvalues","adj-pvalues"), "LT", pValCutOff[i], "Rda", sep = ".")
+pal <- colorpanel(n = 32, low = "green", mid = "white", high = "magenta")
+load("./ResultsDir/geneList.Group1.pvalues.LT.0.01.Rda")
+ clust <- BasicP::clusterAnalysis(expres = exprs.filtered,
+                           genes = geneList, 
+                           samples = s2clust, 
+                           sampleNames =       as.character(targets$ShortName)[s2clust],
+                           comparisonName = "Compar 1",
+                           anotPackage = "org.Hs.eg",
+                           my.symbols = symbolsTable,
+                           outputDir = outputDir, 
+                           fileOfLinks = linksFile,                              
+                           numClusters = 2,
+                           rowDistance = NULL,
+                           colDistance = NULL,
+                           RowVals = TRUE,
+                           ColVals = FALSE,
+                           escala = "row",
+                           colorsSet = pal,
+                           densityInfo = "density",
+                           colsForGroups = c("pink","pink","pink","pink","pink","blue","blue","blue","blue","blue"),
+                           cexForColumns = 0.8,
+                           cexForRows = 0.8,
+                           Title = paste("Compar 1 with",
+                            ifelse(adjMethod[i]=="none","pvalues","adj-pvalues"),
+                            "<",
+                            pValCutOff[i], ifelse(minLogFoldChange[i]==0, "", paste("\n and |logFC|>=", minLogFoldChange[i], sep=""))),
+                           csvType = "csv2")
+```
 
- clust <- clusterAnalysis(expres = expres, 
-                           genes = genes2cluster, 
-                           samples = p$samples2cluster, 
-                           sampleNames = p$sampleNames,
-                           comparisonName = p$comparisonName,
-                           anotPackage = p$anotPackage,
-                           my.symbols = SymbolIDs, # era p$my.symbols,
-                           outputDir = p$outputDir, 
-                           fileOfLinks = p$fileOfLinks,                              
-                           numClusters = p$numClusters,
-                           rowDistance = p$rowDistance,
-                           colDistance = p$colDistance,
-                           RowVals = p$RowVals,
-                           ColVals = p$ColVals,
-                           escala = p$escala,
-                           colorsSet = p$colorsSet,
-                           densityInfo = p$densityInfo,
-                           colsForGroups = p$colsForGroups,
-                           cexForColumns = p$cexForColumns,
-                           cexForRows = p$cexForRows,
-                           Title = p$Title,
-                           csvType = p$csvType)
+## `doClusterAnalysis'Vignette Info`
+Function to draw the clusters.
+
+
+```{r}
+clustParsList <- list()
+for(i in 1:length(compName))
+{
+clustPar <- list(expres = NULL,
+                 expresFileName = "exprs.filtered.Rda",
+                 geneListFName = paste("geneList",  compName[i],     ifelse(adjMethod[i]=="none","pvalues","adj-pvalues"), "LT", pValCutOff[i], "Rda", sep = "."),
+                genes2cluster = NULL, 
+                samples2cluster = s2clust, 
+                sampleNames = as.character(targets$ShortName)[s2clust], 
+                comparisonName = compName[i], 
+                anotPackage = "org.Hs.eg",
+                my.symbols = symbolsTable,
+                outputDir = outputDir,
+                fileOfLinks = linksFile,
+                numClusters = 2,
+                rowDistance = NULL,
+                colDistance = NULL,
+                RowVals = TRUE,
+                ColVals = FALSE,
+                escala = "row",
+                colorsSet = pal,
+                densityInfo = "density",
+                colsForGroups = c("pink","pink","pink","pink","pink","blue","blue","blue","blue","blue"),
+                cexForColumns = 0.8,
+                cexForRows = 0.8,
+                Title = paste(compName[i],
+                                 "with",
+                                 ifelse(adjMethod[i]=="none","pvalues","adj-pvalues"),
+                                 "<",
+                                 pValCutOff[i], ifelse(minLogFoldChange[i]==0, "", paste("\n and |logFC|>=", minLogFoldChange[i], sep=""))),
+                   paste("Comparison:", compName[i], sep=" "),
+                   csvType = csvType)
+  
+clustParsList <- add2parsList(clustParsList, clustPar)
+}
+  
+for(ix in 1:length(clustParsList))
+  {
+    hm.Estudi <- BasicP::doClusterAnalysis(clustParsList[ix])
+  }
+  
 ```
 

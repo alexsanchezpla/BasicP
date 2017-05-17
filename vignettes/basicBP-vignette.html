@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Alex Sanchez and Mercedes Guerrero" />
+
+<meta name="date" content="2017-05-17" />
+
+<title>Basic examples of using BasicP functions</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+
+
+<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Basic examples of using BasicP functions</h1>
+<h4 class="author"><em>Alex Sanchez and Mercedes Guerrero</em></h4>
+<h4 class="date"><em>2017-05-17</em></h4>
+
+
+
+<p>The goal of this Vignette is to illustrate the use of some functions exported from the package.</p>
+<div id="readorload.rawdatavignette-info" class="section level2">
+<h2><code>readOrLoad.rawData'Vignette Info</code></h2>
+<p>This function reads data from cel files or loads previously saved data.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">readCELS &lt;-<span class="st"> </span><span class="ot">TRUE</span> 
+my.targets &lt;-<span class="st"> &quot;./celfiles/targets.txt&quot;</span>
+targets&lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;./celfiles/targets.txt&quot;</span>, <span class="dt">head=</span><span class="ot">TRUE</span>, <span class="dt">sep=</span><span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>, <span class="dt">row.names =</span> <span class="dv">1</span>)
+my.fileNames &lt;-<span class="kw">paste</span>(<span class="st">&quot;./celfiles/&quot;</span>,<span class="kw">rownames</span>(targets),<span class="dt">sep=</span><span class="st">&quot;&quot;</span>)
+rawDataFileName &lt;-<span class="st"> &quot;rawData.Rda&quot;</span>
+my.outputDir &lt;-<span class="st"> &quot;.&quot;</span>
+isExonStudy &lt;-<span class="st"> </span><span class="ot">FALSE</span>
+orgPackage &lt;-<span class="st"> &quot;org.Hs.eg&quot;</span> <span class="co"># Necesita este parametro para funciones internas</span>
+rawData &lt;-<span class="st"> </span>BasicP::<span class="kw">readOrLoad.RawData</span>(<span class="dt">readCELS =</span> readCELS, <span class="dt">phenoDat =</span> my.targets,
+                      <span class="dt">fileNames =</span> my.fileNames, <span class="dt">dataFName =</span>rawDataFileName,
+                      <span class="dt">outputDir =</span> my.outputDir, <span class="dt">exonSt =</span> isExonStudy)</code></pre></div>
+<pre><code>## 1 reading ./celfiles/GSM26878.CEL ...instantiating an AffyBatch (intensity a 506944x15 matrix)...done.
+## Reading in : ./celfiles/GSM26878.CEL
+## Reading in : ./celfiles/GSM26883.CEL
+## Reading in : ./celfiles/GSM26887.CEL
+## Reading in : ./celfiles/GSM26903.CEL
+## Reading in : ./celfiles/GSM26910.CEL
+## Reading in : ./celfiles/GSM26888.CEL
+## Reading in : ./celfiles/GSM26889.CEL
+## Reading in : ./celfiles/GSM26892.CEL
+## Reading in : ./celfiles/GSM26898.CEL
+## Reading in : ./celfiles/GSM26906.CEL
+## Reading in : ./celfiles/GSM26879.CEL
+## Reading in : ./celfiles/GSM26896.CEL
+## Reading in : ./celfiles/GSM26897.CEL
+## Reading in : ./celfiles/GSM26907.CEL
+## Reading in : ./celfiles/GSM26911.CEL</code></pre>
+</div>
+<div id="createorloadannotationsvignette-info" class="section level2">
+<h2><code>createOrLoadAnnotations'Vignette Info</code></h2>
+<p>This function creates annotation files or loads previously saved data.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">loadAnnotations &lt;-<span class="st"> </span><span class="ot">FALSE</span>
+chipPackAvailable &lt;-<span class="st"> </span><span class="ot">TRUE</span>
+platformDesignPackAvailable &lt;-<span class="st"> </span><span class="ot">FALSE</span>
+chipPackage &lt;-<span class="st"> &quot;hgu133a2&quot;</span>
+platformDesignPackage &lt;-<span class="st"> </span><span class="ot">NULL</span>
+outputDir &lt;-<span class="st"> &quot;./ResultsDir&quot;</span>
+annotationsFileName &lt;-<span class="st"> &quot;Annotations&quot;</span>
+entrezTableFileName &lt;-<span class="st">&quot;Entrezs.Rda&quot;</span>
+symbolsTableFileName &lt;-<span class="st">&quot;Symbols.Rda&quot;</span>
+controlsTableFileName &lt;-<span class="st"> &quot;controls.Rda&quot;</span>
+
+anotacions &lt;-<span class="st"> </span>BasicP::<span class="kw">createOrLoadAnnotations</span> (<span class="dt">loadAnnotations=</span> loadAnnotations, <span class="dt">chipPackAvailable =</span> chipPackAvailable, <span class="dt">platformDesignPackAvailable =</span> platformDesignPackAvailable,<span class="dt">chipPackage =</span> chipPackage, <span class="dt">platformDesignPackage =</span> platformDesignPackage, <span class="dt">outputDir =</span> outputDir,<span class="dt">annotationsFileName =</span> annotationsFileName,<span class="dt">entrezTableFileName =</span> entrezTableFileName, <span class="dt">symbolsTableFileName =</span> symbolsTableFileName, <span class="dt">controlsTableFileName =</span> controlsTableFileName)</code></pre></div>
+</div>
+<div id="normalizationvignette-info" class="section level2">
+<h2><code>normalization'Vignette Info</code></h2>
+<p>function to normalize the raw data.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="st">&quot;rawData.Rda&quot;</span>)
+rawData &lt;-<span class="st"> </span>my.raw
+normMethod &lt;-<span class="st"> &quot;RMA&quot;</span>
+my.targets &lt;-<span class="st"> </span><span class="kw">read.AnnotatedDataFrame</span>(<span class="st">&quot;./celfiles/targets.txt&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">row.names =</span> <span class="dv">1</span>)
+celFilesDir &lt;-<span class="st">&quot;./celfiles&quot;</span>
+loadFile &lt;-<span class="st"> </span><span class="ot">FALSE</span> 
+normalized.eset.FileName &lt;-<span class="st">  &quot;normalizedData.Rda&quot;</span>   
+outputDir &lt;-<span class="st"> &quot;./ResultsDir&quot;</span>
+exonStudy &lt;-<span class="st"> </span><span class="ot">FALSE</span>
+
+eset_norm &lt;-<span class="st"> </span>BasicP::<span class="kw">normalization</span>(<span class="dt">my.data =</span> rawData, <span class="dt">method =</span> normMethod, <span class="dt">targetsinfo =</span> my.targets, <span class="dt">inputDir =</span> celFilesDir, <span class="dt">loadFile =</span> loadFile , <span class="dt">normalizedFName =</span> normalized.eset.FileName, <span class="dt">outputDir =</span> outputDir, <span class="dt">exonSt =</span> exonStudy)</code></pre></div>
+<pre><code>## Background correcting
+## Normalizing
+## Calculating Expression</code></pre>
+</div>
+<div id="normplots2filevignette-info" class="section level2">
+<h2><code>normplots2File'Vignette Info</code></h2>
+<p>Function that makes a report of the normalization</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="st">&quot;./ResultsDir/normalizedData.Rda&quot;</span>)
+repes &lt;-<span class="st"> </span><span class="kw">duplicated</span>(<span class="kw">exprs</span>(my.norm), <span class="dt">MARGIN=</span><span class="dv">1</span>)
+<span class="kw">exprs</span>(my.norm) &lt;-<span class="st"> </span><span class="kw">exprs</span>(my.norm)[!repes,]
+eset_norm &lt;-<span class="st"> </span>my.norm
+my.colors &lt;-<span class="st"> </span><span class="kw">rainbow</span>(<span class="kw">length</span>(<span class="kw">sampleNames</span>(eset_norm)))
+my.names &lt;-<span class="st"> </span><span class="kw">pData</span>(eset_norm)$ShortName
+myCex&lt;-<span class="st"> </span><span class="fl">0.8</span>
+dim3 &lt;-<span class="st"> </span><span class="ot">FALSE</span>
+fileName &lt;-<span class="st"> &quot;NormalizedPlots.pdf&quot;</span>
+outputDir &lt;-<span class="st"> &quot;./ResultsDir&quot;</span>
+PCAPlots &lt;-<span class="st"> </span><span class="ot">TRUE</span>
+csv &lt;-<span class="st"> &quot;csv2&quot;</span>
+
+BasicP::<span class="kw">normplots2File</span>(<span class="dt">my.data =</span> eset_norm, <span class="dt">sampleNames =</span> my.names, <span class="dt">my.colors =</span> my.colors, <span class="dt">my.groups =</span> <span class="kw">pData</span>(eset_norm)$Group, <span class="dt">my.method =</span> <span class="st">&quot;average&quot;</span>,<span class="dt">my.cex =</span> myCex ,<span class="dt">posText =</span> <span class="dv">2</span>, <span class="dt">dim3 =</span> <span class="ot">FALSE</span>,<span class="dt">fileName =</span> fileName, <span class="dt">outputDir =</span> outputDir,<span class="dt">PCAPlots =</span> <span class="ot">TRUE</span>, <span class="dt">csv =</span> fileType)</code></pre></div>
+<pre><code>##                           PC1    PC2    PC3    PC4    PC5    PC6    PC7
+## Standard deviation     28.886 22.143 19.595 18.794 17.586 16.046 15.556
+## Proportion of Variance  0.208  0.122  0.096  0.088  0.077  0.064  0.060
+## Cumulative Proportion   0.208  0.331  0.427  0.515  0.592  0.656  0.717
+##                           PC8    PC9   PC10   PC11   PC12   PC13   PC14
+## Standard deviation     13.941 13.589 13.452 12.489 12.414 11.663 11.290
+## Proportion of Variance  0.049  0.046  0.045  0.039  0.038  0.034  0.032
+## Cumulative Proportion   0.765  0.812  0.857  0.896  0.934  0.968  1.000
+##                        PC15
+## Standard deviation        0
+## Proportion of Variance    0
+## Cumulative Proportion     1</code></pre>
+</div>
+<div id="filterdatavignette-info" class="section level2">
+<h2><code>filterData'Vignette Info</code></h2>
+<p>Function to filter the data</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="st">&quot;./ResultsDir/normalizedData.Rda&quot;</span>)
+repes &lt;-<span class="st"> </span><span class="kw">duplicated</span>(<span class="kw">exprs</span>(my.norm), <span class="dt">MARGIN=</span><span class="dv">1</span>)
+<span class="kw">exprs</span>(my.norm) &lt;-<span class="st"> </span><span class="kw">exprs</span>(my.norm)[!repes,]
+eset_norm &lt;-<span class="st"> </span>my.norm
+<span class="kw">load</span>(<span class="st">&quot;./ResultsDir/controls.Rda&quot;</span>)
+removeNAs &lt;-<span class="st"> </span><span class="ot">TRUE</span>
+<span class="kw">load</span>(<span class="st">&quot;./ResultsDir/Entrezs.Rda&quot;</span>)
+entrezs &lt;-<span class="st"> </span>entrezTable
+SignalFilter &lt;-<span class="st"> </span><span class="ot">TRUE</span>
+signalThreshold &lt;-<span class="st"> </span><span class="dv">50</span>
+signalFilter.Function &lt;-<span class="st"> &quot;filt.by.Signal&quot;</span>
+signalThreshold.as.percentage &lt;-<span class="st"> </span><span class="ot">TRUE</span>
+VarFilter &lt;-<span class="st"> </span><span class="ot">TRUE</span> 
+variabilityThreshold &lt;-<span class="st"> </span><span class="dv">50</span>
+variability.Function &lt;-<span class="st"> &quot;sdf&quot;</span>
+variabilityThreshold.as.percentage &lt;-<span class="st"> </span><span class="ot">TRUE</span>
+pairing.Function &lt;-<span class="st"> </span><span class="ot">NULL</span>
+my.targets &lt;-<span class="kw">read.AnnotatedDataFrame</span>(<span class="st">&quot;./celfiles/targets.txt&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">row.names =</span> <span class="dv">1</span>)
+doReport &lt;-<span class="st"> </span><span class="ot">TRUE</span>
+outputDir &lt;-<span class="st"> &quot;./ResultsDir&quot;</span>
+FilteringReportFileName &lt;-<span class="st"> &quot;FilteringReport.txt&quot;</span>
+
+exprs.filtered &lt;-<span class="st"> </span>BasicP::<span class="kw">filterData</span>(<span class="dt">expres =</span> <span class="kw">exprs</span>(eset_norm),<span class="dt">controls =</span> <span class="kw">names</span>(controlsTable),<span class="dt">removeNAs =</span> <span class="ot">TRUE</span>, <span class="dt">entrezs =</span> entrezs ,<span class="dt">bySignal =</span> SignalFilter,<span class="dt">signalThr =</span> signalThreshold, <span class="dt">grups =</span> <span class="kw">pData</span>(eset_norm)$grupo, <span class="dt">sigFun.Name =</span> signalFilter.Function, <span class="dt">sigThr.as.perc =</span> signalThreshold.as.percentage, <span class="dt">byVar =</span> VarFilter, <span class="dt">variabilityThr =</span> variabilityThreshold, <span class="dt">varFun.Name =</span> variability.Function,
+<span class="dt">varThr.as.perc =</span> variabilityThreshold.as.percentage, <span class="dt">pairingFun.Name =</span> pairing.Function, <span class="dt">targets =</span> my.targets, <span class="dt">doReport =</span> doReport, <span class="dt">outputDir =</span> outputDir, <span class="dt">filteringReportFName =</span> FilteringReportFileName)</code></pre></div>
+</div>
+<div id="savedatavignette-info" class="section level2">
+<h2><code>saveData'Vignette Info</code></h2>
+<p>Function to save R objects in files.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="st">&quot;./ResultsDir/normalizedData.Rda&quot;</span>)
+repes &lt;-<span class="st"> </span><span class="kw">duplicated</span>(<span class="kw">exprs</span>(my.norm), <span class="dt">MARGIN=</span><span class="dv">1</span>)
+<span class="kw">exprs</span>(my.norm) &lt;-<span class="st"> </span><span class="kw">exprs</span>(my.norm)[!repes,]
+eset_norm &lt;-<span class="st"> </span>my.norm
+normalized.all.FileName &lt;-<span class="st"> &quot;normalized.all&quot;</span>
+fileType &lt;-<span class="st">&quot;csv2&quot;</span>
+symbolsTable &lt;-<span class="st"> </span><span class="kw">load</span>(<span class="st">&quot;./ResultsDir/Symbols.Rda&quot;</span>)
+expres.all.FileName &lt;-<span class="st"> &quot;expres.Rda&quot;</span>
+linksFileName &lt;-<span class="st"> &quot;Links.txt&quot;</span>
+outputDir &lt;-<span class="st"> &quot;./ResultsDir&quot;</span>
+
+BasicP::<span class="kw">saveData</span>(<span class="dt">expres =</span> <span class="kw">exprs</span>(eset_norm), <span class="dt">expres.csv.FileName =</span> normalized.all.FileName, <span class="dt">csvType=</span>fileType, <span class="dt">description =</span> <span class="st">&quot;Normalized values for all genes&quot;</span>, <span class="dt">anotPackage =</span> <span class="ot">NULL</span>, <span class="dt">symbolsVector =</span> symbolsTable, <span class="dt">SYMBOL =</span> <span class="st">&quot;SYMBOL&quot;</span>, <span class="dt">expres.bin.FileName =</span> expres.all.FileName, <span class="dt">linksFile =</span> linksFileName, <span class="dt">outputDir =</span> outputDir)
+
+BasicP::<span class="kw">saveData</span>(<span class="dt">expres =</span> exprs.filtered, <span class="dt">expres.csv.FileName =</span> <span class="st">&quot;normalized.filtered&quot;</span>, <span class="dt">csvType =</span> fileType, <span class="dt">description =</span> <span class="st">&quot;Normalized values for filtered genes&quot;</span>, <span class="dt">anotPackage =</span> <span class="ot">NULL</span>, <span class="dt">symbolsVector =</span> symbolsTable, <span class="dt">SYMBOL =</span> <span class="st">&quot;SYMBOL&quot;</span>, <span class="dt">expres.bin.FileName =</span> <span class="st">&quot;exprs.filtered.Rda&quot;</span>,  <span class="dt">linksFile =</span> linksFileName, <span class="dt">outputDir =</span> outputDir)</code></pre></div>
+</div>
+<div id="lmanalysisvignette-info" class="section level2">
+<h2><code>lmAnalysis'Vignette Info</code></h2>
+<p>Setting design and contrasts matrix to proceed with the linear model analysis.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">targets &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">file =</span><span class="st">&quot;./celfiles/targets.txt&quot;</span> , <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)
+column2design&lt;-<span class="st"> </span><span class="dv">5</span>
+lev &lt;-<span class="st"> </span>targets[,column2design] 
+design &lt;-<span class="st"> </span><span class="kw">model.matrix</span>( ~<span class="st"> </span><span class="dv">0</span> +<span class="st"> </span>lev)        
+<span class="kw">colnames</span>(design) &lt;-<span class="st"> </span><span class="kw">levels</span>(lev)
+<span class="kw">rownames</span>(design) &lt;-<span class="st"> </span>targets$ShortName
+numParameters &lt;-<span class="st"> </span><span class="kw">ncol</span>(design)
+<span class="kw">print</span>(design)</code></pre></div>
+<pre><code>##      A B L
+## PF14 1 0 0
+## PF19 1 0 0
+## PF23 1 0 0
+## PF39 1 0 0
+## PF46 1 0 0
+## PF24 0 1 0
+## PF25 0 1 0
+## PF28 0 1 0
+## PF34 0 1 0
+## PF42 0 1 0
+## PF15 0 0 1
+## PF32 0 0 1
+## PF33 0 0 1
+## PF43 0 0 1
+## PF47 0 0 1
+## attr(,&quot;assign&quot;)
+## [1] 1 1 1
+## attr(,&quot;contrasts&quot;)
+## attr(,&quot;contrasts&quot;)$lev
+## [1] &quot;contr.treatment&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cont.matrix&lt;-<span class="kw">makeContrasts</span>(<span class="dt">AvsB=</span> (A -B), <span class="dt">AvsL=</span> (A-L), <span class="dt">BvsL=</span>(B-L),<span class="dt">levels=</span>design)
+<span class="kw">print</span>(cont.matrix)</code></pre></div>
+<pre><code>##       Contrasts
+## Levels AvsB AvsL BvsL
+##      A    1    1    0
+##      B   -1    0    1
+##      L    0   -1   -1</code></pre>
+<p>Linear model analysis.Function included in dolmAnalysis.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="st">&quot;./ResultsDir/exprs.filtered.Rda&quot;</span>)
+contrasts2test &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="kw">ncol</span>(cont.matrix)
+anotPackage =<span class="st"> </span><span class="ot">NULL</span>
+comparison =<span class="st">  &quot;Estudi&quot;</span>
+outputDir =<span class="st"> &quot;./ResultsDir&quot;</span>
+ENTREZIDs =<span class="st"> &quot;entrezTable&quot;</span>
+SYMBOLIDs =<span class="st"> &quot;symbolsTable&quot;</span>
+linksFile =<span class="st"> &quot;Links.txt&quot;</span>
+fitFileName =<span class="st"> &quot;fit.Rda&quot;</span>
+csvType=<span class="st"> &quot;csv&quot;</span>
+rows2HTML=<span class="st"> </span><span class="ot">NULL</span>
+anotFileName &lt;-<span class="st"> &quot;Annotations&quot;</span>
+runMulticore =<span class="st"> </span><span class="dv">0</span> 
+toTIFF=<span class="st"> </span><span class="ot">FALSE</span>
+
+fitMain &lt;-<span class="st"> </span>BasicP::<span class="kw">lmAnalysis</span>(<span class="dt">exprs.filtered =</span> exprs.filtered, <span class="dt">design =</span> design, <span class="dt">cont.matrix =</span> cont.matrix, <span class="dt">contrasts2test =</span> contrasts2test, <span class="dt">anotPackage =</span> anotPackage, <span class="dt">outputDir =</span> outputDir, <span class="dt">comparison =</span> comparison, <span class="dt">Expressions_And_Top =</span> <span class="ot">TRUE</span> , <span class="dt">showParams =</span> <span class="ot">FALSE</span> , <span class="dt">use.dupCorr =</span> <span class="ot">FALSE</span>, <span class="dt">block =</span> <span class="ot">NULL</span>, <span class="dt">nDups =</span> <span class="dv">1</span> , <span class="dt">ENTREZIDs =</span> ENTREZIDs, <span class="dt">SYMBOLIDs =</span> SYMBOLIDs, <span class="dt">linksFile =</span> linksFile,<span class="dt">fitFileName =</span> fitFileName , <span class="dt">csvType=</span>csvType, <span class="dt">rows2HTML =</span> <span class="ot">NULL</span>, <span class="dt">anotFileName =</span> anotFileName)</code></pre></div>
+<pre><code>## Loading required package: annotate</code></pre>
+<pre><code>## Loading required package: XML</code></pre>
+</div>
+<div id="dolmanalysisvignette-info" class="section level2">
+<h2><code>doLmAnalysis'Vignette Info</code></h2>
+<p>Function to analyze the linerar model with the different parameters.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lmParsList &lt;-<span class="st"> </span><span class="kw">list</span>()
+Estudi &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">dades =</span> <span class="ot">NULL</span>,
+               <span class="dt">expresFileName =</span> <span class="st">&quot;exprs.filtered.Rda&quot;</span>,
+               <span class="dt">targets =</span> targets,
+               <span class="dt">designMat =</span> design,
+               <span class="dt">contMat =</span> cont.matrix,
+               <span class="dt">whichContrasts =</span> <span class="dv">1</span>:<span class="kw">ncol</span>(cont.matrix),
+               <span class="dt">anotPack =</span> <span class="ot">NULL</span>,
+               <span class="dt">outputDir =</span> outputDir,
+               <span class="dt">ExpressionsAndTop =</span> <span class="ot">TRUE</span>,
+               <span class="dt">showLmParams =</span> <span class="ot">FALSE</span>, 
+               <span class="dt">use.dupCorr =</span> <span class="ot">FALSE</span>,
+               <span class="dt">block =</span> <span class="ot">NULL</span>,
+               <span class="dt">nDups =</span> <span class="dv">1</span>,
+               <span class="dt">comparisonName =</span> comparison,  
+               <span class="dt">ENTREZIDs =</span> <span class="st">&quot;entrezTable&quot;</span>,
+               <span class="dt">SYMBOLIDs =</span> <span class="st">&quot;symbolsTable&quot;</span>,
+               <span class="dt">fileOfLinks =</span> linksFile,
+               <span class="dt">fitFileName =</span> fitFileName,
+               <span class="dt">csvType=</span>csvType,
+               <span class="dt">rows2HTML =</span> <span class="ot">NULL</span>,
+               <span class="dt">anotFilename =</span> anotFileName
+               )
+
+lmParsList &lt;-<span class="st"> </span><span class="kw">add2parsList</span>(lmParsList, Estudi)
+               
+for(ix in <span class="dv">1</span>:<span class="kw">length</span>(lmParsList))
+{
+  fit.Main   &lt;-<span class="st"> </span>BasicP::<span class="kw">doLmAnalysis</span>(lmParsList[ix])
+}</code></pre></div>
+</div>
+<div id="geneannotationvignette-info" class="section level2">
+<h2><code>GeneAnnotation'Vignette Info</code></h2>
+<p>Function that annotates genes. Inside doGeneAnnotation</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genes2annotate &lt;-<span class="st"> </span>entrezs[<span class="kw">unique</span>(<span class="kw">rownames</span>(fitMain$p.value))]
+
+<span class="kw">GeneAnnotation</span>(<span class="dt">egIDs =</span> genes2annotate, <span class="dt">anotPackage =</span> <span class="st">&quot;org.Hs.eg&quot;</span>, <span class="dt">toHTML =</span> <span class="ot">TRUE</span>, <span class="dt">outputDir =</span> outputDir, <span class="dt">filename =</span> <span class="st">&quot;Annotations&quot;</span>,  <span class="dt">myTitle =</span> <span class="st">&quot;Annotations for all genes analyzed&quot;</span>, <span class="dt">specie =</span> <span class="st">&quot;homo sapiens&quot;</span>, <span class="dt">info2show =</span> <span class="kw">c</span>( <span class="st">&quot;Affymetrix&quot;</span>, <span class="st">&quot;EntrezGene&quot;</span>, <span class="st">&quot;GeneSymbol&quot;</span>, <span class="st">&quot;GeneName&quot;</span>, <span class="st">&quot;KEGG&quot;</span>, <span class="st">&quot;GO&quot;</span>), <span class="dt">linksFile =</span> linksFile, <span class="dt">maxGenes =</span> <span class="ot">NULL</span>)</code></pre></div>
+<pre><code>##    user  system elapsed 
+##  22.576   1.400  25.372</code></pre>
+</div>
+<div id="dogeneannotationvignette-info" class="section level2">
+<h2><code>doGeneAnnotation'Vignette Info</code></h2>
+<p>Function to annotate the genes.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">organisme =<span class="st"> &quot;hsa&quot;</span>
+anotList &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">fitMain =</span> <span class="ot">NULL</span>, <span class="dt">fitFileName =</span> fitFileName, <span class="dt">my.IDs =</span> entrezs, <span class="dt">anotPackage =</span> <span class="st">&quot;org.Hs.eg&quot;</span>, <span class="dt">toHTML =</span> <span class="ot">TRUE</span>, <span class="dt">outputDir =</span> outputDir, <span class="dt">anotFilename =</span> <span class="st">&quot;Annotations&quot;</span>, <span class="dt">titleAnotations =</span> <span class="st">&quot;Annotations for all genes analyzed&quot;</span>, <span class="dt">specie =</span> <span class="st">&quot;homo sapiens&quot;</span>, <span class="dt">info2show =</span> <span class="kw">c</span>( <span class="st">&quot;Affymetrix&quot;</span>, <span class="st">&quot;EntrezGene&quot;</span>, <span class="st">&quot;GeneSymbol&quot;</span>, <span class="st">&quot;GeneName&quot;</span>, <span class="st">&quot;KEGG&quot;</span>, <span class="st">&quot;GO&quot;</span>), <span class="dt">linksFile =</span> linksFile, <span class="dt">numGenesPerPage =</span> <span class="ot">NULL</span>)
+
+<span class="kw">doGeneAnnotation</span>(anotList)</code></pre></div>
+<pre><code>##    user  system elapsed 
+##  22.512   1.396  24.084</code></pre>
+</div>
+<div id="multiplecompvignette-info" class="section level2">
+<h2><code>multipleComp'Vignette Info</code></h2>
+<p>Function to make multiple comparations. Inside doMultCompAnalysis.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">compName &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Group1&quot;</span>)
+wCont &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">3</span>
+pValCutOff &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.01</span>)
+adjMethod &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;none&quot;</span>)
+minLogFoldChange &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>)
+<span class="kw">load</span>(<span class="st">&quot;./ResultsDir/Symbols.Rda&quot;</span>)
+titleText =<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;for&quot;</span>, <span class="kw">ifelse</span>(adjMethod==<span class="st">&quot;none&quot;</span>,<span class="st">&quot;p-values&quot;</span>,<span class="st">&quot;adj. p-values&quot;</span>), <span class="st">&quot;&lt;&quot;</span>, pValCutOff, <span class="st">&quot;and |logFC| &gt;&quot;</span>, minLogFoldChange, <span class="dt">sep =</span> <span class="st">&quot; &quot;</span>)
+geneListFName =<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;geneList&quot;</span>,compName,<span class="kw">ifelse</span>(adjMethod==<span class="st">&quot;none&quot;</span>,<span class="st">&quot;pvalues&quot;</span>,<span class="st">&quot;adj-pvalues&quot;</span>),<span class="st">&quot;LT&quot;</span>,pValCutOff,<span class="st">&quot;Rda&quot;</span>,<span class="dt">sep =</span> <span class="st">&quot;.&quot;</span>)
+
+geneList &lt;-<span class="st">  </span>BasicP::<span class="kw">multipleComp</span>(<span class="dt">fitMain =</span> fitMain, <span class="dt">whichContrasts =</span> wCont, <span class="dt">comparisonName =</span> compName, <span class="dt">titleText =</span> titleText, <span class="dt">outputDir =</span> outputDir,  <span class="dt">anotPackage =</span> <span class="st">&quot;org.Hs.eg&quot;</span>, <span class="dt">my.symbols =</span> symbolsTable, <span class="dt">linksFile =</span> linksFile, <span class="dt">multCompMethod =</span> <span class="st">&quot;separate&quot;</span>, <span class="dt">adjustMethod =</span> adjMethod, <span class="dt">selectionType =</span> <span class="st">&quot;any&quot;</span>, <span class="dt">P.Value.cutoff =</span> pValCutOff, <span class="dt">plotVenn =</span> <span class="ot">TRUE</span>, <span class="dt">colsVenn =</span> <span class="ot">NULL</span>, <span class="dt">vennColors =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;yellow&quot;</span>,<span class="st">&quot;green&quot;</span>,<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;pink&quot;</span>) , <span class="dt">cexVenn =</span> <span class="dv">1</span>, <span class="dt">geneListFName=</span>geneListFName, <span class="dt">csvType=</span>csvType, <span class="dt">minLFC=</span>minLogFoldChange)</code></pre></div>
+</div>
+<div id="domultcompanalysisvignette-info" class="section level2">
+<h2><code>doMultCompAnalysis'Vignette Info</code></h2>
+<p>Function to perform Multi comparations analysis.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mcParsList &lt;-<span class="st"> </span><span class="kw">list</span>()
+compName &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Group1&quot;</span>, <span class="st">&quot;Group2&quot;</span>)
+wCont &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="kw">ncol</span>(cont.matrix)
+pValCutOff &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.01</span>, <span class="fl">0.01</span>) 
+adjMethod &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;none&quot;</span>, <span class="st">&quot;none&quot;</span>)
+minLogFoldChange &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>) 
+for(i in <span class="dv">1</span>:<span class="kw">length</span>(compName))
+{  
+mci &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">fitMain =</span> fitMain,
+              <span class="dt">fitFileName =</span> fitFileName,
+              <span class="dt">whichContrasts =</span> wCont[[i]],
+              <span class="dt">comparisonName =</span> compName[i],
+              <span class="dt">titleText =</span> <span class="kw">paste</span>(<span class="st">&quot;for&quot;</span>,<span class="kw">ifelse</span>(adjMethod[i]==<span class="st">&quot;none&quot;</span>,
+              <span class="st">&quot;p-values&quot;</span>,<span class="st">&quot;adj. p-values&quot;</span>), <span class="st">&quot;&lt;&quot;</span>, pValCutOff[i], <span class="st">&quot;and |logFC| &gt;&quot;</span>,
+               minLogFoldChange[i], <span class="dt">sep =</span> <span class="st">&quot; &quot;</span>),
+             
+              <span class="dt">anotPackage =</span> <span class="st">&quot;org.Hs.eg&quot;</span>,
+              <span class="dt">my.symbols =</span> symbolsTable,
+              <span class="dt">outputDir =</span> outputDir,
+              <span class="dt">fileOfLinks =</span> linksFile,
+              <span class="dt">multCompMethod =</span> <span class="st">&quot;separate&quot;</span>,
+              <span class="dt">adjustMethod =</span> adjMethod[i], 
+              <span class="dt">selectionType =</span> <span class="st">&quot;any&quot;</span>,
+              <span class="dt">P.Value.cutoff =</span> pValCutOff[i],
+              <span class="dt">plotVenn =</span> <span class="ot">TRUE</span>,
+              <span class="dt">colsVenn =</span> <span class="ot">NULL</span>,
+          <span class="dt">vennColors=</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;yellow&quot;</span>,<span class="st">&quot;green&quot;</span>,<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;pink&quot;</span>),  
+              <span class="dt">cexVenn =</span> <span class="dv">1</span>,
+              <span class="dt">geneListFName =</span> <span class="kw">paste</span>(<span class="st">&quot;geneList&quot;</span>,compName[i],
+              <span class="kw">ifelse</span>(adjMethod[i]==<span class="st">&quot;none&quot;</span>,<span class="st">&quot;pvalues&quot;</span>,<span class="st">&quot;adj-pvalues&quot;</span>),
+              <span class="st">&quot;LT&quot;</span>,pValCutOff[i],<span class="st">&quot;Rda&quot;</span>,<span class="dt">sep =</span> <span class="st">&quot;.&quot;</span>),
+          
+              <span class="dt">minLogFC =</span> minLogFoldChange[i],
+              <span class="dt">csvType =</span> csvType)
+
+  mcParsList &lt;-<span class="st"> </span><span class="kw">add2parsList</span>(mcParsList, mci)
+}
+
+for(ix in <span class="dv">1</span>:<span class="kw">length</span>(mcParsList))
+{
+  geneList.MCi &lt;-<span class="st"> </span>BasicP::<span class="kw">doMultCompAnalysis</span>(mcParsList[ix])   
+}</code></pre></div>
+</div>
+<div id="clusteranalysisvignette-info" class="section level2">
+<h2><code>clusterAnalysis'Vignette Info</code></h2>
+<p>Function to draw the clusters.Inside doClusterAnalysis.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">s2clust &lt;-<span class="st">  </span><span class="kw">which</span>(<span class="kw">as.logical</span>(<span class="kw">apply</span>(design[,<span class="kw">as.logical</span>(<span class="kw">apply</span>(<span class="kw">abs</span>(<span class="kw">as.matrix</span>(cont.matrix[,wCont[[i]]])),<span class="dv">1</span>,sum))],<span class="dv">1</span>,sum)))
+geneListFName =<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;geneList&quot;</span>,  compName[i],     <span class="kw">ifelse</span>(adjMethod[i]==<span class="st">&quot;none&quot;</span>,<span class="st">&quot;pvalues&quot;</span>,<span class="st">&quot;adj-pvalues&quot;</span>), <span class="st">&quot;LT&quot;</span>, pValCutOff[i], <span class="st">&quot;Rda&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;.&quot;</span>)
+pal &lt;-<span class="st"> </span><span class="kw">colorpanel</span>(<span class="dt">n =</span> <span class="dv">32</span>, <span class="dt">low =</span> <span class="st">&quot;green&quot;</span>, <span class="dt">mid =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">high =</span> <span class="st">&quot;magenta&quot;</span>)
+<span class="kw">load</span>(<span class="st">&quot;./ResultsDir/geneList.Group1.pvalues.LT.0.01.Rda&quot;</span>)
+ clust &lt;-<span class="st"> </span>BasicP::<span class="kw">clusterAnalysis</span>(<span class="dt">expres =</span> exprs.filtered,
+                           <span class="dt">genes =</span> geneList, 
+                           <span class="dt">samples =</span> s2clust, 
+                           <span class="dt">sampleNames =</span>       <span class="kw">as.character</span>(targets$ShortName)[s2clust],
+                           <span class="dt">comparisonName =</span> <span class="st">&quot;Compar 1&quot;</span>,
+                           <span class="dt">anotPackage =</span> <span class="st">&quot;org.Hs.eg&quot;</span>,
+                           <span class="dt">my.symbols =</span> symbolsTable,
+                           <span class="dt">outputDir =</span> outputDir, 
+                           <span class="dt">fileOfLinks =</span> linksFile,                              
+                           <span class="dt">numClusters =</span> <span class="dv">2</span>,
+                           <span class="dt">rowDistance =</span> <span class="ot">NULL</span>,
+                           <span class="dt">colDistance =</span> <span class="ot">NULL</span>,
+                           <span class="dt">RowVals =</span> <span class="ot">TRUE</span>,
+                           <span class="dt">ColVals =</span> <span class="ot">FALSE</span>,
+                           <span class="dt">escala =</span> <span class="st">&quot;row&quot;</span>,
+                           <span class="dt">colorsSet =</span> pal,
+                           <span class="dt">densityInfo =</span> <span class="st">&quot;density&quot;</span>,
+                           <span class="dt">colsForGroups =</span> <span class="kw">c</span>(<span class="st">&quot;pink&quot;</span>,<span class="st">&quot;pink&quot;</span>,<span class="st">&quot;pink&quot;</span>,<span class="st">&quot;pink&quot;</span>,<span class="st">&quot;pink&quot;</span>,<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;blue&quot;</span>),
+                           <span class="dt">cexForColumns =</span> <span class="fl">0.8</span>,
+                           <span class="dt">cexForRows =</span> <span class="fl">0.8</span>,
+                           <span class="dt">Title =</span> <span class="kw">paste</span>(<span class="st">&quot;Compar 1 with&quot;</span>,
+                            <span class="kw">ifelse</span>(adjMethod[i]==<span class="st">&quot;none&quot;</span>,<span class="st">&quot;pvalues&quot;</span>,<span class="st">&quot;adj-pvalues&quot;</span>),
+                            <span class="st">&quot;&lt;&quot;</span>,
+                            pValCutOff[i], <span class="kw">ifelse</span>(minLogFoldChange[i]==<span class="dv">0</span>, <span class="st">&quot;&quot;</span>, <span class="kw">paste</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st"> and |logFC|&gt;=&quot;</span>, minLogFoldChange[i], <span class="dt">sep=</span><span class="st">&quot;&quot;</span>))),
+                           <span class="dt">csvType =</span> <span class="st">&quot;csv2&quot;</span>)</code></pre></div>
+<pre><code>##   - Comparison Compar 1 with pvalues &lt; 0.01 
+##  and |logFC|&gt;=1</code></pre>
+</div>
+<div id="doclusteranalysisvignette-info" class="section level2">
+<h2><code>doClusterAnalysis'Vignette Info</code></h2>
+<p>Function to draw the clusters.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">clustParsList &lt;-<span class="st"> </span><span class="kw">list</span>()
+for(i in <span class="dv">1</span>:<span class="kw">length</span>(compName))
+{
+clustPar &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">expres =</span> <span class="ot">NULL</span>,
+                 <span class="dt">expresFileName =</span> <span class="st">&quot;exprs.filtered.Rda&quot;</span>,
+                 <span class="dt">geneListFName =</span> <span class="kw">paste</span>(<span class="st">&quot;geneList&quot;</span>,  compName[i],     <span class="kw">ifelse</span>(adjMethod[i]==<span class="st">&quot;none&quot;</span>,<span class="st">&quot;pvalues&quot;</span>,<span class="st">&quot;adj-pvalues&quot;</span>), <span class="st">&quot;LT&quot;</span>, pValCutOff[i], <span class="st">&quot;Rda&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;.&quot;</span>),
+                <span class="dt">genes2cluster =</span> <span class="ot">NULL</span>, 
+                <span class="dt">samples2cluster =</span> s2clust, 
+                <span class="dt">sampleNames =</span> <span class="kw">as.character</span>(targets$ShortName)[s2clust], 
+                <span class="dt">comparisonName =</span> compName[i], 
+                <span class="dt">anotPackage =</span> <span class="st">&quot;org.Hs.eg&quot;</span>,
+                <span class="dt">my.symbols =</span> symbolsTable,
+                <span class="dt">outputDir =</span> outputDir,
+                <span class="dt">fileOfLinks =</span> linksFile,
+                <span class="dt">numClusters =</span> <span class="dv">2</span>,
+                <span class="dt">rowDistance =</span> <span class="ot">NULL</span>,
+                <span class="dt">colDistance =</span> <span class="ot">NULL</span>,
+                <span class="dt">RowVals =</span> <span class="ot">TRUE</span>,
+                <span class="dt">ColVals =</span> <span class="ot">FALSE</span>,
+                <span class="dt">escala =</span> <span class="st">&quot;row&quot;</span>,
+                <span class="dt">colorsSet =</span> pal,
+                <span class="dt">densityInfo =</span> <span class="st">&quot;density&quot;</span>,
+                <span class="dt">colsForGroups =</span> <span class="kw">c</span>(<span class="st">&quot;pink&quot;</span>,<span class="st">&quot;pink&quot;</span>,<span class="st">&quot;pink&quot;</span>,<span class="st">&quot;pink&quot;</span>,<span class="st">&quot;pink&quot;</span>,<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;blue&quot;</span>),
+                <span class="dt">cexForColumns =</span> <span class="fl">0.8</span>,
+                <span class="dt">cexForRows =</span> <span class="fl">0.8</span>,
+                <span class="dt">Title =</span> <span class="kw">paste</span>(compName[i],
+                                 <span class="st">&quot;with&quot;</span>,
+                                 <span class="kw">ifelse</span>(adjMethod[i]==<span class="st">&quot;none&quot;</span>,<span class="st">&quot;pvalues&quot;</span>,<span class="st">&quot;adj-pvalues&quot;</span>),
+                                 <span class="st">&quot;&lt;&quot;</span>,
+                                 pValCutOff[i], <span class="kw">ifelse</span>(minLogFoldChange[i]==<span class="dv">0</span>, <span class="st">&quot;&quot;</span>, <span class="kw">paste</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st"> and |logFC|&gt;=&quot;</span>, minLogFoldChange[i], <span class="dt">sep=</span><span class="st">&quot;&quot;</span>))),
+                   <span class="kw">paste</span>(<span class="st">&quot;Comparison:&quot;</span>, compName[i], <span class="dt">sep=</span><span class="st">&quot; &quot;</span>),
+                   <span class="dt">csvType =</span> csvType)
+  
+clustParsList &lt;-<span class="st"> </span><span class="kw">add2parsList</span>(clustParsList, clustPar)
+}
+  
+for(ix in <span class="dv">1</span>:<span class="kw">length</span>(clustParsList))
+  {
+    hm.Estudi &lt;-<span class="st"> </span>BasicP::<span class="kw">doClusterAnalysis</span>(clustParsList[ix])
+  }</code></pre></div>
+<pre><code>##   - Comparison Group1 with pvalues &lt; 0.01 
+##  and |logFC|&gt;=1</code></pre>
+<pre><code>##   - Comparison Group2 with pvalues &lt; 0.01 
+##  and |logFC|&gt;=1</code></pre>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
