@@ -1,0 +1,383 @@
+<html lang="en">
+  <head>
+    <title>KEGG Enrichment Analysis</title>
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    <script type="text/javascript" src="jquery-1.4.2.js"></script>
+    <script type="text/javascript" src="jquery.tablesorter.js"></script>
+    <script type="text/javascript">
+$(document).ready(function()
+  {
+    $("#myTable").tablesorter();
+  }
+);
+    </script>
+  </head>
+  <body>
+    <table id="myTable" class="tablesorter" border="0" cellspacing="1" cellpadding="0">
+      <thead>
+        <tr>
+                      <th>KEGGID</th>
+                      <th>Pvalue</th>
+                      <th>OddsRatio</th>
+                      <th>ExpCount</th>
+                      <th>Count</th>
+                      <th>Size</th>
+                      <th>Term</th>
+                      <th>GeneNames</th>
+                  </tr>
+      </thead>
+      <tbody>
+                <tr>
+                      <td><a href="http://www.genome.jp/dbget-bin/www_bget?path:hsa01100">01100</a></td>
+                      <td>0.000103556615175349</td>
+                      <td>1.86472862276265</td>
+                      <td>39.1137931034483</td>
+                      <td>61</td>
+                      <td>912</td>
+                      <td>Metabolic pathways</td>
+                      <td>NAT1, ABAT, ACADM, AGL, AK4, ALDH1A3, ALDH3B2, ALOX15B, ASS1, ATP6V0C, CBR3, CES1, CYP2J2, DDC, DHCR24, ENO1, ACSL1, FAH, FASN, FUT3, FUT8, GALE, GSTZ1, HGD, HPRT1, HSD17B2, IDH1, LCT, MAOA, MAOB, MTR, NDUFA6, PFKM, PGK1, PGM1, POLR2E, PON2, SDHA, SMPD1, AKR1D1, TALDO1, TK1, TYMS, AGPS, KMO, KYNU, PAPSS2, ATP6V1G1, ALG3, AKR1A1, ACAA2, SEPHS2, QPRT, ACAD8, GMPPA, ISYNA1, UGT2B28, CSGALNACT2, MCCC1, AKR1B10, NDUFS7</td>
+                  </tr>
+                <tr>
+                      <td><a href="http://www.genome.jp/dbget-bin/www_bget?path:hsa00350">00350</a></td>
+                      <td>0.000160137969375144</td>
+                      <td>6.15846422338569</td>
+                      <td>1.62974137931034</td>
+                      <td>8</td>
+                      <td>38</td>
+                      <td>Tyrosine metabolism</td>
+                      <td>ALDH1A3, ALDH3B2, DDC, FAH, GSTZ1, HGD, MAOA, MAOB</td>
+                  </tr>
+                <tr>
+                      <td><a href="http://www.genome.jp/dbget-bin/www_bget?path:hsa00360">00360</a></td>
+                      <td>0.000291479189326645</td>
+                      <td>11.4201030927835</td>
+                      <td>0.643318965517241</td>
+                      <td>5</td>
+                      <td>15</td>
+                      <td>Phenylalanine metabolism</td>
+                      <td>ALDH1A3, ALDH3B2, DDC, MAOA, MAOB</td>
+                  </tr>
+                <tr>
+                      <td><a href="http://www.genome.jp/dbget-bin/www_bget?path:hsa04540">04540</a></td>
+                      <td>0.000812398037658665</td>
+                      <td>3.50102011075488</td>
+                      <td>3.60258620689655</td>
+                      <td>11</td>
+                      <td>84</td>
+                      <td>Gap junction</td>
+                      <td>ADCY1, ADCY2, ADCY7, ADCY9, EGF, EGFR, GNA11, GUCY1A3, NRAS, PRKACB, TUBA1A</td>
+                  </tr>
+                <tr>
+                      <td><a href="http://www.genome.jp/dbget-bin/www_bget?path:hsa04970">04970</a></td>
+                      <td>0.00149276399994309</td>
+                      <td>3.45415778251599</td>
+                      <td>3.30237068965517</td>
+                      <td>10</td>
+                      <td>77</td>
+                      <td>Salivary secretion</td>
+                      <td>ADCY1, ADCY2, ADCY7, ADCY9, ATP1A1, ATP1B1, GUCY1A3, KCNMA1, PRKACB, TRPV6</td>
+                  </tr>
+                <tr>
+                      <td><a href="http://www.genome.jp/dbget-bin/www_bget?path:hsa00340">00340</a></td>
+                      <td>0.00300959878308052</td>
+                      <td>5.99837221920781</td>
+                      <td>1.02931034482759</td>
+                      <td>5</td>
+                      <td>24</td>
+                      <td>Histidine metabolism</td>
+                      <td>ALDH1A3, ALDH3B2, DDC, MAOA, MAOB</td>
+                  </tr>
+                <tr>
+                      <td><a href="http://www.genome.jp/dbget-bin/www_bget?path:hsa04914">04914</a></td>
+                      <td>0.00402496792306569</td>
+                      <td>3.18898785425101</td>
+                      <td>3.17370689655172</td>
+                      <td>9</td>
+                      <td>74</td>
+                      <td>Progesterone-mediated oocyte maturation</td>
+                      <td>ADCY1, ADCY2, ADCY7, ADCY9, CDC27, IGF1R, PRKACB, MAPK10, CDC16</td>
+                  </tr>
+                <tr>
+                      <td><a href="http://www.genome.jp/dbget-bin/www_bget?path:hsa04976">04976</a></td>
+                      <td>0.00557344350025389</td>
+                      <td>3.27973074046372</td>
+                      <td>2.7448275862069</td>
+                      <td>8</td>
+                      <td>64</td>
+                      <td>Bile secretion</td>
+                      <td>ADCY1, ADCY2, ADCY7, ADCY9, ATP1A1, ATP1B1, ABCC2, PRKACB</td>
+                  </tr>
+                <tr>
+                      <td><a href="http://www.genome.jp/dbget-bin/www_bget?path:hsa04114">04114</a></td>
+                      <td>0.0056149080101767</td>
+                      <td>2.81262098335269</td>
+                      <td>3.94568965517241</td>
+                      <td>10</td>
+                      <td>92</td>
+                      <td>Oocyte meiosis</td>
+                      <td>ADCY1, ADCY2, ADCY7, ADCY9, AR, CDC27, IGF1R, PRKACB, CDC16, SMC3</td>
+                  </tr>
+                <tr>
+                      <td><a href="http://www.genome.jp/dbget-bin/www_bget?path:hsa00280">00280</a></td>
+                      <td>0.00739481844402764</td>
+                      <td>3.91354552183568</td>
+                      <td>1.75840517241379</td>
+                      <td>6</td>
+                      <td>41</td>
+                      <td>Valine, leucine and isoleucine degradation</td>
+                      <td>ABAT, ACADM, OXCT1, ACAA2, ACAD8, MCCC1</td>
+                  </tr>
+                <tr>
+                      <td><a href="http://www.genome.jp/dbget-bin/www_bget?path:hsa05212">05212</a></td>
+                      <td>0.00804396152827314</td>
+                      <td>3.05828970331588</td>
+                      <td>2.91637931034483</td>
+                      <td>8</td>
+                      <td>68</td>
+                      <td>Pancreatic cancer</td>
+                      <td>EGF, EGFR, IKBKB, SMAD2, SMAD3, SMAD4, MAPK10, VEGFA</td>
+                  </tr>
+                <tr>
+                      <td><a href="http://www.genome.jp/dbget-bin/www_bget?path:hsa00450">00450</a></td>
+                      <td>0.00993308271645382</td>
+                      <td>8.48150510204082</td>
+                      <td>0.47176724137931</td>
+                      <td>3</td>
+                      <td>11</td>
+                      <td>Selenocompound metabolism</td>
+                      <td>MTR, PAPSS2, SEPHS2</td>
+                  </tr>
+                <tr>
+                      <td><a href="http://www.genome.jp/dbget-bin/www_bget?path:hsa05215">05215</a></td>
+                      <td>0.0099995323641527</td>
+                      <td>2.72056786703601</td>
+                      <td>3.64547413793103</td>
+                      <td>9</td>
+                      <td>85</td>
+                      <td>Prostate cancer</td>
+                      <td>AR, BCL2, CDKN1B, EGF, EGFR, FGFR2, IGF1R, IKBKB, NRAS</td>
+                  </tr>
+                <tr>
+                      <td><a href="http://www.genome.jp/dbget-bin/www_bget?path:hsa04972">04972</a></td>
+                      <td>0.0107655395867097</td>
+                      <td>2.68462064251538</td>
+                      <td>3.68836206896552</td>
+                      <td>9</td>
+                      <td>86</td>
+                      <td>Pancreatic secretion</td>
+                      <td>ADCY1, ADCY2, ADCY7, ADCY9, ATP1A1, ATP1B1, CPA3, KCNMA1, CLCA2</td>
+                  </tr>
+                <tr>
+                      <td><a href="http://www.genome.jp/dbget-bin/www_bget?path:hsa05200">05200</a></td>
+                      <td>0.0108238970423345</td>
+                      <td>1.81932839977719</td>
+                      <td>13.1237068965517</td>
+                      <td>22</td>
+                      <td>306</td>
+                      <td>Pathways in cancer</td>
+                      <td>AR, BCL2, CDKN1B, COL4A6, CTBP2, EGF, EGFR, FGFR2, FZD2, IGF1R, IKBKB, LAMB2, SMAD2, SMAD3, SMAD4, NRAS, MAPK10, RET, STAT5B, TRAF5, VEGFA, FZD4</td>
+                  </tr>
+                <tr>
+                      <td><a href="http://www.genome.jp/dbget-bin/www_bget?path:hsa00010">00010</a></td>
+                      <td>0.0112742276822952</td>
+                      <td>3.13827614379085</td>
+                      <td>2.4875</td>
+                      <td>7</td>
+                      <td>58</td>
+                      <td>Glycolysis / Gluconeogenesis</td>
+                      <td>ALDH1A3, ALDH3B2, ENO1, PFKM, PGK1, PGM1, AKR1A1</td>
+                  </tr>
+                <tr>
+                      <td><a href="http://www.genome.jp/dbget-bin/www_bget?path:hsa04912">04912</a></td>
+                      <td>0.0115748747855614</td>
+                      <td>2.6495951417004</td>
+                      <td>3.73125</td>
+                      <td>9</td>
+                      <td>87</td>
+                      <td>GnRH signaling pathway</td>
+                      <td>ADCY1, ADCY2, ADCY7, ADCY9, EGFR, GNA11, NRAS, PRKACB, MAPK10</td>
+                  </tr>
+                <tr>
+                      <td><a href="http://www.genome.jp/dbget-bin/www_bget?path:hsa00983">00983</a></td>
+                      <td>0.012295601272914</td>
+                      <td>4.06203976435935</td>
+                      <td>1.41530172413793</td>
+                      <td>5</td>
+                      <td>33</td>
+                      <td>Drug metabolism - other enzymes</td>
+                      <td>NAT1, CES1, HPRT1, TK1, UGT2B28</td>
+                  </tr>
+                <tr>
+                      <td><a href="http://www.genome.jp/dbget-bin/www_bget?path:hsa00380">00380</a></td>
+                      <td>0.015696698804577</td>
+                      <td>3.78951890034364</td>
+                      <td>1.5010775862069</td>
+                      <td>5</td>
+                      <td>35</td>
+                      <td>Tryptophan metabolism</td>
+                      <td>DDC, MAOA, MAOB, KMO, KYNU</td>
+                  </tr>
+                <tr>
+                      <td><a href="http://www.genome.jp/dbget-bin/www_bget?path:hsa05160">05160</a></td>
+                      <td>0.0157022789769769</td>
+                      <td>2.26154065349544</td>
+                      <td>5.27521551724138</td>
+                      <td>11</td>
+                      <td>123</td>
+                      <td>Hepatitis C</td>
+                      <td>EGF, EGFR, IFIT1, IKBKB, NRAS, OAS1, OAS2, MAPK10, EIF2AK2, CLDN8, IRF9</td>
+                  </tr>
+                <tr>
+                      <td><a href="http://www.genome.jp/dbget-bin/www_bget?path:hsa03320">03320</a></td>
+                      <td>0.0159752097789022</td>
+                      <td>2.90738636363636</td>
+                      <td>2.65905172413793</td>
+                      <td>7</td>
+                      <td>62</td>
+                      <td>PPAR signaling pathway</td>
+                      <td>ACADM, DBI, FABP6, FABP7, ACSL1, SCD, ANGPTL4</td>
+                  </tr>
+                <tr>
+                      <td><a href="http://www.genome.jp/dbget-bin/www_bget?path:hsa00052">00052</a></td>
+                      <td>0.0177688157952055</td>
+                      <td>4.53435897435897</td>
+                      <td>1.02931034482759</td>
+                      <td>4</td>
+                      <td>24</td>
+                      <td>Galactose metabolism</td>
+                      <td>GALE, LCT, PFKM, PGM1</td>
+                  </tr>
+                <tr>
+                      <td><a href="http://www.genome.jp/dbget-bin/www_bget?path:hsa04971">04971</a></td>
+                      <td>0.0187848252833426</td>
+                      <td>2.80409356725146</td>
+                      <td>2.7448275862069</td>
+                      <td>7</td>
+                      <td>64</td>
+                      <td>Gastric acid secretion</td>
+                      <td>ADCY1, ADCY2, ADCY7, ADCY9, ATP1A1, ATP1B1, PRKACB</td>
+                  </tr>
+                <tr>
+                      <td><a href="http://www.genome.jp/dbget-bin/www_bget?path:hsa04270">04270</a></td>
+                      <td>0.022363027573271</td>
+                      <td>2.34312200956938</td>
+                      <td>4.16012931034483</td>
+                      <td>9</td>
+                      <td>97</td>
+                      <td>Vascular smooth muscle contraction</td>
+                      <td>ADCY1, ADCY2, ADCY7, ADCY9, GNA11, GUCY1A3, KCNMA1, PRKACB, ROCK1</td>
+                  </tr>
+                <tr>
+                      <td><a href="http://www.genome.jp/dbget-bin/www_bget?path:hsa04012">04012</a></td>
+                      <td>0.0233308830753536</td>
+                      <td>2.47177019951889</td>
+                      <td>3.51681034482759</td>
+                      <td>8</td>
+                      <td>82</td>
+                      <td>ErbB signaling pathway</td>
+                      <td>CDKN1B, EGF, EGFR, EIF4EBP1, NRAS, PAK2, MAPK10, STAT5B</td>
+                  </tr>
+                <tr>
+                      <td><a href="http://www.genome.jp/dbget-bin/www_bget?path:hsa05219">05219</a></td>
+                      <td>0.0242621130746108</td>
+                      <td>3.34066100667071</td>
+                      <td>1.67262931034483</td>
+                      <td>5</td>
+                      <td>39</td>
+                      <td>Bladder cancer</td>
+                      <td>EGF, EGFR, NRAS, THBS1, VEGFA</td>
+                  </tr>
+                <tr>
+                      <td><a href="http://www.genome.jp/dbget-bin/www_bget?path:hsa00982">00982</a></td>
+                      <td>0.0247238619891838</td>
+                      <td>2.90640502700915</td>
+                      <td>2.27306034482759</td>
+                      <td>6</td>
+                      <td>53</td>
+                      <td>Drug metabolism - cytochrome P450</td>
+                      <td>ALDH1A3, ALDH3B2, GSTZ1, MAOA, MAOB, UGT2B28</td>
+                  </tr>
+                <tr>
+                      <td><a href="http://www.genome.jp/dbget-bin/www_bget?path:hsa00140">00140</a></td>
+                      <td>0.0267937482645313</td>
+                      <td>3.24447717231222</td>
+                      <td>1.71551724137931</td>
+                      <td>5</td>
+                      <td>40</td>
+                      <td>Steroid hormone biosynthesis</td>
+                      <td>HSD17B2, SRD5A1, AKR1D1, UGT2B28, SRD5A3</td>
+                  </tr>
+                <tr>
+                      <td><a href="http://www.genome.jp/dbget-bin/www_bget?path:hsa05220">05220</a></td>
+                      <td>0.0292611466198865</td>
+                      <td>2.53356481481481</td>
+                      <td>3.00215517241379</td>
+                      <td>7</td>
+                      <td>70</td>
+                      <td>Chronic myeloid leukemia</td>
+                      <td>CDKN1B, CTBP2, IKBKB, SMAD3, SMAD4, NRAS, STAT5B</td>
+                  </tr>
+                <tr>
+                      <td><a href="http://www.genome.jp/dbget-bin/www_bget?path:hsa04146">04146</a></td>
+                      <td>0.0292611466198865</td>
+                      <td>2.53356481481481</td>
+                      <td>3.00215517241379</td>
+                      <td>7</td>
+                      <td>70</td>
+                      <td>Peroxisome</td>
+                      <td>ACSL1, IDH1, PEX12, ABCD3, AGPS, CROT, FAR2</td>
+                  </tr>
+                <tr>
+                      <td><a href="http://www.genome.jp/dbget-bin/www_bget?path:hsa04520">04520</a></td>
+                      <td>0.0292611466198865</td>
+                      <td>2.53356481481481</td>
+                      <td>3.00215517241379</td>
+                      <td>7</td>
+                      <td>70</td>
+                      <td>Adherens junction</td>
+                      <td>EGFR, IGF1R, SMAD2, SMAD3, SMAD4, WASF3, PARD3</td>
+                  </tr>
+                <tr>
+                      <td><a href="http://www.genome.jp/dbget-bin/www_bget?path:hsa00260">00260</a></td>
+                      <td>0.0299826809363692</td>
+                      <td>3.77521367521368</td>
+                      <td>1.20086206896552</td>
+                      <td>4</td>
+                      <td>28</td>
+                      <td>Glycine, serine and threonine metabolism</td>
+                      <td>MAOA, MAOB, GCAT, GNMT</td>
+                  </tr>
+                <tr>
+                      <td><a href="http://www.genome.jp/dbget-bin/www_bget?path:hsa04916">04916</a></td>
+                      <td>0.0300624636472892</td>
+                      <td>2.342864814069</td>
+                      <td>3.68836206896552</td>
+                      <td>8</td>
+                      <td>86</td>
+                      <td>Melanogenesis</td>
+                      <td>ADCY1, ADCY2, ADCY7, ADCY9, FZD2, NRAS, PRKACB, FZD4</td>
+                  </tr>
+                <tr>
+                      <td><a href="http://www.genome.jp/dbget-bin/www_bget?path:hsa00500">00500</a></td>
+                      <td>0.0461531911789514</td>
+                      <td>3.23296703296703</td>
+                      <td>1.37241379310345</td>
+                      <td>4</td>
+                      <td>32</td>
+                      <td>Starch and sucrose metabolism</td>
+                      <td>AGL, GYS1, PGM1, UGT2B28</td>
+                  </tr>
+                <tr>
+                      <td><a href="http://www.genome.jp/dbget-bin/www_bget?path:hsa04350">04350</a></td>
+                      <td>0.0485448228516509</td>
+                      <td>2.24398474178404</td>
+                      <td>3.34525862068966</td>
+                      <td>7</td>
+                      <td>78</td>
+                      <td>TGF-beta signaling pathway</td>
+                      <td>INHBB, SMAD2, SMAD3, SMAD4, ROCK1, TFDP1, THBS1</td>
+                  </tr>
+              </tbody>
+    </table>
+  </body>
+</html>

@@ -33,16 +33,16 @@ Function that reads the raw data or if the eset is already created it is loaded.
 require(BasicP)
 require(affy)
 require(oligo) #ExonStudy
-readCELS <- TRUE 
+readCELS <- TRUE
 my.targets <- "./celfiles/targets.txt"
 targets<- read.table("./celfiles/targets.txt", head=TRUE, sep="\\t", row.names = 1)
 my.fileNames <-paste("./celfiles/",rownames(targets),sep="")
 rawDataFileName <- "rawData.Rda"
 my.outputDir <- "."
 isExonStudy <- FALSE
-orgPackage <- "org.Hs.eg" 
+orgPackage <- "org.Hs.eg"
 
 rawData <- readOrLoad.RawData(readCELS = readCELS, phenoDat = my.targets,
-fileNames = my.fileNames, dataFName =rawDataFileName,outputDir = my.outputDir, 
+fileNames = my.fileNames, dataFName =rawDataFileName,outputDir = my.outputDir,
 exonSt = isExonStudy)}
 }

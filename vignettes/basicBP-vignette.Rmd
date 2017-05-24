@@ -414,3 +414,113 @@ for(ix in 1:length(clustParsList))
   
 ```
 
+## `GOAnalysis'Vignette Info`
+Function to ??????????. Inside doGOAnalysis
+
+
+```{r}
+library(GOstats)
+BasicP::GOAnalysis(fitMain = fitMain, whichContrasts = wCont, comparison.Name = "Estudi", outputDir = outputDir, anotPackage = "org.Hs.eg", my.IDs = entrezTable, addGeneNames = TRUE, fileOfLinks = linksFile, thrLogFC = 1, cutoffMethod = "adjusted", P.Value.cutoff = rep(0.05, length(wCont)), pval = 0.01, min.count = 3, ontologias = c("MF", "BP", "CC"), testDirections = c("over", "under"), minNumGens = 0)
+```
+Si no funciona  --> library(GOstats)
+
+ERROR: No results met the specified criteria.  Returning 0-row data.frame 
+
+
+
+## `doGOAnalysis'Vignette Info`
+Function to ???????????.
+
+
+```{r}
+GOParsList <-list()
+GOPar <- list(fitFileName = fitFileName,
+              whichContrasts = wCont,        
+              comparisonName = "Estudi",
+              anotPackage =  "org.Hs.eg",
+              my.IDs = "entrezTable",        
+              addGeneNames = TRUE, 
+              outputDir = outputDir, 
+              fileOfLinks = linksFile,
+              fitMain = NULL,
+              cutoffMethod = "adjusted",  
+              P.Value.cutoff = rep(0.05, length(wCont)),
+              pvalGOterms = 0.01,
+              min.count = 3,
+              ontologias = c("MF", "BP", "CC"),
+              testDirections = c("over", "under"),
+              minNumGens = 0)
+ 
+GOParsList <- add2parsList(GOParsList, GOPar)
+
+
+if(runMulticore == 2 || runMulticore == 3){  
+    foreach(ix = 1:length(GOParsList)) %dopar% {
+      GOList <- BasicP::doGOAnalysis (GOParsList[ix])
+    }
+  }else{
+    for(ix in 1:length(GOParsList)) {
+      GOList <- BasicP::doGOAnalysis (GOParsList[ix])
+    }
+  }
+```
+
+
+## `KEGGAnalysis'Vignette Info`
+Function to do KEGG analysis. Inside doKEGGAnalysis.
+
+```{r}
+load("./ResultsDir/fit.Rda")
+wCont <- 1:3
+comparison.Name <-"Estudi"
+outputDir <- "./ResultsDir"
+orgPackage <-"org.Hs.eg"
+organisme <-"hsa"
+load("./ResultsDir/Entrezs.Rda")
+addGeneNames <- TRUE
+linksFileName <- "Links.txt"
+cutoffMethod <-"unadjusted"
+pval <- 0.05
+minNumGens <-0
+runMulticore <- 0
+
+KEGGResult <- BasicP::KEGGAnalysis(fitMain = fit.main, whichContrasts = wCont,  comparison.Name = comparison.Name, outputDir = outputDir, anotPackage = orgPackage, organisme = organisme, my.IDs = entrezTable, addGeneNames = addGeneNames, fileOfLinks = linksFileName, cutoffMethod = cutoffMethod, P.Value.cutoff = rep(0.05, length(wCont)), pval = pval,thrLogFC = 1, minNumGens = minNumGens)
+```
+MENSAJE: KEGG.db contains mappings based on older data because the original
+  resource was removed from the the public domain before the most recent
+  update was produced. This package should now be considered deprecated
+  and future versions of Bioconductor may not have it available.  Users
+  who want more current data are encouraged to look at the KEGGREST or
+  reactome.db packages
+
+
+## `doKEGGAnalysis'Vignette Info`
+Function to do KEGG analysis. Inside doKEGGAnalysis.
+
+```{r}
+KEGGParsList <- list()
+KEGGPar <- list(fitFileName = "fit.Rda",
+                whichContrasts = 1:3,
+                comparisonName = "Estudi",
+                outputDir = "./ResultsDir",
+                anotPackage = "org.Hs.eg", 
+                organisme = "mmu",    
+                my.IDs = "entrezTable",
+                addGeneNames = TRUE,
+                fileOfLinks = linksFileName,
+                fitMain = NULL,
+                cutoffMethod = "unadjusted",
+                P.Value.cutoff = rep(0.01, length(wCont)), 
+                pvalKEGGterms = 0.05, 
+                minNumGens = 0) 
+
+KEGGParsList <- add2parsList (KEGGParsList, KEGGPar)
+
+
+for(i in 1:length(KEGGParsList))
+{
+  KEGGList <- BasicP::doKEGGAnalysis(KEGGParsList[i])
+}
+```
+
+
