@@ -129,13 +129,13 @@ enrichment_Analysis <- function(EntrezIDs,
 
   for (onto in ontologias)
   {
-    ontology(params) <- onto
+    params@ontology <- onto
 
     dir.i <- 1
 
     for (direction in testDirections)
     {
-      testDirection(params) <- direction
+      params@testDirection <- direction
 
       hgResult <- hyperGTest(params)
 

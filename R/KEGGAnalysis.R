@@ -121,7 +121,7 @@ KEGGEnrAn <- function(EntrezIDs,
   }
   
   hyperRes <- hyperGTest(param)
-  sumari <- summary(hyperRes, p=pvalueCutoff(param))
+  sumari <- summary(hyperRes, p=param@pvalueCutoff)
   fName <- paste("KEGG Enrichment Analysis", contrast.Name, sep = " ") # Informe en HTML
   
   if (addGeneNames)

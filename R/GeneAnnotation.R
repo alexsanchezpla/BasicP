@@ -1,10 +1,15 @@
 ###########################################################
+trim <- function(x)
+{
+  gsub("^[[:space:]]+|[[:space:]]+$", "", x)
+}
+###########################################################
 repofun <- function(x, y, z = NULL, ...)
 {
   NAids <- which(is.na(x))
   blnksIDs <- which(x=="&nbsp;")
   x <- trim(x)
-
+  
   specie <- z
   if(y %in% c("SYMBOL", "GENENAME", "MAP", "ENZYME"))
   {
@@ -17,6 +22,8 @@ repofun <- function(x, y, z = NULL, ...)
     }else{
       out <- switch(y,
                     "ACCNUM" = paste("<a href=\"http://www.ncbi.nlm.nih.gov/protein/", x, "\" target=\"_blank\">", x, "</a>", sep = ""),
+                    #  "ACCNUM" = paste("<a href=\"http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=search&db=nucleotide&term=",
+                    #                   x, "[ACCN]&doptcmdl=GenBank\" target=\"_blank\">", x, "</a>", sep = ""),
                     "ENTREZ" = paste("<a href=\"http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=",
                                      x, "\" target=\"_blank\">", x, "</a>", sep = ""),
                     "REFSEQ" = paste("<a href=\"http://www.ncbi.nlm.nih.gov/nuccore/", x, "?\" target=\"_blank\">", x, "</a>", sep = ""),
@@ -28,10 +35,10 @@ repofun <- function(x, y, z = NULL, ...)
                     "PATH" = paste("<a href=\"http://www.genome.jp/dbget-bin/www_bget?", specie, x, "\" target=\"_blank\">", x, "</a>", sep = ""))
     }
   }
-
+  
   out[NAids] <- "&nbsp;"
   out[blnksIDs] <- "&nbsp;"
-
+  
   return(out)
 }
 ###########################################################

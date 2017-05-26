@@ -37,32 +37,31 @@ write2csv <- function(my.data, fileName, csv = c("csv2", "csv", "txt", "xls"), o
 #' 
 #' Function to make the cluster analysis.
 #' @param expres Expresion oused to perform the clusters.
-#' @param genes 
-#' @param samples 
+#' @param genes ????
+#' @param samples ????
 #' @param sampleNames Name of the samples of the study. 
 #' @param comparisonName Name of the comparison. To identify the output
 #' @param anotPackage Annotation package.
-#' @param my.symbols
+#' @param my.symbols ????
 #' @param outputDir Path of the file created.
 #' @param fileOfLinks Name of the links file.
-#' @param numClusters
+#' @param numClusters ????
 #' @param rowDistance Row distance in the clusters.
 #' @param colDistance Column distance in the clusters.
-#' @param RowVals
-#' @param ColVals
-#' @param colorsSet
+#' @param RowVals ????
+#' @param ColVals ?????
+#' @param colorsSet ???
 #' @param colsForGroups Colors of each group for the plots.
-#' @param escala 
-#' @param densityInfo
+#' @param escala ???
+#' @param densityInfo ???
 #' @param cexForColumns Cex for the columns.
 #' @param cexForRows Cex for the rows.
-#' @param plotProfiles 
+#' @param plotProfiles ???
 #' @param Title Title of the plot.
 #' @param csvType Csv type of the output.
 #' @importFrom stats hclust
 #' @importFrom stats as.dendrogram
 #' @importFrom gplots heatmap.2
-#' @return hm (?¿?¿?¿?)
 #' @export 
 #' 
 
@@ -211,7 +210,7 @@ clusterAnalysis <- function(expres,
     
     ###########################################################
  
-    raw.gNames <- rev(rownames(exprs2Cluster[hm$rowInd, ])) ### Posem rev() aqui per fer coincidir l'ordre de files del csv de sortida amb les files del heatmap
+    raw.gNames <- rev(rownames(exprs2Cluster[hm$rowInd, ])) 
     gNames <- unlist(lapply(strsplit(raw.gNames, "[.]"), function(l) l[[1]][1]))
     
     if(!is.null(my.symbols))

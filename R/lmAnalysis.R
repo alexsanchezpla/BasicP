@@ -1,3 +1,11 @@
+##################################################################
+is.oneSampleContrast <-function (row.cont.matrix){
+  (length(row.cont.matrix[row.cont.matrix!=0])==1) && (sum(row.cont.matrix)==1)
+}
+###################################################################
+is.twoSampleContrast <-function (row.cont.matrix){
+  (length(row.cont.matrix[row.cont.matrix!=0])==2) && (sum(row.cont.matrix)==0)
+}
 ###################################################################
 genesSelectable <- function (topTab, adj0, adj1, adj2, P1, P2)
 {
@@ -333,18 +341,18 @@ escriuTop_i_Express <- function(expres,
 #' @param anotPackage Annotation package.
 #' @param Expressions_And_Top If is TRUE it will do "Expresions" and the toptable.
 #' @param showParams If FALSe it won't show the lmFit parameters in the ExpressionsAndToptable.
-#' @param use.dupCorr
-#' @param block
-#' @param nDups
+#' @param use.dupCorr  ???
+#' @param block ???
+#' @param nDups ???
 #' @param comparison Name of the comparations in all contrasts.
 #' @param outputDir Path of the file created.
 #' @param ENTREZIDs Name of the file for Entrez genes.
 #' @param SYMBOLIDs Name of the file for gene Symbols .
 #' @param linksFile Name of the file linksFile.
-#' @param fitFileName
+#' @param fitFileName ???
 #' @param csvType type of csv to store the data.
-#' @param rows2HTML
-#' @param anotFileName
+#' @param rows2HTML ???
+#' @param anotFileName ???
 #' @importFrom limma duplicateCorrelation
 #' @importFrom limma lmFit
 #' @importFrom limma contrasts.fit
@@ -373,7 +381,6 @@ lmAnalysis <- function(exprs.filtered,
                        rows2HTML = NULL,
                        anotFileName)
 {
-  source(file.path("/home/mguerrero/exemplesBP/BASIC/RCode/AnalysisFunctions2Pack.R"))
   categLabel ='ANALYSIS'
 
   ### 1. Ajust del model lineal
@@ -608,8 +615,8 @@ doLmAnalysis <- function (lmPar)
   designMatrixName = paste("designMatrix",p$comparisonName, sep=".")
   contrastMatrixName = paste("contrastMatrix",p$comparisonName, sep=".")
 
-  write2csv(p$designMat, fileName = designMatrixName, csv = p$csvType, outputDir = outputDir)
-  write2csv(p$contMat, fileName = contrastMatrixName, csv = p$csvType, outputDir = outputDir)
+  write2csv(p$designMat, fileName = designMatrixName, csv = p$csvType, outputDir = p$outputDir)
+  write2csv(p$contMat, fileName = contrastMatrixName, csv = p$csvType, outputDir = p$outputDir)
 
   csvType <- ifelse(is.null(p$csvType), "csv2", p$csvType)
   addToLinksFile(p$fileOfLinks, paste(designMatrixName, substr(csvType, 1, 3),  sep="."), categ = "ANALYSIS",

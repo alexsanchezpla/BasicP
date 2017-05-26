@@ -12,7 +12,7 @@
 
 <meta name="author" content="Alex Sanchez and Mercedes Guerrero" />
 
-<meta name="date" content="2017-05-17" />
+<meta name="date" content="2017-05-26" />
 
 <title>Basic examples of using BasicP functions</title>
 
@@ -70,7 +70,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">Basic examples of using BasicP functions</h1>
 <h4 class="author"><em>Alex Sanchez and Mercedes Guerrero</em></h4>
-<h4 class="date"><em>2017-05-17</em></h4>
+<h4 class="date"><em>2017-05-26</em></h4>
 
 
 
@@ -314,19 +314,19 @@ for(ix in <span class="dv">1</span>:<span class="kw">length</span>(lmParsList))
 <p>Function that annotates genes. Inside doGeneAnnotation</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genes2annotate &lt;-<span class="st"> </span>entrezs[<span class="kw">unique</span>(<span class="kw">rownames</span>(fitMain$p.value))]
 
-<span class="kw">GeneAnnotation</span>(<span class="dt">egIDs =</span> genes2annotate, <span class="dt">anotPackage =</span> <span class="st">&quot;org.Hs.eg&quot;</span>, <span class="dt">toHTML =</span> <span class="ot">TRUE</span>, <span class="dt">outputDir =</span> outputDir, <span class="dt">filename =</span> <span class="st">&quot;Annotations&quot;</span>,  <span class="dt">myTitle =</span> <span class="st">&quot;Annotations for all genes analyzed&quot;</span>, <span class="dt">specie =</span> <span class="st">&quot;homo sapiens&quot;</span>, <span class="dt">info2show =</span> <span class="kw">c</span>( <span class="st">&quot;Affymetrix&quot;</span>, <span class="st">&quot;EntrezGene&quot;</span>, <span class="st">&quot;GeneSymbol&quot;</span>, <span class="st">&quot;GeneName&quot;</span>, <span class="st">&quot;KEGG&quot;</span>, <span class="st">&quot;GO&quot;</span>), <span class="dt">linksFile =</span> linksFile, <span class="dt">maxGenes =</span> <span class="ot">NULL</span>)</code></pre></div>
+BasicP::<span class="kw">GeneAnnotation</span>(<span class="dt">egIDs =</span> genes2annotate, <span class="dt">anotPackage =</span> <span class="st">&quot;org.Hs.eg&quot;</span>, <span class="dt">toHTML =</span> <span class="ot">TRUE</span>, <span class="dt">outputDir =</span> outputDir, <span class="dt">filename =</span> <span class="st">&quot;Annotations&quot;</span>,  <span class="dt">myTitle =</span> <span class="st">&quot;Annotations for all genes analyzed&quot;</span>, <span class="dt">specie =</span> <span class="st">&quot;homo sapiens&quot;</span>, <span class="dt">info2show =</span> <span class="kw">c</span>( <span class="st">&quot;Affymetrix&quot;</span>, <span class="st">&quot;EntrezGene&quot;</span>, <span class="st">&quot;GeneSymbol&quot;</span>, <span class="st">&quot;GeneName&quot;</span>, <span class="st">&quot;KEGG&quot;</span>, <span class="st">&quot;GO&quot;</span>), <span class="dt">linksFile =</span> linksFile, <span class="dt">maxGenes =</span> <span class="ot">NULL</span>)</code></pre></div>
 <pre><code>##    user  system elapsed 
-##  22.576   1.400  25.372</code></pre>
+##  10.792   0.764  13.635</code></pre>
 </div>
 <div id="dogeneannotationvignette-info" class="section level2">
 <h2><code>doGeneAnnotation'Vignette Info</code></h2>
 <p>Function to annotate the genes.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">organisme =<span class="st"> &quot;hsa&quot;</span>
-anotList &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">fitMain =</span> <span class="ot">NULL</span>, <span class="dt">fitFileName =</span> fitFileName, <span class="dt">my.IDs =</span> entrezs, <span class="dt">anotPackage =</span> <span class="st">&quot;org.Hs.eg&quot;</span>, <span class="dt">toHTML =</span> <span class="ot">TRUE</span>, <span class="dt">outputDir =</span> outputDir, <span class="dt">anotFilename =</span> <span class="st">&quot;Annotations&quot;</span>, <span class="dt">titleAnotations =</span> <span class="st">&quot;Annotations for all genes analyzed&quot;</span>, <span class="dt">specie =</span> <span class="st">&quot;homo sapiens&quot;</span>, <span class="dt">info2show =</span> <span class="kw">c</span>( <span class="st">&quot;Affymetrix&quot;</span>, <span class="st">&quot;EntrezGene&quot;</span>, <span class="st">&quot;GeneSymbol&quot;</span>, <span class="st">&quot;GeneName&quot;</span>, <span class="st">&quot;KEGG&quot;</span>, <span class="st">&quot;GO&quot;</span>), <span class="dt">linksFile =</span> linksFile, <span class="dt">numGenesPerPage =</span> <span class="ot">NULL</span>)
+anotList &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">fitMain =</span> <span class="ot">NULL</span>, <span class="dt">fitFileName =</span> fitFileName, <span class="dt">my.IDs =</span> <span class="st">&quot;entrezTable&quot;</span>, <span class="dt">anotPackage =</span> <span class="st">&quot;org.Hs.eg&quot;</span>, <span class="dt">toHTML =</span> <span class="ot">TRUE</span>, <span class="dt">outputDir =</span> outputDir, <span class="dt">anotFilename =</span> <span class="st">&quot;Annotations&quot;</span>, <span class="dt">titleAnotations =</span> <span class="st">&quot;Annotations for all genes analyzed&quot;</span>, <span class="dt">specie =</span> <span class="st">&quot;homo sapiens&quot;</span>, <span class="dt">info2show =</span> <span class="kw">c</span>( <span class="st">&quot;Affymetrix&quot;</span>, <span class="st">&quot;EntrezGene&quot;</span>, <span class="st">&quot;GeneSymbol&quot;</span>, <span class="st">&quot;GeneName&quot;</span>, <span class="st">&quot;KEGG&quot;</span>, <span class="st">&quot;GO&quot;</span>), <span class="dt">linksFile =</span> linksFile, <span class="dt">numGenesPerPage =</span> <span class="ot">NULL</span>)
 
-<span class="kw">doGeneAnnotation</span>(anotList)</code></pre></div>
+BasicP::<span class="kw">doGeneAnnotation</span>(anotList)</code></pre></div>
 <pre><code>##    user  system elapsed 
-##  22.512   1.396  24.084</code></pre>
+##  10.080   0.704  11.037</code></pre>
 </div>
 <div id="multiplecompvignette-info" class="section level2">
 <h2><code>multipleComp'Vignette Info</code></h2>
@@ -471,6 +471,210 @@ for(ix in <span class="dv">1</span>:<span class="kw">length</span>(clustParsList
 <pre><code>##   - Comparison Group2 with pvalues &lt; 0.01 
 ##  and |logFC|&gt;=1</code></pre>
 </div>
+<div id="goanalysisvignette-info" class="section level2">
+<h2><code>GOAnalysis'Vignette Info</code></h2>
+<p>Function to ??????????. Inside doGOAnalysis</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(GOstats)</code></pre></div>
+<pre><code>## Loading required package: Category</code></pre>
+<pre><code>## Loading required package: Matrix</code></pre>
+<pre><code>## 
+## Attaching package: 'Matrix'</code></pre>
+<pre><code>## The following object is masked from 'package:S4Vectors':
+## 
+##     expand</code></pre>
+<pre><code>## Loading required package: graph</code></pre>
+<pre><code>## 
+## Attaching package: 'graph'</code></pre>
+<pre><code>## The following object is masked from 'package:XML':
+## 
+##     addNode</code></pre>
+<pre><code>## The following object is masked from 'package:Biostrings':
+## 
+##     complement</code></pre>
+<pre><code>## 
+## Attaching package: 'GOstats'</code></pre>
+<pre><code>## The following object is masked from 'package:AnnotationDbi':
+## 
+##     makeGOGraph</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">BasicP::<span class="kw">GOAnalysis</span>(<span class="dt">fitMain =</span> fitMain, <span class="dt">whichContrasts =</span> wCont, <span class="dt">comparison.Name =</span> <span class="st">&quot;Estudi&quot;</span>, <span class="dt">outputDir =</span> outputDir, <span class="dt">anotPackage =</span> <span class="st">&quot;org.Hs.eg&quot;</span>, <span class="dt">my.IDs =</span> entrezTable, <span class="dt">addGeneNames =</span> <span class="ot">TRUE</span>, <span class="dt">fileOfLinks =</span> linksFile, <span class="dt">thrLogFC =</span> <span class="dv">1</span>, <span class="dt">cutoffMethod =</span> <span class="st">&quot;adjusted&quot;</span>, <span class="dt">P.Value.cutoff =</span> <span class="kw">rep</span>(<span class="fl">0.05</span>, <span class="kw">length</span>(wCont)), <span class="dt">pval =</span> <span class="fl">0.01</span>, <span class="dt">min.count =</span> <span class="dv">3</span>, <span class="dt">ontologias =</span> <span class="kw">c</span>(<span class="st">&quot;MF&quot;</span>, <span class="st">&quot;BP&quot;</span>, <span class="st">&quot;CC&quot;</span>), <span class="dt">testDirections =</span> <span class="kw">c</span>(<span class="st">&quot;over&quot;</span>, <span class="st">&quot;under&quot;</span>), <span class="dt">minNumGens =</span> <span class="dv">0</span>)</code></pre></div>
+<pre><code>## Warning: No results met the specified criteria. Returning 0-row data.frame
+
+## Warning: No results met the specified criteria. Returning 0-row data.frame
+
+## Warning: No results met the specified criteria. Returning 0-row data.frame
+
+## Warning: No results met the specified criteria. Returning 0-row data.frame
+
+## Warning: No results met the specified criteria. Returning 0-row data.frame
+
+## Warning: No results met the specified criteria. Returning 0-row data.frame
+
+## Warning: No results met the specified criteria. Returning 0-row data.frame
+
+## Warning: No results met the specified criteria. Returning 0-row data.frame
+
+## Warning: No results met the specified criteria. Returning 0-row data.frame
+
+## Warning: No results met the specified criteria. Returning 0-row data.frame
+
+## Warning: No results met the specified criteria. Returning 0-row data.frame
+
+## Warning: No results met the specified criteria. Returning 0-row data.frame
+
+## Warning: No results met the specified criteria. Returning 0-row data.frame
+
+## Warning: No results met the specified criteria. Returning 0-row data.frame
+
+## Warning: No results met the specified criteria. Returning 0-row data.frame
+
+## Warning: No results met the specified criteria. Returning 0-row data.frame
+
+## Warning: No results met the specified criteria. Returning 0-row data.frame
+
+## Warning: No results met the specified criteria. Returning 0-row data.frame
+
+## Warning: No results met the specified criteria. Returning 0-row data.frame
+
+## Warning: No results met the specified criteria. Returning 0-row data.frame
+
+## Warning: No results met the specified criteria. Returning 0-row data.frame
+
+## Warning: No results met the specified criteria. Returning 0-row data.frame
+
+## Warning: No results met the specified criteria. Returning 0-row data.frame
+
+## Warning: No results met the specified criteria. Returning 0-row data.frame</code></pre>
+<pre><code>## NULL</code></pre>
+<p>Si no funciona –&gt; library(GOstats)</p>
+<p>ERROR: No results met the specified criteria. Returning 0-row data.frame</p>
+</div>
+<div id="dogoanalysisvignette-info" class="section level2">
+<h2><code>doGOAnalysis'Vignette Info</code></h2>
+<p>Function to ???????????.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">GOParsList &lt;-<span class="kw">list</span>()
+GOPar &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">fitFileName =</span> fitFileName,
+              <span class="dt">whichContrasts =</span> wCont,        
+              <span class="dt">comparisonName =</span> <span class="st">&quot;Estudi&quot;</span>,
+              <span class="dt">anotPackage =</span>  <span class="st">&quot;org.Hs.eg&quot;</span>,
+              <span class="dt">my.IDs =</span> <span class="st">&quot;entrezTable&quot;</span>,        
+              <span class="dt">addGeneNames =</span> <span class="ot">TRUE</span>, 
+              <span class="dt">outputDir =</span> outputDir, 
+              <span class="dt">fileOfLinks =</span> linksFile,
+              <span class="dt">fitMain =</span> <span class="ot">NULL</span>,
+              <span class="dt">cutoffMethod =</span> <span class="st">&quot;adjusted&quot;</span>,  
+              <span class="dt">P.Value.cutoff =</span> <span class="kw">rep</span>(<span class="fl">0.05</span>, <span class="kw">length</span>(wCont)),
+              <span class="dt">pvalGOterms =</span> <span class="fl">0.01</span>,
+              <span class="dt">min.count =</span> <span class="dv">3</span>,
+              <span class="dt">ontologias =</span> <span class="kw">c</span>(<span class="st">&quot;MF&quot;</span>, <span class="st">&quot;BP&quot;</span>, <span class="st">&quot;CC&quot;</span>),
+              <span class="dt">testDirections =</span> <span class="kw">c</span>(<span class="st">&quot;over&quot;</span>, <span class="st">&quot;under&quot;</span>),
+              <span class="dt">minNumGens =</span> <span class="dv">0</span>)
+ 
+GOParsList &lt;-<span class="st"> </span><span class="kw">add2parsList</span>(GOParsList, GOPar)
+
+
+if(runMulticore ==<span class="st"> </span><span class="dv">2</span> ||<span class="st"> </span>runMulticore ==<span class="st"> </span><span class="dv">3</span>){  
+    <span class="kw">foreach</span>(<span class="dt">ix =</span> <span class="dv">1</span>:<span class="kw">length</span>(GOParsList)) %dopar%<span class="st"> </span>{
+      GOList &lt;-<span class="st"> </span>BasicP::<span class="kw">doGOAnalysis</span> (GOParsList[ix])
+    }
+  }else{
+    for(ix in <span class="dv">1</span>:<span class="kw">length</span>(GOParsList)) {
+      GOList &lt;-<span class="st"> </span>BasicP::<span class="kw">doGOAnalysis</span> (GOParsList[ix])
+    }
+  }</code></pre></div>
+<pre><code>## Warning: No results met the specified criteria. Returning 0-row data.frame
+
+## Warning: No results met the specified criteria. Returning 0-row data.frame
+
+## Warning: No results met the specified criteria. Returning 0-row data.frame
+
+## Warning: No results met the specified criteria. Returning 0-row data.frame
+
+## Warning: No results met the specified criteria. Returning 0-row data.frame
+
+## Warning: No results met the specified criteria. Returning 0-row data.frame
+
+## Warning: No results met the specified criteria. Returning 0-row data.frame
+
+## Warning: No results met the specified criteria. Returning 0-row data.frame
+
+## Warning: No results met the specified criteria. Returning 0-row data.frame
+
+## Warning: No results met the specified criteria. Returning 0-row data.frame
+
+## Warning: No results met the specified criteria. Returning 0-row data.frame
+
+## Warning: No results met the specified criteria. Returning 0-row data.frame
+
+## Warning: No results met the specified criteria. Returning 0-row data.frame
+
+## Warning: No results met the specified criteria. Returning 0-row data.frame
+
+## Warning: No results met the specified criteria. Returning 0-row data.frame
+
+## Warning: No results met the specified criteria. Returning 0-row data.frame
+
+## Warning: No results met the specified criteria. Returning 0-row data.frame
+
+## Warning: No results met the specified criteria. Returning 0-row data.frame
+
+## Warning: No results met the specified criteria. Returning 0-row data.frame
+
+## Warning: No results met the specified criteria. Returning 0-row data.frame</code></pre>
+</div>
+<div id="kegganalysisvignette-info" class="section level2">
+<h2><code>KEGGAnalysis'Vignette Info</code></h2>
+<p>Function to do KEGG analysis. Inside doKEGGAnalysis.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="st">&quot;./ResultsDir/fit.Rda&quot;</span>)
+wCont &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">3</span>
+comparison.Name &lt;-<span class="st">&quot;Estudi&quot;</span>
+outputDir &lt;-<span class="st"> &quot;./ResultsDir&quot;</span>
+orgPackage &lt;-<span class="st">&quot;org.Hs.eg&quot;</span>
+organisme &lt;-<span class="st">&quot;hsa&quot;</span>
+<span class="kw">load</span>(<span class="st">&quot;./ResultsDir/Entrezs.Rda&quot;</span>)
+addGeneNames &lt;-<span class="st"> </span><span class="ot">TRUE</span>
+linksFileName &lt;-<span class="st"> &quot;Links.txt&quot;</span>
+cutoffMethod &lt;-<span class="st">&quot;unadjusted&quot;</span>
+pval &lt;-<span class="st"> </span><span class="fl">0.05</span>
+minNumGens &lt;-<span class="dv">0</span>
+runMulticore &lt;-<span class="st"> </span><span class="dv">0</span>
+
+KEGGResult &lt;-<span class="st"> </span>BasicP::<span class="kw">KEGGAnalysis</span>(<span class="dt">fitMain =</span> fit.main, <span class="dt">whichContrasts =</span> wCont,  <span class="dt">comparison.Name =</span> comparison.Name, <span class="dt">outputDir =</span> outputDir, <span class="dt">anotPackage =</span> orgPackage, <span class="dt">organisme =</span> organisme, <span class="dt">my.IDs =</span> entrezTable, <span class="dt">addGeneNames =</span> addGeneNames, <span class="dt">fileOfLinks =</span> linksFileName, <span class="dt">cutoffMethod =</span> cutoffMethod, <span class="dt">P.Value.cutoff =</span> <span class="kw">rep</span>(<span class="fl">0.05</span>, <span class="kw">length</span>(wCont)), <span class="dt">pval =</span> pval,<span class="dt">thrLogFC =</span> <span class="dv">1</span>, <span class="dt">minNumGens =</span> minNumGens)</code></pre></div>
+<pre><code>## 
+## KEGG.db contains mappings based on older data because the original
+##   resource was removed from the the public domain before the most
+##   recent update was produced. This package should now be
+##   considered deprecated and future versions of Bioconductor may
+##   not have it available.  Users who want more current data are
+##   encouraged to look at the KEGGREST or reactome.db packages</code></pre>
+<p>MENSAJE: KEGG.db contains mappings based on older data because the original resource was removed from the the public domain before the most recent update was produced. This package should now be considered deprecated and future versions of Bioconductor may not have it available. Users who want more current data are encouraged to look at the KEGGREST or reactome.db packages</p>
+</div>
+<div id="dokegganalysisvignette-info" class="section level2">
+<h2><code>doKEGGAnalysis'Vignette Info</code></h2>
+<p>Function to do KEGG analysis. Inside doKEGGAnalysis.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">KEGGParsList &lt;-<span class="st"> </span><span class="kw">list</span>()
+KEGGPar &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">fitFileName =</span> <span class="st">&quot;fit.Rda&quot;</span>,
+                <span class="dt">whichContrasts =</span> <span class="dv">1</span>:<span class="dv">3</span>,
+                <span class="dt">comparisonName =</span> <span class="st">&quot;Estudi&quot;</span>,
+                <span class="dt">outputDir =</span> <span class="st">&quot;./ResultsDir&quot;</span>,
+                <span class="dt">anotPackage =</span> <span class="st">&quot;org.Hs.eg&quot;</span>, 
+                <span class="dt">organisme =</span> <span class="st">&quot;mmu&quot;</span>,    
+                <span class="dt">my.IDs =</span> <span class="st">&quot;entrezTable&quot;</span>,
+                <span class="dt">addGeneNames =</span> <span class="ot">TRUE</span>,
+                <span class="dt">fileOfLinks =</span> linksFileName,
+                <span class="dt">fitMain =</span> <span class="ot">NULL</span>,
+                <span class="dt">cutoffMethod =</span> <span class="st">&quot;unadjusted&quot;</span>,
+                <span class="dt">P.Value.cutoff =</span> <span class="kw">rep</span>(<span class="fl">0.01</span>, <span class="kw">length</span>(wCont)), 
+                <span class="dt">pvalKEGGterms =</span> <span class="fl">0.05</span>, 
+                <span class="dt">minNumGens =</span> <span class="dv">0</span>) 
+
+KEGGParsList &lt;-<span class="st"> </span><span class="kw">add2parsList</span> (KEGGParsList, KEGGPar)
+
+
+for(i in <span class="dv">1</span>:<span class="kw">length</span>(KEGGParsList))
+{
+  KEGGList &lt;-<span class="st"> </span>BasicP::<span class="kw">doKEGGAnalysis</span>(KEGGParsList[i])
+}</code></pre></div>
+</div>
 
 
 
@@ -479,7 +683,7 @@ for(ix in <span class="dv">1</span>:<span class="kw">length</span>(clustParsList
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

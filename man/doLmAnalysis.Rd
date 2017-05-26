@@ -3,19 +3,24 @@
 \name{doLmAnalysis}
 \alias{doLmAnalysis}
 \alias{doLmAnalysis}
-\title{doLmAnalysis}
+\title{doLmAnalysis
+Function to make the Linear model analysis. The unique parameter is lmPar list.}
 \usage{
 doLmAnalysis(lmPar)
 
 doLmAnalysis(lmPar)
 }
 \arguments{
-\item{lmPar}{list object that contains the parameters}
+\item{lmPar}{list object that contains the parameters.}
 
 \item{lmPar}{list object that contains the parameters}
 }
+\value{
+Retuns a fitMain.
+}
 \description{
 doLmAnalysis
+Function to make the Linear model analysis. The unique parameter is lmPar list.
 
 doLmAnalysis
 }

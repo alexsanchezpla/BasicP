@@ -28,7 +28,9 @@ addToLinksFile <- function(linksFile, aFName, categ = "", desc = "", subcateg = 
 ##############################################################
 
 #' doLmAnalysis
-#' @param lmPar list object that contains the parameters
+#' Function to make the Linear model analysis. The unique parameter is lmPar list.
+#' @param lmPar list object that contains the parameters.
+#' @return Retuns a fitMain.
 #' @export
 
 doLmAnalysis <- function (lmPar)
@@ -85,8 +87,8 @@ doLmAnalysis <- function (lmPar)
   designMatrixName = paste("designMatrix",p$comparisonName, sep=".")
   contrastMatrixName = paste("contrastMatrix",p$comparisonName, sep=".")
 
-  write2csv(p$designMat, fileName = designMatrixName, csv = p$csvType, outputDir = resultsDir)
-  write2csv(p$contMat, fileName = contrastMatrixName, csv = p$csvType, outputDir = resultsDir)
+  write2csv(p$designMat, fileName = designMatrixName, csv = p$csvType, outputDir = p$outputDir)
+  write2csv(p$contMat, fileName = contrastMatrixName, csv = p$csvType, outputDir = p$outputDir)
 
   csvType <- ifelse(is.null(p$csvType), "csv2", p$csvType)
   addToLinksFile(p$fileOfLinks, paste(designMatrixName, substr(csvType, 1, 3),  sep="."), categ = "ANALYSIS",

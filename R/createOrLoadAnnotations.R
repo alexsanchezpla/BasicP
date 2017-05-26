@@ -1,4 +1,6 @@
 #####################################################################
+old2db <- function(anot){paste(anot, "db", sep = ".")}
+#####################################################################
 creaAnotFromChipPackage <- function (chipPackage, field="ENTREZ", cleanNAs=T,
                                      isControl= FALSE, ctlCode=NA, removeControls=FALSE)
 {
@@ -193,7 +195,6 @@ createOrLoadAnnotations <-function (loadAnnotations=FALSE,
                                     symbolsTableFileName,
                                     controlsTableFileName)
 {
-  source(file.path("/home/mguerrero/exemplesBP/BASIC/RCode/AnalysisFunctions2Pack.R"))
   if(!loadAnnotations){
     if (chipPackAvailable){
       entrezTable  <-creaAnotFromChipPackage (chipPackage=chipPackage,

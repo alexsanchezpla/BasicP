@@ -179,7 +179,6 @@ normplots2File <- function(my.data,
                            csv,
                            lFile = NULL)
 {
-  source(file.path("/home/mguerrero/exemplesBP/BASIC/RCode/AnalysisFunctions2Pack.R"))
   if(!is.null(fileName)) pdf(file.path(outputDir,fileName))
 
   normplots (my.data=my.data, sampleNames= sampleNames,my.colors= my.colors,

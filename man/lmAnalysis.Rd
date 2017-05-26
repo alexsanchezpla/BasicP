@@ -26,6 +26,12 @@ lmAnalysis(exprs.filtered, design, cont.matrix,
 
 \item{showParams}{If FALSe it won't show the lmFit parameters in the ExpressionsAndToptable.}
 
+\item{use.dupCorr}{???}
+
+\item{block}{???}
+
+\item{nDups}{???}
+
 \item{comparison}{Name of the comparations in all contrasts.}
 
 \item{outputDir}{Path of the file created.}
@@ -36,7 +42,13 @@ lmAnalysis(exprs.filtered, design, cont.matrix,
 
 \item{linksFile}{Name of the file linksFile.}
 
+\item{fitFileName}{???}
+
 \item{csvType}{type of csv to store the data.}
+
+\item{rows2HTML}{???}
+
+\item{anotFileName}{???}
 }
 \description{
 Function to make the linear model analysis.

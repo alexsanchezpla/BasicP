@@ -25,6 +25,11 @@ doGeneAnnotation <- function(AnotList)
 {
 
   p <- AnotList
+  
+  if(!is.null(p$my.IDs))
+  {
+    EntrezIDs <-  eval(parse(text = p$my.IDs))
+  }
 
   if (!is.null(p$fitFileName))
   {
@@ -38,7 +43,7 @@ doGeneAnnotation <- function(AnotList)
     }
   }
 
-  genes2annotate <- entrezs[unique(rownames(fitMain$p.value))]
+  genes2annotate <- EntrezIDs[unique(rownames(fitMain$p.value))]
 
   genesAnnotated <- GeneAnnotation(egIDs = genes2annotate,
                                    anotPackage = orgPackage,

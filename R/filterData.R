@@ -1,3 +1,11 @@
+################################################################
+sdf <- function (x, threshold) if (sd(x) < threshold) return(FALSE) else return(TRUE)
+#################################################################
+filt.by.Signal <- function(x, grups, threshold)
+{
+  if( max(sapply(split(x, grups), mean), na.rm=TRUE) < threshold) return(FALSE) else return(TRUE)
+}
+
 #################################################################
 filterBySignal <- function(expres, groups, threshold, sigFun.Name="filt.by.signal", thr.as.perc=TRUE)
 {
@@ -133,7 +141,6 @@ filterData <- function (expres,
                         filteringReportFName = NULL)     # Nom per defecte del report
 
 {
-  source(file.path("/home/mguerrero/exemplesBP/BASIC/RCode/AnalysisFunctions2Pack.R"))
   ### Matrix object is needed
   if (is.data.frame(expres))
     expres<-as.matrix(expres)

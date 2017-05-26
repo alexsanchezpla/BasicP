@@ -1,7 +1,7 @@
 
 ---
 title: "Basic examples of using BasicP functions"
-author: "Alex Sanchez and Mercedes Guerrero"
+author: "Mercedes Guerrero and Alex Sanchez"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -12,9 +12,10 @@ vignette: >
 ```{r echo=FALSE, include=FALSE}
 require(devtools)
 install("/home/mguerrero/Dropbox/Practiques-Grau_Biotec-UVic_Mercedes_Guerrero/BasicP")
+library(BasicP)
 require(affy)
 require(oligo) #ExonStudy
-require("limma")
+require(limma)
 require(gplots)
 ```
 
@@ -250,7 +251,7 @@ Function that annotates genes. Inside doGeneAnnotation
 ```{r}
 genes2annotate <- entrezs[unique(rownames(fitMain$p.value))]
 
-GeneAnnotation(egIDs = genes2annotate, anotPackage = "org.Hs.eg", toHTML = TRUE, outputDir = outputDir, filename = "Annotations",  myTitle = "Annotations for all genes analyzed", specie = "homo sapiens", info2show = c( "Affymetrix", "EntrezGene", "GeneSymbol", "GeneName", "KEGG", "GO"), linksFile = linksFile, maxGenes = NULL)
+BasicP::GeneAnnotation(egIDs = genes2annotate, anotPackage = "org.Hs.eg", toHTML = TRUE, outputDir = outputDir, filename = "Annotations",  myTitle = "Annotations for all genes analyzed", specie = "homo sapiens", info2show = c( "Affymetrix", "EntrezGene", "GeneSymbol", "GeneName", "KEGG", "GO"), linksFile = linksFile, maxGenes = NULL)
 ```
 
 ## `doGeneAnnotation'Vignette Info`
@@ -259,9 +260,9 @@ Function to annotate the genes.
 
 ```{r}
 organisme = "hsa"
-anotList <- list(fitMain = NULL, fitFileName = fitFileName, my.IDs = entrezs, anotPackage = "org.Hs.eg", toHTML = TRUE, outputDir = outputDir, anotFilename = "Annotations", titleAnotations = "Annotations for all genes analyzed", specie = "homo sapiens", info2show = c( "Affymetrix", "EntrezGene", "GeneSymbol", "GeneName", "KEGG", "GO"), linksFile = linksFile, numGenesPerPage = NULL)
+anotList <- list(fitMain = NULL, fitFileName = fitFileName, my.IDs = "entrezTable", anotPackage = "org.Hs.eg", toHTML = TRUE, outputDir = outputDir, anotFilename = "Annotations", titleAnotations = "Annotations for all genes analyzed", specie = "homo sapiens", info2show = c( "Affymetrix", "EntrezGene", "GeneSymbol", "GeneName", "KEGG", "GO"), linksFile = linksFile, numGenesPerPage = NULL)
 
-doGeneAnnotation(anotList)
+BasicP::doGeneAnnotation(anotList)
 ```
 
 ## `multipleComp'Vignette Info`
