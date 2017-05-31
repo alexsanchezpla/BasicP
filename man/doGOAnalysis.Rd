@@ -7,7 +7,7 @@
 doGOAnalysis(GOPar)
 }
 \arguments{
-\item{GOParsList}{List object that contains the parameters.}
+\item{GOParsList}{List object that contains the parameters needed to carry out the analysis.}
 }
 \value{
 GOResult

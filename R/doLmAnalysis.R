@@ -18,19 +18,46 @@ write2csv <- function(my.data, fileName, csv = c("csv2", "csv", "txt", "xls"), o
           "txt" = write.table(my.data, file = fileName, quote = F))
 }
 ##############################################################
-addToLinksFile <- function(linksFile, aFName, categ = "", desc = "", subcateg = "")
-{
-  if (!is.null(linksFile))
-  {
-    write(paste(aFName, categ, subcateg, desc, sep = "\t"), file = linksFile, append = TRUE)
-  }
-}
-##############################################################
 
 #' doLmAnalysis
+#' 
 #' Function to make the Linear model analysis. The unique parameter is lmPar list.
-#' @param lmPar list object that contains the parameters.
-#' @return Retuns a fitMain.
+#' @param lmPar list object that contains the parameters needed to carry out the analysis.
+#' @importFrom links2File addToLinksFile
+#' @exemples
+#' \dontrun{
+#' lmParsList <- list()
+#' Estudi <- list(dades = NULL,
+#'                expresFileName = "exprs.filtered.Rda",
+#'                targets = targets,
+#'                designMat = design,
+#'                contMat = cont.matrix,
+#'                whichContrasts = 1:ncol(cont.matrix),
+#'                anotPack = NULL,
+#'                outputDir = outputDir,
+#'                ExpressionsAndTop = TRUE,
+#'                showLmParams = FALSE, 
+#'                use.dupCorr = FALSE,
+#'                block = NULL,
+#'                nDups = 1,
+#'                comparisonName = comparison,  
+#'                ENTREZIDs = "entrezTable",
+#'                SYMBOLIDs = "symbolsTable",
+#'                fileOfLinks = linksFile,
+#'                fitFileName = fitFileName,
+#'                csvType=csvType,
+#'                rows2HTML = NULL,
+#'                anotFilename = anotFileName
+#' )
+#' 
+#' lmParsList <- add2parsList(lmParsList, Estudi)
+#' 
+#' for(ix in 1:length(lmParsList))
+#' {
+#'   fit.Main   <- BasicP::doLmAnalysis(lmParsList[ix])
+#' }
+#' }
+#' 
 #' @export
 
 doLmAnalysis <- function (lmPar)

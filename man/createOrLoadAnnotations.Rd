@@ -38,7 +38,6 @@ Function that creates the annotation needed, or if it is already done, loads the
 The annotation packages used need to be installed previously.
 }
 \examples{
- 
 \dontrun{
 loadAnnotations <- FALSE
 chipPackAvailable <- TRUE
@@ -52,7 +51,7 @@ symbolsTableFileName <-"Symbols.Rda"
 controlsTableFileName <- "controls.Rda"
 
 
-anotacions <- createOrLoadAnnotations (loadAnnotations= loadAnnotations, 
+anotacions <- createOrLoadAnnotations (loadAnnotations= loadAnnotations,
 chipPackAvailable = chipPackAvailable, platformDesignPackAvailable = platformDesignPackAvailable,
 chipPackage = chipPackage, platformDesignPackage = platformDesignPackage,
 outputDir = outputDir,annotationsFileName = annotationsFileName,

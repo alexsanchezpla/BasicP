@@ -39,7 +39,7 @@ normplots2File(my.data, sampleNames, my.colors, my.groups,
 normplots2File plots the result of the normalized data and creates a file.
 }
 \examples{
-\dontrun{ 
+\dontrun{
 load("./ResultsDir/normalizedData.Rda")
 repes <- duplicated(exprs(my.norm), MARGIN=1)
 exprs(my.norm) <- exprs(my.norm)[!repes,]
@@ -52,8 +52,8 @@ fileName <- "NormalizedPlots.pdf"
 outputDir <- "./ResultsDir"
 PCAPlots <- TRUE
 csv <- "csv2"
-normplots2File(my.data = eset_norm, sampleNames = my.names, my.colors = my.colors, 
+normplots2File(my.data = eset_norm, sampleNames = my.names, my.colors = my.colors,
 my.groups = pData(eset_norm)$Group, my.method = "average",my.cex = myCex ,
-posText = 2, dim3 = FALSE,fileName = fileName, outputDir = outputDir,PCAPlots = TRUE, 
+posText = 2, dim3 = FALSE,fileName = fileName, outputDir = outputDir,PCAPlots = TRUE,
 csv = fileType)}
 }

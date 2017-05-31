@@ -7,10 +7,7 @@
 doGeneAnnotation(AnotList)
 }
 \arguments{
-\item{anotList}{List object that contains the parameters}
-}
-\value{
-genesAnnotated (??)
+\item{anotList}{List object that contains the parameters needed to carry out the analysis.}
 }
 \description{
 Function that annotates a data set.

@@ -10,9 +10,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<meta name="author" content="Alex Sanchez and Mercedes Guerrero" />
+<meta name="author" content="Mercedes Guerrero and Alex Sanchez" />
 
-<meta name="date" content="2017-05-26" />
+<meta name="date" content="2017-05-31" />
 
 <title>Basic examples of using BasicP functions</title>
 
@@ -69,8 +69,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 
 <h1 class="title toc-ignore">Basic examples of using BasicP functions</h1>
-<h4 class="author"><em>Alex Sanchez and Mercedes Guerrero</em></h4>
-<h4 class="date"><em>2017-05-26</em></h4>
+<h4 class="author"><em>Mercedes Guerrero and Alex Sanchez</em></h4>
+<h4 class="date"><em>2017-05-31</em></h4>
 
 
 
@@ -85,10 +85,10 @@ my.fileNames &lt;-<span class="kw">paste</span>(<span class="st">&quot;./celfile
 rawDataFileName &lt;-<span class="st"> &quot;rawData.Rda&quot;</span>
 my.outputDir &lt;-<span class="st"> &quot;.&quot;</span>
 isExonStudy &lt;-<span class="st"> </span><span class="ot">FALSE</span>
-orgPackage &lt;-<span class="st"> &quot;org.Hs.eg&quot;</span> <span class="co"># Necesita este parametro para funciones internas</span>
+orgPackage &lt;-<span class="st"> &quot;org.Hs.eg&quot;</span> 
+
 rawData &lt;-<span class="st"> </span>BasicP::<span class="kw">readOrLoad.RawData</span>(<span class="dt">readCELS =</span> readCELS, <span class="dt">phenoDat =</span> my.targets,
-                      <span class="dt">fileNames =</span> my.fileNames, <span class="dt">dataFName =</span>rawDataFileName,
-                      <span class="dt">outputDir =</span> my.outputDir, <span class="dt">exonSt =</span> isExonStudy)</code></pre></div>
+<span class="dt">fileNames =</span> my.fileNames, <span class="dt">dataFName =</span>rawDataFileName, <span class="dt">outputDir =</span> my.outputDir, <span class="dt">exonSt =</span> isExonStudy)</code></pre></div>
 <pre><code>## 1 reading ./celfiles/GSM26878.CEL ...instantiating an AffyBatch (intensity a 506944x15 matrix)...done.
 ## Reading in : ./celfiles/GSM26878.CEL
 ## Reading in : ./celfiles/GSM26883.CEL
@@ -105,6 +105,18 @@ rawData &lt;-<span class="st"> </span>BasicP::<span class="kw">readOrLoad.RawDat
 ## Reading in : ./celfiles/GSM26897.CEL
 ## Reading in : ./celfiles/GSM26907.CEL
 ## Reading in : ./celfiles/GSM26911.CEL</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rawData</code></pre></div>
+<pre><code>## Warning: replacing previous import 'AnnotationDbi::tail' by 'utils::tail'
+## when loading 'hgu133acdf'</code></pre>
+<pre><code>## Warning: replacing previous import 'AnnotationDbi::head' by 'utils::head'
+## when loading 'hgu133acdf'</code></pre>
+<pre><code>## AffyBatch object
+## size of arrays=712x712 features (25 kb)
+## cdf=HG-U133A (22283 affyids)
+## number of samples=15
+## number of genes=22283
+## annotation=hgu133a
+## notes=</code></pre>
 </div>
 <div id="createorloadannotationsvignette-info" class="section level2">
 <h2><code>createOrLoadAnnotations'Vignette Info</code></h2>
@@ -120,7 +132,13 @@ entrezTableFileName &lt;-<span class="st">&quot;Entrezs.Rda&quot;</span>
 symbolsTableFileName &lt;-<span class="st">&quot;Symbols.Rda&quot;</span>
 controlsTableFileName &lt;-<span class="st"> &quot;controls.Rda&quot;</span>
 
-anotacions &lt;-<span class="st"> </span>BasicP::<span class="kw">createOrLoadAnnotations</span> (<span class="dt">loadAnnotations=</span> loadAnnotations, <span class="dt">chipPackAvailable =</span> chipPackAvailable, <span class="dt">platformDesignPackAvailable =</span> platformDesignPackAvailable,<span class="dt">chipPackage =</span> chipPackage, <span class="dt">platformDesignPackage =</span> platformDesignPackage, <span class="dt">outputDir =</span> outputDir,<span class="dt">annotationsFileName =</span> annotationsFileName,<span class="dt">entrezTableFileName =</span> entrezTableFileName, <span class="dt">symbolsTableFileName =</span> symbolsTableFileName, <span class="dt">controlsTableFileName =</span> controlsTableFileName)</code></pre></div>
+anotacions &lt;-<span class="st"> </span>BasicP::<span class="kw">createOrLoadAnnotations</span> (<span class="dt">loadAnnotations=</span> loadAnnotations, <span class="dt">chipPackAvailable =</span> chipPackAvailable, <span class="dt">platformDesignPackAvailable =</span> platformDesignPackAvailable,<span class="dt">chipPackage =</span> chipPackage, <span class="dt">platformDesignPackage =</span> platformDesignPackage, <span class="dt">outputDir =</span> outputDir,<span class="dt">annotationsFileName =</span> annotationsFileName,<span class="dt">entrezTableFileName =</span> entrezTableFileName, <span class="dt">symbolsTableFileName =</span> symbolsTableFileName, <span class="dt">controlsTableFileName =</span> controlsTableFileName)
+
+<span class="kw">summary</span>(anotacions)</code></pre></div>
+<pre><code>##          Length Class  Mode     
+## Entrez   19853  -none- character
+## Symbols  19853  -none- character
+## controls    62  -none- character</code></pre>
 </div>
 <div id="normalizationvignette-info" class="section level2">
 <h2><code>normalization'Vignette Info</code></h2>
@@ -139,6 +157,23 @@ eset_norm &lt;-<span class="st"> </span>BasicP::<span class="kw">normalization</
 <pre><code>## Background correcting
 ## Normalizing
 ## Calculating Expression</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(eset_norm)</code></pre></div>
+<pre><code>## ExpressionSet (storageMode: lockedEnvironment)
+## assayData: 1 features, 15 samples 
+##   element names: exprs 
+## protocolData
+##   sampleNames: GSM26878.CEL GSM26883.CEL ... GSM26911.CEL (15
+##     total)
+##   varLabels: ScanDate
+##   varMetadata: labelDescription
+## phenoData
+##   sampleNames: GSM26878.CEL GSM26883.CEL ... GSM26911.CEL (15
+##     total)
+##   varLabels: Sample Ids ... AR.repeat.length (6 total)
+##   varMetadata: labelDescription
+## featureData: none
+## experimentData: use 'experimentData(object)'
+## Annotation: hgu133a</code></pre>
 </div>
 <div id="normplots2filevignette-info" class="section level2">
 <h2><code>normplots2File'Vignette Info</code></h2>
@@ -196,7 +231,30 @@ outputDir &lt;-<span class="st"> &quot;./ResultsDir&quot;</span>
 FilteringReportFileName &lt;-<span class="st"> &quot;FilteringReport.txt&quot;</span>
 
 exprs.filtered &lt;-<span class="st"> </span>BasicP::<span class="kw">filterData</span>(<span class="dt">expres =</span> <span class="kw">exprs</span>(eset_norm),<span class="dt">controls =</span> <span class="kw">names</span>(controlsTable),<span class="dt">removeNAs =</span> <span class="ot">TRUE</span>, <span class="dt">entrezs =</span> entrezs ,<span class="dt">bySignal =</span> SignalFilter,<span class="dt">signalThr =</span> signalThreshold, <span class="dt">grups =</span> <span class="kw">pData</span>(eset_norm)$grupo, <span class="dt">sigFun.Name =</span> signalFilter.Function, <span class="dt">sigThr.as.perc =</span> signalThreshold.as.percentage, <span class="dt">byVar =</span> VarFilter, <span class="dt">variabilityThr =</span> variabilityThreshold, <span class="dt">varFun.Name =</span> variability.Function,
-<span class="dt">varThr.as.perc =</span> variabilityThreshold.as.percentage, <span class="dt">pairingFun.Name =</span> pairing.Function, <span class="dt">targets =</span> my.targets, <span class="dt">doReport =</span> doReport, <span class="dt">outputDir =</span> outputDir, <span class="dt">filteringReportFName =</span> FilteringReportFileName)</code></pre></div>
+<span class="dt">varThr.as.perc =</span> variabilityThreshold.as.percentage, <span class="dt">pairingFun.Name =</span> pairing.Function, <span class="dt">targets =</span> my.targets, <span class="dt">doReport =</span> doReport, <span class="dt">outputDir =</span> outputDir, <span class="dt">filteringReportFName =</span> FilteringReportFileName)
+
+<span class="kw">head</span>(exprs.filtered)</code></pre></div>
+<pre><code>##           GSM26878.CEL GSM26883.CEL GSM26887.CEL GSM26903.CEL GSM26910.CEL
+## 117_at        7.544991     7.569799     7.457434     7.487786     7.582522
+## 1316_at       7.284027     6.724480     6.486589     6.448252     6.448589
+## 1405_i_at     7.002037     7.307151     7.259159     7.387630     6.417621
+## 1438_at       7.494419     8.166372     7.766159     7.626499     7.823194
+## 1598_g_at    10.342861    10.935507     9.659437    10.257758    10.564769
+## 1729_at       9.182327     8.888425     9.128764     9.329320     9.133812
+##           GSM26888.CEL GSM26889.CEL GSM26892.CEL GSM26898.CEL GSM26906.CEL
+## 117_at        7.517484     7.695757     7.447833     8.315510     8.271652
+## 1316_at       6.712039     6.414804     6.550871     6.489008     6.544457
+## 1405_i_at     8.649729     7.253820     8.647850     6.003676     9.289255
+## 1438_at       7.780013     7.838809     7.668048     8.748459     7.386342
+## 1598_g_at    11.062124    10.894103     9.791950    10.676476    10.599061
+## 1729_at       8.782058     8.874234     8.738034     8.336941     8.962877
+##           GSM26879.CEL GSM26896.CEL GSM26897.CEL GSM26907.CEL GSM26911.CEL
+## 117_at        7.595921     7.482733     7.310840     7.490355     7.419903
+## 1316_at       6.456284     6.601096     7.048561     6.730072     7.420403
+## 1405_i_at     8.963413     8.619141     6.378881     6.333796     7.399604
+## 1438_at       7.693371     7.851085     7.411536     7.807032     7.873320
+## 1598_g_at    10.837114    10.861116    10.725002    10.252050    10.245186
+## 1729_at       9.154688     8.657023     9.152739     8.495618     8.572749</code></pre>
 </div>
 <div id="savedatavignette-info" class="section level2">
 <h2><code>saveData'Vignette Info</code></h2>
@@ -274,6 +332,155 @@ toTIFF=<span class="st"> </span><span class="ot">FALSE</span>
 fitMain &lt;-<span class="st"> </span>BasicP::<span class="kw">lmAnalysis</span>(<span class="dt">exprs.filtered =</span> exprs.filtered, <span class="dt">design =</span> design, <span class="dt">cont.matrix =</span> cont.matrix, <span class="dt">contrasts2test =</span> contrasts2test, <span class="dt">anotPackage =</span> anotPackage, <span class="dt">outputDir =</span> outputDir, <span class="dt">comparison =</span> comparison, <span class="dt">Expressions_And_Top =</span> <span class="ot">TRUE</span> , <span class="dt">showParams =</span> <span class="ot">FALSE</span> , <span class="dt">use.dupCorr =</span> <span class="ot">FALSE</span>, <span class="dt">block =</span> <span class="ot">NULL</span>, <span class="dt">nDups =</span> <span class="dv">1</span> , <span class="dt">ENTREZIDs =</span> ENTREZIDs, <span class="dt">SYMBOLIDs =</span> SYMBOLIDs, <span class="dt">linksFile =</span> linksFile,<span class="dt">fitFileName =</span> fitFileName , <span class="dt">csvType=</span>csvType, <span class="dt">rows2HTML =</span> <span class="ot">NULL</span>, <span class="dt">anotFileName =</span> anotFileName)</code></pre></div>
 <pre><code>## Loading required package: annotate</code></pre>
 <pre><code>## Loading required package: XML</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fitMain</code></pre></div>
+<pre><code>## An object of class &quot;MArrayLM&quot;
+## $coefficients
+##            Contrasts
+##                   AvsB        AvsL        BvsL
+##   117_at    -0.3211405  0.06855619  0.38969665
+##   1316_at    0.1361518 -0.17289573 -0.30904749
+##   1405_i_at -0.8941462 -0.46424731  0.42989892
+##   1438_at   -0.1090058  0.04805945  0.15706529
+##   1598_g_at -0.2526763 -0.23202720  0.02064909
+## 9917 more rows ...
+## 
+## $rank
+## [1] 3
+## 
+## $assign
+## [1] 1 1 1
+## 
+## $qr
+## $qr
+##               A         B         L
+## PF14 -2.2360680  0.000000  0.000000
+## PF19  0.4472136 -2.236068  0.000000
+## PF23  0.4472136  0.000000 -2.236068
+## PF39  0.4472136  0.000000  0.000000
+## PF46  0.4472136  0.000000  0.000000
+## 10 more rows ...
+## 
+## $qraux
+## [1] 1.447214 1.000000 1.000000
+## 
+## $pivot
+## [1] 1 2 3
+## 
+## $tol
+## [1] 1e-07
+## 
+## $rank
+## [1] 3
+## 
+## 
+## $df.residual
+## [1] 12 12 12 12 12
+## 9917 more elements ...
+## 
+## $sigma
+##    117_at   1316_at 1405_i_at   1438_at 1598_g_at 
+## 0.2493254 0.3103211 1.0676212 0.3481682 0.4300024 
+## 9917 more elements ...
+## 
+## $cov.coefficients
+##          Contrasts
+## Contrasts AvsB AvsL BvsL
+##      AvsB  0.4  0.2 -0.2
+##      AvsL  0.2  0.4  0.2
+##      BvsL -0.2  0.2  0.4
+## 
+## $stdev.unscaled
+##            Contrasts
+##                  AvsB      AvsL      BvsL
+##   117_at    0.6324555 0.6324555 0.6324555
+##   1316_at   0.6324555 0.6324555 0.6324555
+##   1405_i_at 0.6324555 0.6324555 0.6324555
+##   1438_at   0.6324555 0.6324555 0.6324555
+##   1598_g_at 0.6324555 0.6324555 0.6324555
+## 9917 more rows ...
+## 
+## $Amean
+##    117_at   1316_at 1405_i_at   1438_at 1598_g_at 
+##  7.612701  6.690635  7.527518  7.795644 10.513634 
+## 9917 more elements ...
+## 
+## $method
+## [1] &quot;ls&quot;
+## 
+## $design
+##      A B L
+## PF14 1 0 0
+## PF19 1 0 0
+## PF23 1 0 0
+## PF39 1 0 0
+## PF46 1 0 0
+## 10 more rows ...
+## 
+## $contrasts
+##       Contrasts
+## Levels AvsB AvsL BvsL
+##      A    1    1    0
+##      B   -1    0    1
+##      L    0   -1   -1
+## 
+## $df.prior
+## [1] 5.358277
+## 
+## $s2.prior
+## [1] 0.1665925
+## 
+## $var.prior
+## [1] 17.26219 10.64467 12.88962
+## 
+## $proportion
+## [1] 0.01
+## 
+## $s2.post
+##     117_at    1316_at  1405_i_at    1438_at  1598_g_at 
+## 0.09439915 0.11799782 0.83939379 0.13522666 0.17925013 
+## 9917 more elements ...
+## 
+## $t
+##            Contrasts
+##                   AvsB       AvsL        BvsL
+##   117_at    -1.6526504  0.3528033  2.00545364
+##   1316_at    0.6266951 -0.7958244 -1.42251949
+##   1405_i_at -1.5431057 -0.8011919  0.74191387
+##   1438_at   -0.4686932  0.2066415  0.67533469
+##   1598_g_at -0.9436366 -0.8665211  0.07711542
+## 9917 more rows ...
+## 
+## $df.total
+## [1] 17.35828 17.35828 17.35828 17.35828 17.35828
+## 9917 more elements ...
+## 
+## $p.value
+##            Contrasts
+##                  AvsB      AvsL      BvsL
+##   117_at    0.1163738 0.7284837 0.0607614
+##   1316_at   0.5390147 0.4368827 0.1725978
+##   1405_i_at 0.1408391 0.4338512 0.4680602
+##   1438_at   0.6451213 0.8386943 0.5083603
+##   1598_g_at 0.3583053 0.3980242 0.9394136
+## 9917 more rows ...
+## 
+## $lods
+##            Contrasts
+##                  AvsB      AvsL      BvsL
+##   117_at    -5.180288 -6.191037 -4.497688
+##   1316_at   -6.288309 -5.937414 -5.366752
+##   1405_i_at -5.337474 -5.933206 -6.068960
+##   1438_at   -6.376173 -6.232504 -6.115952
+##   1598_g_at -6.040442 -5.879898 -6.343708
+## 9917 more rows ...
+## 
+## $F
+## [1] 2.2925226 1.0165483 1.1911733 0.2394836 0.5490852
+## 9917 more elements ...
+## 
+## $F.p.value
+## [1] 0.1307677 0.3823987 0.3275165 0.7895918 0.5871848
+## 9917 more elements ...</code></pre>
 </div>
 <div id="dolmanalysisvignette-info" class="section level2">
 <h2><code>doLmAnalysis'Vignette Info</code></h2>
@@ -307,16 +514,164 @@ lmParsList &lt;-<span class="st"> </span><span class="kw">add2parsList</span>(lm
 for(ix in <span class="dv">1</span>:<span class="kw">length</span>(lmParsList))
 {
   fit.Main   &lt;-<span class="st"> </span>BasicP::<span class="kw">doLmAnalysis</span>(lmParsList[ix])
-}</code></pre></div>
+}
+
+fit.Main</code></pre></div>
+<pre><code>## An object of class &quot;MArrayLM&quot;
+## $coefficients
+##            Contrasts
+##                   AvsB        AvsL        BvsL
+##   117_at    -0.3211405  0.06855619  0.38969665
+##   1316_at    0.1361518 -0.17289573 -0.30904749
+##   1405_i_at -0.8941462 -0.46424731  0.42989892
+##   1438_at   -0.1090058  0.04805945  0.15706529
+##   1598_g_at -0.2526763 -0.23202720  0.02064909
+## 9917 more rows ...
+## 
+## $rank
+## [1] 3
+## 
+## $assign
+## [1] 1 1 1
+## 
+## $qr
+## $qr
+##               A         B         L
+## PF14 -2.2360680  0.000000  0.000000
+## PF19  0.4472136 -2.236068  0.000000
+## PF23  0.4472136  0.000000 -2.236068
+## PF39  0.4472136  0.000000  0.000000
+## PF46  0.4472136  0.000000  0.000000
+## 10 more rows ...
+## 
+## $qraux
+## [1] 1.447214 1.000000 1.000000
+## 
+## $pivot
+## [1] 1 2 3
+## 
+## $tol
+## [1] 1e-07
+## 
+## $rank
+## [1] 3
+## 
+## 
+## $df.residual
+## [1] 12 12 12 12 12
+## 9917 more elements ...
+## 
+## $sigma
+##    117_at   1316_at 1405_i_at   1438_at 1598_g_at 
+## 0.2493254 0.3103211 1.0676212 0.3481682 0.4300024 
+## 9917 more elements ...
+## 
+## $cov.coefficients
+##          Contrasts
+## Contrasts AvsB AvsL BvsL
+##      AvsB  0.4  0.2 -0.2
+##      AvsL  0.2  0.4  0.2
+##      BvsL -0.2  0.2  0.4
+## 
+## $stdev.unscaled
+##            Contrasts
+##                  AvsB      AvsL      BvsL
+##   117_at    0.6324555 0.6324555 0.6324555
+##   1316_at   0.6324555 0.6324555 0.6324555
+##   1405_i_at 0.6324555 0.6324555 0.6324555
+##   1438_at   0.6324555 0.6324555 0.6324555
+##   1598_g_at 0.6324555 0.6324555 0.6324555
+## 9917 more rows ...
+## 
+## $Amean
+##    117_at   1316_at 1405_i_at   1438_at 1598_g_at 
+##  7.612701  6.690635  7.527518  7.795644 10.513634 
+## 9917 more elements ...
+## 
+## $method
+## [1] &quot;ls&quot;
+## 
+## $design
+##      A B L
+## PF14 1 0 0
+## PF19 1 0 0
+## PF23 1 0 0
+## PF39 1 0 0
+## PF46 1 0 0
+## 10 more rows ...
+## 
+## $contrasts
+##       Contrasts
+## Levels AvsB AvsL BvsL
+##      A    1    1    0
+##      B   -1    0    1
+##      L    0   -1   -1
+## 
+## $df.prior
+## [1] 5.358277
+## 
+## $s2.prior
+## [1] 0.1665925
+## 
+## $var.prior
+## [1] 17.26219 10.64467 12.88962
+## 
+## $proportion
+## [1] 0.01
+## 
+## $s2.post
+##     117_at    1316_at  1405_i_at    1438_at  1598_g_at 
+## 0.09439915 0.11799782 0.83939379 0.13522666 0.17925013 
+## 9917 more elements ...
+## 
+## $t
+##            Contrasts
+##                   AvsB       AvsL        BvsL
+##   117_at    -1.6526504  0.3528033  2.00545364
+##   1316_at    0.6266951 -0.7958244 -1.42251949
+##   1405_i_at -1.5431057 -0.8011919  0.74191387
+##   1438_at   -0.4686932  0.2066415  0.67533469
+##   1598_g_at -0.9436366 -0.8665211  0.07711542
+## 9917 more rows ...
+## 
+## $df.total
+## [1] 17.35828 17.35828 17.35828 17.35828 17.35828
+## 9917 more elements ...
+## 
+## $p.value
+##            Contrasts
+##                  AvsB      AvsL      BvsL
+##   117_at    0.1163738 0.7284837 0.0607614
+##   1316_at   0.5390147 0.4368827 0.1725978
+##   1405_i_at 0.1408391 0.4338512 0.4680602
+##   1438_at   0.6451213 0.8386943 0.5083603
+##   1598_g_at 0.3583053 0.3980242 0.9394136
+## 9917 more rows ...
+## 
+## $lods
+##            Contrasts
+##                  AvsB      AvsL      BvsL
+##   117_at    -5.180288 -6.191037 -4.497688
+##   1316_at   -6.288309 -5.937414 -5.366752
+##   1405_i_at -5.337474 -5.933206 -6.068960
+##   1438_at   -6.376173 -6.232504 -6.115952
+##   1598_g_at -6.040442 -5.879898 -6.343708
+## 9917 more rows ...
+## 
+## $F
+## [1] 2.2925226 1.0165483 1.1911733 0.2394836 0.5490852
+## 9917 more elements ...
+## 
+## $F.p.value
+## [1] 0.1307677 0.3823987 0.3275165 0.7895918 0.5871848
+## 9917 more elements ...</code></pre>
 </div>
 <div id="geneannotationvignette-info" class="section level2">
 <h2><code>GeneAnnotation'Vignette Info</code></h2>
 <p>Function that annotates genes. Inside doGeneAnnotation</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">genes2annotate &lt;-<span class="st"> </span>entrezs[<span class="kw">unique</span>(<span class="kw">rownames</span>(fitMain$p.value))]
 
-BasicP::<span class="kw">GeneAnnotation</span>(<span class="dt">egIDs =</span> genes2annotate, <span class="dt">anotPackage =</span> <span class="st">&quot;org.Hs.eg&quot;</span>, <span class="dt">toHTML =</span> <span class="ot">TRUE</span>, <span class="dt">outputDir =</span> outputDir, <span class="dt">filename =</span> <span class="st">&quot;Annotations&quot;</span>,  <span class="dt">myTitle =</span> <span class="st">&quot;Annotations for all genes analyzed&quot;</span>, <span class="dt">specie =</span> <span class="st">&quot;homo sapiens&quot;</span>, <span class="dt">info2show =</span> <span class="kw">c</span>( <span class="st">&quot;Affymetrix&quot;</span>, <span class="st">&quot;EntrezGene&quot;</span>, <span class="st">&quot;GeneSymbol&quot;</span>, <span class="st">&quot;GeneName&quot;</span>, <span class="st">&quot;KEGG&quot;</span>, <span class="st">&quot;GO&quot;</span>), <span class="dt">linksFile =</span> linksFile, <span class="dt">maxGenes =</span> <span class="ot">NULL</span>)</code></pre></div>
-<pre><code>##    user  system elapsed 
-##  10.792   0.764  13.635</code></pre>
+genesAnnotated &lt;-BasicP::<span class="kw">GeneAnnotation</span>(<span class="dt">egIDs =</span> genes2annotate, <span class="dt">anotPackage =</span> <span class="st">&quot;org.Hs.eg&quot;</span>, <span class="dt">toHTML =</span> <span class="ot">TRUE</span>, <span class="dt">outputDir =</span> outputDir, <span class="dt">filename =</span> <span class="st">&quot;Annotations&quot;</span>,  <span class="dt">myTitle =</span> <span class="st">&quot;Annotations for all genes analyzed&quot;</span>, <span class="dt">specie =</span> <span class="st">&quot;homo sapiens&quot;</span>, <span class="dt">info2show =</span> <span class="kw">c</span>( <span class="st">&quot;Affymetrix&quot;</span>, <span class="st">&quot;EntrezGene&quot;</span>, <span class="st">&quot;GeneSymbol&quot;</span>, <span class="st">&quot;GeneName&quot;</span>, <span class="st">&quot;KEGG&quot;</span>, <span class="st">&quot;GO&quot;</span>), <span class="dt">linksFile =</span> linksFile, <span class="dt">maxGenes =</span> <span class="ot">NULL</span>)</code></pre></div>
 </div>
 <div id="dogeneannotationvignette-info" class="section level2">
 <h2><code>doGeneAnnotation'Vignette Info</code></h2>
@@ -326,7 +681,7 @@ anotList &lt;-<span class="st"> </span><span class="kw">list</span>(<span class=
 
 BasicP::<span class="kw">doGeneAnnotation</span>(anotList)</code></pre></div>
 <pre><code>##    user  system elapsed 
-##  10.080   0.704  11.037</code></pre>
+##  11.748   0.668  12.455</code></pre>
 </div>
 <div id="multiplecompvignette-info" class="section level2">
 <h2><code>multipleComp'Vignette Info</code></h2>
@@ -340,7 +695,13 @@ minLogFoldChange &lt;-<span class="st"> </span><span class="kw">c</span>(<span c
 titleText =<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;for&quot;</span>, <span class="kw">ifelse</span>(adjMethod==<span class="st">&quot;none&quot;</span>,<span class="st">&quot;p-values&quot;</span>,<span class="st">&quot;adj. p-values&quot;</span>), <span class="st">&quot;&lt;&quot;</span>, pValCutOff, <span class="st">&quot;and |logFC| &gt;&quot;</span>, minLogFoldChange, <span class="dt">sep =</span> <span class="st">&quot; &quot;</span>)
 geneListFName =<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;geneList&quot;</span>,compName,<span class="kw">ifelse</span>(adjMethod==<span class="st">&quot;none&quot;</span>,<span class="st">&quot;pvalues&quot;</span>,<span class="st">&quot;adj-pvalues&quot;</span>),<span class="st">&quot;LT&quot;</span>,pValCutOff,<span class="st">&quot;Rda&quot;</span>,<span class="dt">sep =</span> <span class="st">&quot;.&quot;</span>)
 
-geneList &lt;-<span class="st">  </span>BasicP::<span class="kw">multipleComp</span>(<span class="dt">fitMain =</span> fitMain, <span class="dt">whichContrasts =</span> wCont, <span class="dt">comparisonName =</span> compName, <span class="dt">titleText =</span> titleText, <span class="dt">outputDir =</span> outputDir,  <span class="dt">anotPackage =</span> <span class="st">&quot;org.Hs.eg&quot;</span>, <span class="dt">my.symbols =</span> symbolsTable, <span class="dt">linksFile =</span> linksFile, <span class="dt">multCompMethod =</span> <span class="st">&quot;separate&quot;</span>, <span class="dt">adjustMethod =</span> adjMethod, <span class="dt">selectionType =</span> <span class="st">&quot;any&quot;</span>, <span class="dt">P.Value.cutoff =</span> pValCutOff, <span class="dt">plotVenn =</span> <span class="ot">TRUE</span>, <span class="dt">colsVenn =</span> <span class="ot">NULL</span>, <span class="dt">vennColors =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;yellow&quot;</span>,<span class="st">&quot;green&quot;</span>,<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;pink&quot;</span>) , <span class="dt">cexVenn =</span> <span class="dv">1</span>, <span class="dt">geneListFName=</span>geneListFName, <span class="dt">csvType=</span>csvType, <span class="dt">minLFC=</span>minLogFoldChange)</code></pre></div>
+geneList &lt;-<span class="st">  </span>BasicP::<span class="kw">multipleComp</span>(<span class="dt">fitMain =</span> fitMain, <span class="dt">whichContrasts =</span> wCont, <span class="dt">comparisonName =</span> compName, <span class="dt">titleText =</span> titleText, <span class="dt">outputDir =</span> outputDir,  <span class="dt">anotPackage =</span> <span class="st">&quot;org.Hs.eg&quot;</span>, <span class="dt">my.symbols =</span> symbolsTable, <span class="dt">linksFile =</span> linksFile, <span class="dt">multCompMethod =</span> <span class="st">&quot;separate&quot;</span>, <span class="dt">adjustMethod =</span> adjMethod, <span class="dt">selectionType =</span> <span class="st">&quot;any&quot;</span>, <span class="dt">P.Value.cutoff =</span> pValCutOff, <span class="dt">plotVenn =</span> <span class="ot">TRUE</span>, <span class="dt">colsVenn =</span> <span class="ot">NULL</span>, <span class="dt">vennColors =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;yellow&quot;</span>,<span class="st">&quot;green&quot;</span>,<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;pink&quot;</span>) , <span class="dt">cexVenn =</span> <span class="dv">1</span>, <span class="dt">geneListFName=</span>geneListFName, <span class="dt">csvType=</span>csvType, <span class="dt">minLFC=</span>minLogFoldChange)
+
+<span class="kw">head</span>(geneList,<span class="dt">n=</span><span class="dv">20</span>)</code></pre></div>
+<pre><code>##  [1] &quot;200071_at&quot;   &quot;200600_at&quot;   &quot;200615_s_at&quot; &quot;200618_at&quot;   &quot;200632_s_at&quot;
+##  [6] &quot;200670_at&quot;   &quot;200762_at&quot;   &quot;200824_at&quot;   &quot;200831_s_at&quot; &quot;200832_s_at&quot;
+## [11] &quot;200862_at&quot;   &quot;200868_s_at&quot; &quot;200961_at&quot;   &quot;200972_at&quot;   &quot;200973_s_at&quot;
+## [16] &quot;201030_x_at&quot; &quot;201037_at&quot;   &quot;201095_at&quot;   &quot;201131_s_at&quot; &quot;201161_s_at&quot;</code></pre>
 </div>
 <div id="domultcompanalysisvignette-info" class="section level2">
 <h2><code>doMultCompAnalysis'Vignette Info</code></h2>
@@ -360,7 +721,6 @@ mci &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">
               <span class="dt">titleText =</span> <span class="kw">paste</span>(<span class="st">&quot;for&quot;</span>,<span class="kw">ifelse</span>(adjMethod[i]==<span class="st">&quot;none&quot;</span>,
               <span class="st">&quot;p-values&quot;</span>,<span class="st">&quot;adj. p-values&quot;</span>), <span class="st">&quot;&lt;&quot;</span>, pValCutOff[i], <span class="st">&quot;and |logFC| &gt;&quot;</span>,
                minLogFoldChange[i], <span class="dt">sep =</span> <span class="st">&quot; &quot;</span>),
-             
               <span class="dt">anotPackage =</span> <span class="st">&quot;org.Hs.eg&quot;</span>,
               <span class="dt">my.symbols =</span> symbolsTable,
               <span class="dt">outputDir =</span> outputDir,
@@ -371,13 +731,12 @@ mci &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">
               <span class="dt">P.Value.cutoff =</span> pValCutOff[i],
               <span class="dt">plotVenn =</span> <span class="ot">TRUE</span>,
               <span class="dt">colsVenn =</span> <span class="ot">NULL</span>,
-          <span class="dt">vennColors=</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;yellow&quot;</span>,<span class="st">&quot;green&quot;</span>,<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;pink&quot;</span>),  
+                <span class="dt">vennColors=</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;yellow&quot;</span>,<span class="st">&quot;green&quot;</span>,<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;pink&quot;</span>),  
               <span class="dt">cexVenn =</span> <span class="dv">1</span>,
               <span class="dt">geneListFName =</span> <span class="kw">paste</span>(<span class="st">&quot;geneList&quot;</span>,compName[i],
               <span class="kw">ifelse</span>(adjMethod[i]==<span class="st">&quot;none&quot;</span>,<span class="st">&quot;pvalues&quot;</span>,<span class="st">&quot;adj-pvalues&quot;</span>),
               <span class="st">&quot;LT&quot;</span>,pValCutOff[i],<span class="st">&quot;Rda&quot;</span>,<span class="dt">sep =</span> <span class="st">&quot;.&quot;</span>),
-          
-              <span class="dt">minLogFC =</span> minLogFoldChange[i],
+                <span class="dt">minLogFC =</span> minLogFoldChange[i],
               <span class="dt">csvType =</span> csvType)
 
   mcParsList &lt;-<span class="st"> </span><span class="kw">add2parsList</span>(mcParsList, mci)
@@ -386,7 +745,13 @@ mci &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">
 for(ix in <span class="dv">1</span>:<span class="kw">length</span>(mcParsList))
 {
   geneList.MCi &lt;-<span class="st"> </span>BasicP::<span class="kw">doMultCompAnalysis</span>(mcParsList[ix])   
-}</code></pre></div>
+}
+
+<span class="kw">head</span>(geneList.MCi,<span class="dt">n=</span><span class="dv">20</span>)</code></pre></div>
+<pre><code>##  [1] &quot;200615_s_at&quot; &quot;200632_s_at&quot; &quot;200862_at&quot;   &quot;200868_s_at&quot; &quot;200972_at&quot;  
+##  [6] &quot;201095_at&quot;   &quot;201218_at&quot;   &quot;201236_s_at&quot; &quot;201242_s_at&quot; &quot;201243_s_at&quot;
+## [11] &quot;201291_s_at&quot; &quot;201292_at&quot;   &quot;201641_at&quot;   &quot;201701_s_at&quot; &quot;201825_s_at&quot;
+## [16] &quot;201826_s_at&quot; &quot;201860_s_at&quot; &quot;201951_at&quot;   &quot;201952_at&quot;   &quot;201963_at&quot;</code></pre>
 </div>
 <div id="clusteranalysisvignette-info" class="section level2">
 <h2><code>clusterAnalysis'Vignette Info</code></h2>
@@ -412,7 +777,7 @@ pal &lt;-<span class="st"> </span><span class="kw">colorpanel</span>(<span class
                            <span class="dt">escala =</span> <span class="st">&quot;row&quot;</span>,
                            <span class="dt">colorsSet =</span> pal,
                            <span class="dt">densityInfo =</span> <span class="st">&quot;density&quot;</span>,
-                           <span class="dt">colsForGroups =</span> <span class="kw">c</span>(<span class="st">&quot;pink&quot;</span>,<span class="st">&quot;pink&quot;</span>,<span class="st">&quot;pink&quot;</span>,<span class="st">&quot;pink&quot;</span>,<span class="st">&quot;pink&quot;</span>,<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;blue&quot;</span>),
+                           <span class="dt">colsForGroups =</span>    <span class="kw">c</span>(<span class="st">&quot;pink&quot;</span>,<span class="st">&quot;pink&quot;</span>,<span class="st">&quot;pink&quot;</span>,<span class="st">&quot;pink&quot;</span>,<span class="st">&quot;pink&quot;</span>,<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;blue&quot;</span>),
                            <span class="dt">cexForColumns =</span> <span class="fl">0.8</span>,
                            <span class="dt">cexForRows =</span> <span class="fl">0.8</span>,
                            <span class="dt">Title =</span> <span class="kw">paste</span>(<span class="st">&quot;Compar 1 with&quot;</span>,
@@ -422,6 +787,20 @@ pal &lt;-<span class="st"> </span><span class="kw">colorpanel</span>(<span class
                            <span class="dt">csvType =</span> <span class="st">&quot;csv2&quot;</span>)</code></pre></div>
 <pre><code>##   - Comparison Compar 1 with pvalues &lt; 0.01 
 ##  and |logFC|&gt;=1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(clust)</code></pre></div>
+<pre><code>##               Length Class      Mode     
+## rowInd         648   -none-     numeric  
+## colInd          10   -none-     numeric  
+## call            16   -none-     call     
+## rowMeans       648   -none-     numeric  
+## rowSDs         648   -none-     numeric  
+## carpet        6480   -none-     numeric  
+## rowDendrogram    2   dendrogram list     
+## colDendrogram    2   dendrogram list     
+## breaks          33   -none-     numeric  
+## col             32   -none-     character
+## colorTable       3   data.frame list     
+## layout           3   -none-     list</code></pre>
 </div>
 <div id="doclusteranalysisvignette-info" class="section level2">
 <h2><code>doClusterAnalysis'Vignette Info</code></h2>
@@ -470,10 +849,24 @@ for(ix in <span class="dv">1</span>:<span class="kw">length</span>(clustParsList
 ##  and |logFC|&gt;=1</code></pre>
 <pre><code>##   - Comparison Group2 with pvalues &lt; 0.01 
 ##  and |logFC|&gt;=1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(hm.Estudi)</code></pre></div>
+<pre><code>##               Length Class      Mode     
+## rowInd         282   -none-     numeric  
+## colInd          10   -none-     numeric  
+## call            16   -none-     call     
+## rowMeans       282   -none-     numeric  
+## rowSDs         282   -none-     numeric  
+## carpet        2820   -none-     numeric  
+## rowDendrogram    2   dendrogram list     
+## colDendrogram    2   dendrogram list     
+## breaks          33   -none-     numeric  
+## col             32   -none-     character
+## colorTable       3   data.frame list     
+## layout           3   -none-     list</code></pre>
 </div>
 <div id="goanalysisvignette-info" class="section level2">
 <h2><code>GOAnalysis'Vignette Info</code></h2>
-<p>Function to ??????????. Inside doGOAnalysis</p>
+<p>Function to carry out the GO analysis. Inside doGOAnalysis</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(GOstats)</code></pre></div>
 <pre><code>## Loading required package: Category</code></pre>
 <pre><code>## Loading required package: Matrix</code></pre>
@@ -496,7 +889,7 @@ for(ix in <span class="dv">1</span>:<span class="kw">length</span>(clustParsList
 <pre><code>## The following object is masked from 'package:AnnotationDbi':
 ## 
 ##     makeGOGraph</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">BasicP::<span class="kw">GOAnalysis</span>(<span class="dt">fitMain =</span> fitMain, <span class="dt">whichContrasts =</span> wCont, <span class="dt">comparison.Name =</span> <span class="st">&quot;Estudi&quot;</span>, <span class="dt">outputDir =</span> outputDir, <span class="dt">anotPackage =</span> <span class="st">&quot;org.Hs.eg&quot;</span>, <span class="dt">my.IDs =</span> entrezTable, <span class="dt">addGeneNames =</span> <span class="ot">TRUE</span>, <span class="dt">fileOfLinks =</span> linksFile, <span class="dt">thrLogFC =</span> <span class="dv">1</span>, <span class="dt">cutoffMethod =</span> <span class="st">&quot;adjusted&quot;</span>, <span class="dt">P.Value.cutoff =</span> <span class="kw">rep</span>(<span class="fl">0.05</span>, <span class="kw">length</span>(wCont)), <span class="dt">pval =</span> <span class="fl">0.01</span>, <span class="dt">min.count =</span> <span class="dv">3</span>, <span class="dt">ontologias =</span> <span class="kw">c</span>(<span class="st">&quot;MF&quot;</span>, <span class="st">&quot;BP&quot;</span>, <span class="st">&quot;CC&quot;</span>), <span class="dt">testDirections =</span> <span class="kw">c</span>(<span class="st">&quot;over&quot;</span>, <span class="st">&quot;under&quot;</span>), <span class="dt">minNumGens =</span> <span class="dv">0</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">GOResult&lt;-BasicP::<span class="kw">GOAnalysis</span>(<span class="dt">fitMain =</span> fitMain, <span class="dt">whichContrasts =</span> wCont, <span class="dt">comparison.Name =</span> <span class="st">&quot;Estudi&quot;</span>, <span class="dt">outputDir =</span> outputDir, <span class="dt">anotPackage =</span> <span class="st">&quot;org.Hs.eg&quot;</span>, <span class="dt">my.IDs =</span> entrezTable, <span class="dt">addGeneNames =</span> <span class="ot">TRUE</span>, <span class="dt">fileOfLinks =</span> linksFile, <span class="dt">thrLogFC =</span> <span class="dv">1</span>, <span class="dt">cutoffMethod =</span> <span class="st">&quot;adjusted&quot;</span>, <span class="dt">P.Value.cutoff =</span> <span class="kw">rep</span>(<span class="fl">0.05</span>, <span class="kw">length</span>(wCont)), <span class="dt">pval =</span> <span class="fl">0.01</span>, <span class="dt">min.count =</span> <span class="dv">3</span>, <span class="dt">ontologias =</span> <span class="kw">c</span>(<span class="st">&quot;MF&quot;</span>, <span class="st">&quot;BP&quot;</span>, <span class="st">&quot;CC&quot;</span>), <span class="dt">testDirections =</span> <span class="kw">c</span>(<span class="st">&quot;over&quot;</span>, <span class="st">&quot;under&quot;</span>), <span class="dt">minNumGens =</span> <span class="dv">0</span>)</code></pre></div>
 <pre><code>## Warning: No results met the specified criteria. Returning 0-row data.frame
 
 ## Warning: No results met the specified criteria. Returning 0-row data.frame
@@ -544,13 +937,11 @@ for(ix in <span class="dv">1</span>:<span class="kw">length</span>(clustParsList
 ## Warning: No results met the specified criteria. Returning 0-row data.frame
 
 ## Warning: No results met the specified criteria. Returning 0-row data.frame</code></pre>
-<pre><code>## NULL</code></pre>
-<p>Si no funciona –&gt; library(GOstats)</p>
 <p>ERROR: No results met the specified criteria. Returning 0-row data.frame</p>
 </div>
 <div id="dogoanalysisvignette-info" class="section level2">
 <h2><code>doGOAnalysis'Vignette Info</code></h2>
-<p>Function to ???????????.</p>
+<p>Function to carry out the GO analysis.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">GOParsList &lt;-<span class="kw">list</span>()
 GOPar &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">fitFileName =</span> fitFileName,
               <span class="dt">whichContrasts =</span> wCont,        

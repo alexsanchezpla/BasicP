@@ -200,15 +200,6 @@ enrichment_Analysis <- function(EntrezIDs,
 
 }
 ###########################################################
-addToLinksFile <- function(linksFile, aFName, categ = "", desc = "", subcateg = "")
-{
-  if (!is.null(linksFile))
-  {
-    write(paste(aFName, categ, subcateg, desc, sep = "\t"), file = linksFile, append = TRUE)
-  }
-}
-###########################################################
-
 #' GOAnalysis
 #'
 #' Function that do GOAnalysis
@@ -232,8 +223,19 @@ addToLinksFile <- function(linksFile, aFName, categ = "", desc = "", subcateg = 
 #' @importFrom GOstats hyperGTest
 #' @importFrom SortableHTMLTables sortable.html.table
 #' @importFrom DBI dbGetQuery
+#' @importFrom links2File addToLinksFile
 #' @import GO.db
 #' @import GOstats
+#' @examples  
+#' \dontrun{
+#' library(GOstats)
+#' GOResult<-BasicP::GOAnalysis(fitMain = fitMain, whichContrasts = wCont, 
+#' comparison.Name = "Estudi", outputDir = outputDir, anotPackage = "org.Hs.eg", 
+#' my.IDs = entrezTable, addGeneNames = TRUE, fileOfLinks = linksFile, thrLogFC = 1, 
+#' cutoffMethod = "adjusted", P.Value.cutoff = rep(0.05, length(wCont)), pval = 0.01, 
+#' min.count = 3, ontologias = c("MF", "BP", "CC"), testDirections = c("over", "under"), 
+#' minNumGens = 0)
+#' }
 #' @export
 
 

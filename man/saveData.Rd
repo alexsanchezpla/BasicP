@@ -46,8 +46,8 @@ symbolsTable <- load("./ResultsDir/Symbols.Rda")
 expres.all.FileName <- "expres.Rda"
 linksFileName <- "Links.txt"
 outputDir <- "./ResultsDir"
-saveData(expres = exprs(eset_norm), expres.csv.FileName = normalized.all.FileName, 
-csvType=fileType, description = "Normalized values for all genes", anotPackage = NULL, 
-symbolsVector = symbolsTable, SYMBOL = "SYMBOL", expres.bin.FileName = expres.all.FileName, 
+saveData(expres = exprs(eset_norm), expres.csv.FileName = normalized.all.FileName,
+csvType=fileType, description = "Normalized values for all genes", anotPackage = NULL,
+symbolsVector = symbolsTable, SYMBOL = "SYMBOL", expres.bin.FileName = expres.all.FileName,
 linksFile = linksFileName, outputDir = outputDir)}
 }

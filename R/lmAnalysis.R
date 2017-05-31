@@ -154,15 +154,6 @@ annotateTopTable2 <- function (topTab,
 }
 
 ###################################################################
-addToLinksFile <- function(linksFile, aFName, categ = "", desc = "", subcateg = "")
-{
-  if (!is.null(linksFile))
-  {
-    write(paste(aFName, categ, subcateg, desc, sep = "\t"), file = linksFile, append = TRUE)
-  }
-}
-###################################################################
-
 write2csv <- function(my.data, fileName, csv = c("csv2", "csv", "txt", "xls"), outputDir)
 {
   fileName<- file.path(outputDir, paste(fileName, substr(csv[1], 1, 3) , sep = "."))
@@ -361,6 +352,30 @@ escriuTop_i_Express <- function(expres,
 #' @importFrom limma volcanoplot
 #' @importFrom annotate htmlpage
 #' @importFrom annotate getSYMBOL
+#' @importFrom links2File addToLinksFile
+#' @exmaples
+#' \dontrun{
+#' load("./ResultsDir/exprs.filtered.Rda")
+#' contrasts2test <- 1:ncol(cont.matrix)
+#' anotPackage = NULL
+#' comparison =  "Estudi"
+#' outputDir = "./ResultsDir"
+#' ENTREZIDs = "entrezTable"
+#' SYMBOLIDs = "symbolsTable"
+#' linksFile = "Links.txt"
+#' fitFileName = "fit.Rda"
+#' csvType= "csv"
+#' rows2HTML= NULL
+#' anotFileName <- "Annotations"
+#' runMulticore = 0 
+#' toTIFF= FALSE
+#' fitMain <- BasicP::lmAnalysis(exprs.filtered = exprs.filtered, design = design, 
+#' cont.matrix = cont.matrix, contrasts2test = contrasts2test, anotPackage = anotPackage,
+#' outputDir = outputDir, comparison = comparison, Expressions_And_Top = TRUE ,
+#' showParams = FALSE , use.dupCorr = FALSE, block = NULL, nDups = 1 , ENTREZIDs = ENTREZIDs, 
+#' SYMBOLIDs = SYMBOLIDs, linksFile = linksFile,fitFileName = fitFileName , csvType=csvType, 
+#' rows2HTML = NULL, anotFileName = anotFileName)
+#' }
 #' @export
 
 lmAnalysis <- function(exprs.filtered,

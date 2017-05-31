@@ -1,3 +1,15 @@
+####################################################################
+
+loadFromFile <-function (fileName, pos=1){
+  tempEnv =new("environment")
+  load (fileName, tempEnv)
+  varNames <-ls(tempEnv)
+  myVarName <- varNames[pos]
+  load (fileName)
+  myVar <- eval(parse(text=myVarName))
+  return(myVar)
+}
+
 #####################################################################
 old2db <- function(anot){paste(anot, "db", sep = ".")}
 #####################################################################
@@ -51,10 +63,6 @@ creaAnotFromPDPackage <- function (dbPackage, field, fieldName=NULL, cleanNAs=T,
   }else{
     require(dbPackage, character.only=T) # No deu caldre
   }
-  #
-  # Falta implementar el cleanNAs
-  # Comencem per definir la llista de transcripts, que no son controls
-  #
   conn<- db(eval(parse(text=dbPackage)))
   fSetType <- dbGetQuery(conn,
                          paste("SELECT DISTINCT meta_fsetid as transcript_id, type_id",
@@ -135,16 +143,7 @@ creaAnotFromPDPackage <- function (dbPackage, field, fieldName=NULL, cleanNAs=T,
   }
   return(myAnotTable)
 }
-################################################################
-loadFromFile <-function (fileName, pos=1){
-  tempEnv =new("environment")
-  load (fileName, tempEnv)
-  varNames <-ls(tempEnv)
-  myVarName <- varNames[pos]
-  load (fileName)
-  myVar <- eval(parse(text=myVarName))
-  return(myVar)
-}
+
 #################################################################
 
 #' createOrLoadAnnotations
@@ -162,7 +161,7 @@ loadFromFile <-function (fileName, pos=1){
 #' @param symbolsTableFileName Name of the file for gene symbols ID.
 #' @param controlsTableFileName Name of the file for controls.
 #' @return A list "anotacions" that contains the annotations, the Entrez genes and the gene symbols ID.
-#' @examples  
+#' @examples
 #' \dontrun{
 #' loadAnnotations <- FALSE
 #' chipPackAvailable <- TRUE
@@ -174,9 +173,9 @@ loadFromFile <-function (fileName, pos=1){
 #' entrezTableFileName <-"Entrezs.Rda"
 #' symbolsTableFileName <-"Symbols.Rda"
 #' controlsTableFileName <- "controls.Rda"
-#' 
-#' 
-#' anotacions <- createOrLoadAnnotations (loadAnnotations= loadAnnotations, 
+#'
+#'
+#' anotacions <- createOrLoadAnnotations (loadAnnotations= loadAnnotations,
 #' chipPackAvailable = chipPackAvailable, platformDesignPackAvailable = platformDesignPackAvailable,
 #' chipPackage = chipPackage, platformDesignPackage = platformDesignPackage,
 #' outputDir = outputDir,annotationsFileName = annotationsFileName,

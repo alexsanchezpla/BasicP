@@ -31,3 +31,15 @@ GOAnalysis(fitMain, whichContrasts, comparison.Name, outputDir, anotPackage,
 \description{
 Function that do GOAnalysis
 }
+\examples{
+ 
+\dontrun{
+library(GOstats)
+GOResult<-BasicP::GOAnalysis(fitMain = fitMain, whichContrasts = wCont, 
+comparison.Name = "Estudi", outputDir = outputDir, anotPackage = "org.Hs.eg", 
+my.IDs = entrezTable, addGeneNames = TRUE, fileOfLinks = linksFile, thrLogFC = 1, 
+cutoffMethod = "adjusted", P.Value.cutoff = rep(0.05, length(wCont)), pval = 0.01, 
+min.count = 3, ontologias = c("MF", "BP", "CC"), testDirections = c("over", "under"), 
+minNumGens = 0)
+}
+}

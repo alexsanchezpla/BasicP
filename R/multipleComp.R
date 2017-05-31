@@ -35,15 +35,6 @@ write2csv <- function(my.data, fileName, csv = c("csv2", "csv", "txt", "xls"), o
           "txt" = write.table(my.data, file = fileName, quote = F))
 }
 ######################################################
-addToLinksFile <- function(linksFile, aFName, categ = "", desc = "", subcateg = "")
-{
-  if (!is.null(linksFile))
-  {
-    write(paste(aFName, categ, subcateg, desc, sep = "\t"), file = linksFile, append = TRUE)
-  }
-}
-######################################################
-
 plotVennDiagram <- function(res.selected,
                             colsVenn,
                             whichContrasts,
@@ -145,7 +136,23 @@ plotVennDiagram <- function(res.selected,
 #' @importFrom grid grid.draw
 #' @importFrom grDevices tiff
 #' @importFrom VennDiagram venn.diagram
-#' @return geneList (?¿?)
+#' @importFrom links2File addToLinksFile
+#' @examples 
+#' \dontrun{
+#' compName <- c("Group1")
+#' wCont <- 1:3
+#' pValCutOff <- c(0.01)
+#' adjMethod <- c("none")
+#' minLogFoldChange <- c(1)
+#' load("./ResultsDir/Symbols.Rda")
+#' titleText = paste("for", ifelse(adjMethod=="none","p-values","adj. p-values"), "<", pValCutOff, "and |logFC| >", minLogFoldChange, sep = " ")
+#' geneListFName = paste("geneList",compName,ifelse(adjMethod=="none","pvalues","adj-pvalues"),"LT",pValCutOff,"Rda",sep = ".")
+#' 
+#' geneList <-  BasicP::multipleComp(fitMain = fitMain, whichContrasts = wCont, comparisonName = compName, titleText = titleText,
+#' outputDir = outputDir,  anotPackage = "org.Hs.eg", my.symbols = symbolsTable, linksFile = linksFile, multCompMethod = "separate",
+#' adjustMethod = adjMethod, selectionType = "any", P.Value.cutoff = pValCutOff, plotVenn = TRUE, colsVenn = NULL, 
+#' vennColors = c("red","yellow","green","blue","pink") , cexVenn = 1, geneListFName=geneListFName, csvType=csvType, minLFC=minLogFoldChange)
+#' }
 #' @export
 
 multipleComp <- function(fitMain,

@@ -1,11 +1,3 @@
-##################################################################
-addToLinksFile <- function(linksFile, aFName, categ = "", desc = "", subcateg = "")
-{
-  if (!is.null(linksFile))
-  {
-    write(paste(aFName, categ, subcateg, desc, sep = "\t"), file = linksFile, append = TRUE)
-  }
-}
 #################################################################
 expresAndgeneSymbols <- function(expres, expresNames=colnames(expres),
                                  anotPackage = NULL, SYMBOL="SYMBOL",
@@ -55,7 +47,8 @@ write2csv <- function(my.data, fileName, csv = c("csv2", "csv", "txt", "xls"), o
 #' @param expres.bin.FileName File name of the filtered data.
 #' @param linksFile Character string that indicates the path to the txt file.
 #' @param outputDir Path of the file created.
-#' @examples 
+#' @importFrom links2File addToLinksFile
+#' @examples
 #' \dontrun{
 #' load("./ResultsDir/normalizedData.Rda")
 #' repes <- duplicated(exprs(my.norm), MARGIN=1)
@@ -68,9 +61,9 @@ write2csv <- function(my.data, fileName, csv = c("csv2", "csv", "txt", "xls"), o
 #' linksFileName <- "Links.txt"
 #' outputDir <- "./ResultsDir"
 
-#' saveData(expres = exprs(eset_norm), expres.csv.FileName = normalized.all.FileName, 
-#' csvType=fileType, description = "Normalized values for all genes", anotPackage = NULL, 
-#' symbolsVector = symbolsTable, SYMBOL = "SYMBOL", expres.bin.FileName = expres.all.FileName, 
+#' saveData(expres = exprs(eset_norm), expres.csv.FileName = normalized.all.FileName,
+#' csvType=fileType, description = "Normalized values for all genes", anotPackage = NULL,
+#' symbolsVector = symbolsTable, SYMBOL = "SYMBOL", expres.bin.FileName = expres.all.FileName,
 #' linksFile = linksFileName, outputDir = outputDir)}
 #' @export
 

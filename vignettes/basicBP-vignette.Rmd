@@ -11,8 +11,10 @@ vignette: >
 ---
 ```{r echo=FALSE, include=FALSE}
 require(devtools)
-install("/home/mguerrero/Dropbox/Practiques-Grau_Biotec-UVic_Mercedes_Guerrero/BasicP")
+install("/home/mguerrero/Dropbox/Practiques-Grau_Biotec-UVic_Mercedes_Guerrero/BasicP", dependencies=TRUE)
+install_git("https://github.com/alexsanchezpla/links2File.git")
 library(BasicP)
+library(links2File)
 require(affy)
 require(oligo) #ExonStudy
 require(limma)
@@ -34,10 +36,12 @@ my.fileNames <-paste("./celfiles/",rownames(targets),sep="")
 rawDataFileName <- "rawData.Rda"
 my.outputDir <- "."
 isExonStudy <- FALSE
-orgPackage <- "org.Hs.eg" # Necesita este parametro para funciones internas
+orgPackage <- "org.Hs.eg" 
+
 rawData <- BasicP::readOrLoad.RawData(readCELS = readCELS, phenoDat = my.targets,
-                      fileNames = my.fileNames, dataFName =rawDataFileName,
-                      outputDir = my.outputDir, exonSt = isExonStudy)
+fileNames = my.fileNames, dataFName =rawDataFileName, outputDir = my.outputDir, exonSt = isExonStudy)
+
+rawData
 ```
 
 ## `createOrLoadAnnotations'Vignette Info`
@@ -58,6 +62,8 @@ controlsTableFileName <- "controls.Rda"
 
 anotacions <- BasicP::createOrLoadAnnotations (loadAnnotations= loadAnnotations, chipPackAvailable = chipPackAvailable, platformDesignPackAvailable = platformDesignPackAvailable,chipPackage = chipPackage, platformDesignPackage = platformDesignPackage, outputDir = outputDir,annotationsFileName = annotationsFileName,entrezTableFileName = entrezTableFileName, symbolsTableFileName = symbolsTableFileName, controlsTableFileName = controlsTableFileName)
 
+summary(anotacions)
+
 ```
 
 ## `normalization'Vignette Info`
@@ -76,6 +82,8 @@ outputDir <- "./ResultsDir"
 exonStudy <- FALSE
 
 eset_norm <- BasicP::normalization(my.data = rawData, method = normMethod, targetsinfo = my.targets, inputDir = celFilesDir, loadFile = loadFile , normalizedFName = normalized.eset.FileName, outputDir = outputDir, exonSt = exonStudy)
+
+head(eset_norm)
 ```
 
 ## `normplots2File'Vignette Info`
@@ -129,6 +137,8 @@ FilteringReportFileName <- "FilteringReport.txt"
 
 exprs.filtered <- BasicP::filterData(expres = exprs(eset_norm),controls = names(controlsTable),removeNAs = TRUE, entrezs = entrezs ,bySignal = SignalFilter,signalThr = signalThreshold, grups = pData(eset_norm)$grupo, sigFun.Name = signalFilter.Function, sigThr.as.perc = signalThreshold.as.percentage, byVar = VarFilter, variabilityThr = variabilityThreshold, varFun.Name = variability.Function,
 varThr.as.perc = variabilityThreshold.as.percentage, pairingFun.Name = pairing.Function, targets = my.targets, doReport = doReport, outputDir = outputDir, filteringReportFName = FilteringReportFileName)
+
+head(exprs.filtered)
 ```
 
 ## `saveData'Vignette Info`
@@ -192,18 +202,8 @@ toTIFF= FALSE
 
 fitMain <- BasicP::lmAnalysis(exprs.filtered = exprs.filtered, design = design, cont.matrix = cont.matrix, contrasts2test = contrasts2test, anotPackage = anotPackage, outputDir = outputDir, comparison = comparison, Expressions_And_Top = TRUE , showParams = FALSE , use.dupCorr = FALSE, block = NULL, nDups = 1 , ENTREZIDs = ENTREZIDs, SYMBOLIDs = SYMBOLIDs, linksFile = linksFile,fitFileName = fitFileName , csvType=csvType, rows2HTML = NULL, anotFileName = anotFileName)
 
+fitMain
 
-```
-
-```{r echo=FALSE, include=FALSE}
-#Function to make a list for make the dolmAnalysis.
-add2parsList <- function(oneList,object)
-{
-  pos <- length(oneList) + 1
-  oneList[[pos]] <- object
-  names(oneList)[pos] <- oneList[[pos]]$comparisonName
-  return(oneList)
-}
 
 ```
 
@@ -242,6 +242,8 @@ for(ix in 1:length(lmParsList))
 {
   fit.Main   <- BasicP::doLmAnalysis(lmParsList[ix])
 }
+
+fit.Main
 ```
 
 ## `GeneAnnotation'Vignette Info`
@@ -251,7 +253,9 @@ Function that annotates genes. Inside doGeneAnnotation
 ```{r}
 genes2annotate <- entrezs[unique(rownames(fitMain$p.value))]
 
-BasicP::GeneAnnotation(egIDs = genes2annotate, anotPackage = "org.Hs.eg", toHTML = TRUE, outputDir = outputDir, filename = "Annotations",  myTitle = "Annotations for all genes analyzed", specie = "homo sapiens", info2show = c( "Affymetrix", "EntrezGene", "GeneSymbol", "GeneName", "KEGG", "GO"), linksFile = linksFile, maxGenes = NULL)
+genesAnnotated <-BasicP::GeneAnnotation(egIDs = genes2annotate, anotPackage = "org.Hs.eg", toHTML = TRUE, outputDir = outputDir, filename = "Annotations",  myTitle = "Annotations for all genes analyzed", specie = "homo sapiens", info2show = c( "Affymetrix", "EntrezGene", "GeneSymbol", "GeneName", "KEGG", "GO"), linksFile = linksFile, maxGenes = NULL)
+
+
 ```
 
 ## `doGeneAnnotation'Vignette Info`
@@ -281,6 +285,7 @@ geneListFName = paste("geneList",compName,ifelse(adjMethod=="none","pvalues","ad
 
 geneList <-  BasicP::multipleComp(fitMain = fitMain, whichContrasts = wCont, comparisonName = compName, titleText = titleText, outputDir = outputDir,  anotPackage = "org.Hs.eg", my.symbols = symbolsTable, linksFile = linksFile, multCompMethod = "separate", adjustMethod = adjMethod, selectionType = "any", P.Value.cutoff = pValCutOff, plotVenn = TRUE, colsVenn = NULL, vennColors = c("red","yellow","green","blue","pink") , cexVenn = 1, geneListFName=geneListFName, csvType=csvType, minLFC=minLogFoldChange)
 
+head(geneList,n=20)
 ```
 
 ## `doMultCompAnalysis'Vignette Info`
@@ -303,7 +308,6 @@ mci <- list(fitMain = fitMain,
               titleText = paste("for",ifelse(adjMethod[i]=="none",
               "p-values","adj. p-values"), "<", pValCutOff[i], "and |logFC| >",
                minLogFoldChange[i], sep = " "),
-             
               anotPackage = "org.Hs.eg",
               my.symbols = symbolsTable,
               outputDir = outputDir,
@@ -314,13 +318,12 @@ mci <- list(fitMain = fitMain,
               P.Value.cutoff = pValCutOff[i],
               plotVenn = TRUE,
               colsVenn = NULL,
-	      vennColors= c("red","yellow","green","blue","pink"),  
+	            vennColors= c("red","yellow","green","blue","pink"),  
               cexVenn = 1,
               geneListFName = paste("geneList",compName[i],
               ifelse(adjMethod[i]=="none","pvalues","adj-pvalues"),
               "LT",pValCutOff[i],"Rda",sep = "."),
-	      
-              minLogFC = minLogFoldChange[i],
+	            minLogFC = minLogFoldChange[i],
               csvType = csvType)
 
   mcParsList <- add2parsList(mcParsList, mci)
@@ -330,6 +333,8 @@ for(ix in 1:length(mcParsList))
 {
   geneList.MCi <- BasicP::doMultCompAnalysis(mcParsList[ix])   
 }
+
+head(geneList.MCi,n=20)
 ```
 
 ## `clusterAnalysis'Vignette Info`
@@ -357,7 +362,7 @@ load("./ResultsDir/geneList.Group1.pvalues.LT.0.01.Rda")
                            escala = "row",
                            colorsSet = pal,
                            densityInfo = "density",
-                           colsForGroups = c("pink","pink","pink","pink","pink","blue","blue","blue","blue","blue"),
+                           colsForGroups =    c("pink","pink","pink","pink","pink","blue","blue","blue","blue","blue"),
                            cexForColumns = 0.8,
                            cexForRows = 0.8,
                            Title = paste("Compar 1 with",
@@ -365,6 +370,9 @@ load("./ResultsDir/geneList.Group1.pvalues.LT.0.01.Rda")
                             "<",
                             pValCutOff[i], ifelse(minLogFoldChange[i]==0, "", paste("\n and |logFC|>=", minLogFoldChange[i], sep=""))),
                            csvType = "csv2")
+
+summary(clust)
+
 ```
 
 ## `doClusterAnalysis'Vignette Info`
@@ -412,25 +420,25 @@ for(ix in 1:length(clustParsList))
   {
     hm.Estudi <- BasicP::doClusterAnalysis(clustParsList[ix])
   }
-  
+
+summary(hm.Estudi)
 ```
 
 ## `GOAnalysis'Vignette Info`
-Function to ??????????. Inside doGOAnalysis
+Function to carry out the GO analysis. Inside doGOAnalysis
 
 
 ```{r}
 library(GOstats)
-BasicP::GOAnalysis(fitMain = fitMain, whichContrasts = wCont, comparison.Name = "Estudi", outputDir = outputDir, anotPackage = "org.Hs.eg", my.IDs = entrezTable, addGeneNames = TRUE, fileOfLinks = linksFile, thrLogFC = 1, cutoffMethod = "adjusted", P.Value.cutoff = rep(0.05, length(wCont)), pval = 0.01, min.count = 3, ontologias = c("MF", "BP", "CC"), testDirections = c("over", "under"), minNumGens = 0)
+
+GOResult<-BasicP::GOAnalysis(fitMain = fitMain, whichContrasts = wCont, comparison.Name = "Estudi", outputDir = outputDir, anotPackage = "org.Hs.eg", my.IDs = entrezTable, addGeneNames = TRUE, fileOfLinks = linksFile, thrLogFC = 1, cutoffMethod = "adjusted", P.Value.cutoff = rep(0.05, length(wCont)), pval = 0.05, min.count = 3, ontologias = c("MF", "BP", "CC"), testDirections = c("over", "under"), minNumGens = 0)
+
 ```
-Si no funciona  --> library(GOstats)
 
 ERROR: No results met the specified criteria.  Returning 0-row data.frame 
 
-
-
 ## `doGOAnalysis'Vignette Info`
-Function to ???????????.
+Function to carry out the GO analysis.
 
 
 ```{r}
@@ -446,7 +454,7 @@ GOPar <- list(fitFileName = fitFileName,
               fitMain = NULL,
               cutoffMethod = "adjusted",  
               P.Value.cutoff = rep(0.05, length(wCont)),
-              pvalGOterms = 0.01,
+              pvalGOterms = 0.05,
               min.count = 3,
               ontologias = c("MF", "BP", "CC"),
               testDirections = c("over", "under"),
@@ -464,6 +472,7 @@ if(runMulticore == 2 || runMulticore == 3){
       GOList <- BasicP::doGOAnalysis (GOParsList[ix])
     }
   }
+
 ```
 
 
@@ -486,6 +495,7 @@ minNumGens <-0
 runMulticore <- 0
 
 KEGGResult <- BasicP::KEGGAnalysis(fitMain = fit.main, whichContrasts = wCont,  comparison.Name = comparison.Name, outputDir = outputDir, anotPackage = orgPackage, organisme = organisme, my.IDs = entrezTable, addGeneNames = addGeneNames, fileOfLinks = linksFileName, cutoffMethod = cutoffMethod, P.Value.cutoff = rep(0.05, length(wCont)), pval = pval,thrLogFC = 1, minNumGens = minNumGens)
+
 ```
 MENSAJE: KEGG.db contains mappings based on older data because the original
   resource was removed from the the public domain before the most recent
@@ -522,6 +532,7 @@ for(i in 1:length(KEGGParsList))
 {
   KEGGList <- BasicP::doKEGGAnalysis(KEGGParsList[i])
 }
+
 ```
 
 

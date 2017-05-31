@@ -7,7 +7,7 @@
 doKEGGAnalysis(KEGGPar)
 }
 \arguments{
-\item{KEGGPar}{List object that contains the parameters.}
+\item{KEGGPar}{List object that contains the parameters needed to carry out the analysis.}
 }
 \value{
 KEGGResult
@@ -16,8 +16,30 @@ KEGGResult
 Function to interate with KEGGAnalysis
 }
 \examples{
- for(i in 1:length(KEGGParsList))
- {
- KEGGList <- doKEGGAnalysis(KEGGParsList[i])
- }
+ 
+\dontrun{
+KEGGParsList <- list()
+KEGGPar <- list(fitFileName = "fit.Rda",
+               whichContrasts = 1:3,
+                comparisonName = "Estudi",
+                outputDir = "./ResultsDir",
+                anotPackage = "org.Hs.eg", 
+                organisme = "mmu",    
+                my.IDs = "entrezTable",
+                addGeneNames = TRUE,
+                fileOfLinks = linksFileName,
+                fitMain = NULL,
+                cutoffMethod = "unadjusted",
+                P.Value.cutoff = rep(0.01, length(wCont)), 
+                pvalKEGGterms = 0.05, 
+                minNumGens = 0) 
+
+KEGGParsList <- add2parsList (KEGGParsList, KEGGPar)
+
+
+for(i in 1:length(KEGGParsList))
+{
+  KEGGList <- BasicP::doKEGGAnalysis(KEGGParsList[i])
+}
+}
 }

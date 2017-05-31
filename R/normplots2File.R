@@ -79,7 +79,7 @@ doPCAplot <- function(my.data,
 {
   if (my.PCAplot)
   {
-    pc.my.norm <- prcomp(t(exprs(my.data))) 
+    pc.my.norm <- prcomp(t(exprs(my.data)))
     pc.importance <- summary(pc.my.norm)$importance
     print(round(pc.importance, 3))
 
@@ -118,14 +118,6 @@ normplots <- function(my.data, sampleNames, my.colors, my.groups, my.method = "a
 
 }
 #########################################################
-addToLinksFile <- function(linksFile, aFName, categ = "", desc = "", subcateg = "")
-{
-  if (!is.null(linksFile))
-  {
-    write(paste(aFName, categ, subcateg, desc, sep = "\t"), file = linksFile, append = TRUE)
-  }
-}
-###########################################################
 
 #' normplots2File
 #'
@@ -144,8 +136,9 @@ addToLinksFile <- function(linksFile, aFName, categ = "", desc = "", subcateg = 
 #' @param PCAPlots If TRUE PCA plots will be created.
 #' @param csv Indicates the file type.
 #' @param lFile Name of the links file.
+#' @importFrom links2File addToLinksFile
 #' @examples
-#' \dontrun{ 
+#' \dontrun{
 #' load("./ResultsDir/normalizedData.Rda")
 #' repes <- duplicated(exprs(my.norm), MARGIN=1)
 #' exprs(my.norm) <- exprs(my.norm)[!repes,]
@@ -159,9 +152,9 @@ addToLinksFile <- function(linksFile, aFName, categ = "", desc = "", subcateg = 
 #' PCAPlots <- TRUE
 #' csv <- "csv2"
 
-#' normplots2File(my.data = eset_norm, sampleNames = my.names, my.colors = my.colors, 
+#' normplots2File(my.data = eset_norm, sampleNames = my.names, my.colors = my.colors,
 #' my.groups = pData(eset_norm)$Group, my.method = "average",my.cex = myCex ,
-#' posText = 2, dim3 = FALSE,fileName = fileName, outputDir = outputDir,PCAPlots = TRUE, 
+#' posText = 2, dim3 = FALSE,fileName = fileName, outputDir = outputDir,PCAPlots = TRUE,
 #' csv = fileType)}
 #' @export
 

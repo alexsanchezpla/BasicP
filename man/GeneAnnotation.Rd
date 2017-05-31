@@ -30,3 +30,14 @@ It returns the time that the process least.
 \description{
 Function to annotate genes
 }
+\examples{
+ 
+\dontrun{
+genes2annotate <- entrezs[unique(rownames(fitMain$p.value))]
+genesAnnotated <-BasicP::GeneAnnotation(egIDs = genes2annotate, anotPackage = "org.Hs.eg", 
+toHTML = TRUE, outputDir = outputDir, filename = "Annotations",  
+myTitle = "Annotations for all genes analyzed", specie = "homo sapiens", 
+info2show = c( "Affymetrix", "EntrezGene", "GeneSymbol", "GeneName", "KEGG", "GO"), 
+linksFile = linksFile, maxGenes = NULL)
+}
+}

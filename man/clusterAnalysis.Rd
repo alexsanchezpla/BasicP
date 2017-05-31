@@ -13,9 +13,9 @@ clusterAnalysis(expres, genes, samples, sampleNames, comparisonName,
 \arguments{
 \item{expres}{Expresion oused to perform the clusters.}
 
-\item{genes}{}
+\item{genes}{????}
 
-\item{samples}{}
+\item{samples}{????}
 
 \item{sampleNames}{Name of the samples of the study.}
 
@@ -23,30 +23,39 @@ clusterAnalysis(expres, genes, samples, sampleNames, comparisonName,
 
 \item{anotPackage}{Annotation package.}
 
+\item{my.symbols}{????}
+
 \item{outputDir}{Path of the file created.}
 
 \item{fileOfLinks}{Name of the links file.}
+
+\item{numClusters}{????}
 
 \item{rowDistance}{Row distance in the clusters.}
 
 \item{colDistance}{Column distance in the clusters.}
 
+\item{RowVals}{????}
+
+\item{ColVals}{?????}
+
+\item{colorsSet}{???}
+
 \item{colsForGroups}{Colors of each group for the plots.}
 
-\item{escala}{}
+\item{escala}{???}
+
+\item{densityInfo}{???}
 
 \item{cexForColumns}{Cex for the columns.}
 
 \item{cexForRows}{Cex for the rows.}
 
-\item{plotProfiles}{}
+\item{plotProfiles}{???}
 
 \item{Title}{Title of the plot.}
 
 \item{csvType}{Csv type of the output.}
-}
-\value{
-hm (?¿?¿?¿?)
 }
 \description{
 Function to make the cluster analysis.

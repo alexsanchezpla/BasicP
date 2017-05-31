@@ -1,31 +1,37 @@
-######################################################
+############################################################
+
 loadFromFile <-function (fileName, pos=1){
   tempEnv =new("environment")
-  load (fileName, envir = tempEnv)
+  load (fileName, tempEnv)
   varNames <-ls(tempEnv)
   myVarName <- varNames[pos]
   load (fileName)
   myVar <- eval(parse(text=myVarName))
   return(myVar)
 }
-######################################################
-
-
+############################################################
 #'doGeneAnnotation
 #'
 #' Function that annotates a data set.
 #'
-#' @param anotList List object that contains the parameters
-#' @return genesAnnotated (??)
+#' @param anotList List object that contains the parameters needed to carry out the analysis.
 #' @export
-#' @exemples doGeneAnnotation(anotList)
-#'
-#'
+#' @exemples
+#' \dontrun{
+#' organisme = "hsa"
+#' anotList <- list(fitMain = NULL, fitFileName = fitFileName, my.IDs = "entrezTable", 
+#' anotPackage = "org.Hs.eg", toHTML = TRUE, outputDir = outputDir, anotFilename = "Annotations", 
+#' titleAnotations = "Annotations for all genes analyzed", specie = "homo sapiens", 
+#' info2show = c( "Affymetrix", "EntrezGene", "GeneSymbol", "GeneName", "KEGG", "GO"), 
+#' linksFile = linksFile, numGenesPerPage = NULL)
+#' 
+#' BasicP::doGeneAnnotation(anotList)}
+
 doGeneAnnotation <- function(AnotList)
 {
 
   p <- AnotList
-  
+
   if(!is.null(p$my.IDs))
   {
     EntrezIDs <-  eval(parse(text = p$my.IDs))

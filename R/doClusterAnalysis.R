@@ -1,25 +1,63 @@
-##############################################################
+############################################################
+
 loadFromFile <-function (fileName, pos=1){
   tempEnv =new("environment")
-  load (fileName, envir = tempEnv)
+  load (fileName, tempEnv)
   varNames <-ls(tempEnv)
   myVarName <- varNames[pos]
   load (fileName)
   myVar <- eval(parse(text=myVarName))
   return(myVar)
 }
-##############################################################
+############################################################
 #'doClusterAnalysis
 #'
 #'Function to perform cluster analysis
-#'@param clustPar List object that contains the parameters.
-#'@retun clust
-#'@examples for(ix in 1:length(clustParsList))
-#'{hm.Estudi <- doClusterAnalysis(clustParsList[ix])}
+#'@param clustPar List object that contains the parameters needed to carry out the analysis.
+#'@examples
+#'\dontrun{
+#' clustParsList <- list()
+#' for(i in 1:length(compName))
+#' {
+#'   clustPar <- list(expres = NULL,
+#'                    expresFileName = "exprs.filtered.Rda",
+#'                    geneListFName = paste("geneList",  compName[i],     ifelse(adjMethod[i]=="none","pvalues","adj-pvalues"), "LT", pValCutOff[i], "Rda", sep = "."),
+#'                    genes2cluster = NULL, 
+#'                    samples2cluster = s2clust, 
+#'                    sampleNames = as.character(targets$ShortName)[s2clust], 
+#'                    comparisonName = compName[i], 
+#'                    anotPackage = "org.Hs.eg",
+#'                    my.symbols = symbolsTable,
+#'                    outputDir = outputDir,
+#'                    fileOfLinks = linksFile,
+#'                    numClusters = 2,
+#'                    rowDistance = NULL,
+#'                    colDistance = NULL,
+#'                    RowVals = TRUE,
+#'                    ColVals = FALSE,
+#'                    escala = "row",
+#'                    colorsSet = pal,
+#'                    densityInfo = "density",
+#'                    colsForGroups = c("pink","pink","pink","pink","pink","blue","blue","blue","blue","blue"),
+#'                    cexForColumns = 0.8,
+#'                    cexForRows = 0.8,
+#'                    Title = paste(compName[i],
+#'                                  "with",
+#'                                  ifelse(adjMethod[i]=="none","pvalues","adj-pvalues"),
+#'                                  "<",
+#'                                  pValCutOff[i], ifelse(minLogFoldChange[i]==0, "", paste("\n and |logFC|>=", minLogFoldChange[i], sep=""))),
+#'                    paste("Comparison:", compName[i], sep=" "),
+#'                    csvType = csvType)
+#'   
+#'   clustParsList <- add2parsList(clustParsList, clustPar)
+#' }
+#' 
+#' for(ix in 1:length(clustParsList))
+#' {
+#'  hm.Estudi <- BasicP::doClusterAnalysis(clustParsList[ix])
+#' }
+#' }
 #'@export
-
-
-
 
 
 doClusterAnalysis <- function(clustPar)

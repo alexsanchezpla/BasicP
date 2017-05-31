@@ -9,7 +9,7 @@ repofun <- function(x, y, z = NULL, ...)
   NAids <- which(is.na(x))
   blnksIDs <- which(x=="&nbsp;")
   x <- trim(x)
-  
+
   specie <- z
   if(y %in% c("SYMBOL", "GENENAME", "MAP", "ENZYME"))
   {
@@ -35,10 +35,10 @@ repofun <- function(x, y, z = NULL, ...)
                     "PATH" = paste("<a href=\"http://www.genome.jp/dbget-bin/www_bget?", specie, x, "\" target=\"_blank\">", x, "</a>", sep = ""))
     }
   }
-  
+
   out[NAids] <- "&nbsp;"
   out[blnksIDs] <- "&nbsp;"
-  
+
   return(out)
 }
 ###########################################################
@@ -91,16 +91,6 @@ translateIDs <- function(geneIDs,
   return(out)
 }
 ###########################################################
-addToLinksFile <- function(linksFile, aFName, categ = "", desc = "", subcateg = "")
-{
-  if (!is.null(linksFile))
-  {
-    write(paste(aFName, categ, subcateg, desc, sep = "\t"), file = linksFile, append = TRUE)
-  }
-}
-
-###########################################################
-
 #'GeneAnnotation
 #'
 #'Function to annotate genes
@@ -115,7 +105,17 @@ addToLinksFile <- function(linksFile, aFName, categ = "", desc = "", subcateg = 
 #' @param linksFile Name of the LinksFile
 #' @param maxGenes
 #' @importFrom SortableHTMLTables sortable.html.table
+#' @importFrom links2File addToLinksFile
 #' @return It returns the time that the process least.
+#' @examples  
+#' \dontrun{
+#' genes2annotate <- entrezs[unique(rownames(fitMain$p.value))]
+#' genesAnnotated <-BasicP::GeneAnnotation(egIDs = genes2annotate, anotPackage = "org.Hs.eg", 
+#' toHTML = TRUE, outputDir = outputDir, filename = "Annotations",  
+#' myTitle = "Annotations for all genes analyzed", specie = "homo sapiens", 
+#' info2show = c( "Affymetrix", "EntrezGene", "GeneSymbol", "GeneName", "KEGG", "GO"), 
+#' linksFile = linksFile, maxGenes = NULL)
+#' }
 #' @export
 #'
 GeneAnnotation <- function(egIDs,
