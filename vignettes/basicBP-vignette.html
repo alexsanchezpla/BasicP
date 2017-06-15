@@ -12,7 +12,7 @@
 
 <meta name="author" content="Mercedes Guerrero and Alex Sanchez" />
 
-<meta name="date" content="2017-05-31" />
+<meta name="date" content="2017-06-06" />
 
 <title>Basic examples of using BasicP functions</title>
 
@@ -70,7 +70,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">Basic examples of using BasicP functions</h1>
 <h4 class="author"><em>Mercedes Guerrero and Alex Sanchez</em></h4>
-<h4 class="date"><em>2017-05-31</em></h4>
+<h4 class="date"><em>2017-06-06</em></h4>
 
 
 
@@ -681,7 +681,7 @@ anotList &lt;-<span class="st"> </span><span class="kw">list</span>(<span class=
 
 BasicP::<span class="kw">doGeneAnnotation</span>(anotList)</code></pre></div>
 <pre><code>##    user  system elapsed 
-##  11.748   0.668  12.455</code></pre>
+##  10.764   0.660  11.455</code></pre>
 </div>
 <div id="multiplecompvignette-info" class="section level2">
 <h2><code>multipleComp'Vignette Info</code></h2>
@@ -889,40 +889,8 @@ for(ix in <span class="dv">1</span>:<span class="kw">length</span>(clustParsList
 <pre><code>## The following object is masked from 'package:AnnotationDbi':
 ## 
 ##     makeGOGraph</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">GOResult&lt;-BasicP::<span class="kw">GOAnalysis</span>(<span class="dt">fitMain =</span> fitMain, <span class="dt">whichContrasts =</span> wCont, <span class="dt">comparison.Name =</span> <span class="st">&quot;Estudi&quot;</span>, <span class="dt">outputDir =</span> outputDir, <span class="dt">anotPackage =</span> <span class="st">&quot;org.Hs.eg&quot;</span>, <span class="dt">my.IDs =</span> entrezTable, <span class="dt">addGeneNames =</span> <span class="ot">TRUE</span>, <span class="dt">fileOfLinks =</span> linksFile, <span class="dt">thrLogFC =</span> <span class="dv">1</span>, <span class="dt">cutoffMethod =</span> <span class="st">&quot;adjusted&quot;</span>, <span class="dt">P.Value.cutoff =</span> <span class="kw">rep</span>(<span class="fl">0.05</span>, <span class="kw">length</span>(wCont)), <span class="dt">pval =</span> <span class="fl">0.01</span>, <span class="dt">min.count =</span> <span class="dv">3</span>, <span class="dt">ontologias =</span> <span class="kw">c</span>(<span class="st">&quot;MF&quot;</span>, <span class="st">&quot;BP&quot;</span>, <span class="st">&quot;CC&quot;</span>), <span class="dt">testDirections =</span> <span class="kw">c</span>(<span class="st">&quot;over&quot;</span>, <span class="st">&quot;under&quot;</span>), <span class="dt">minNumGens =</span> <span class="dv">0</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">GOResult&lt;-BasicP::<span class="kw">GOAnalysis</span>(<span class="dt">fitMain =</span> fitMain, <span class="dt">whichContrasts =</span> wCont, <span class="dt">comparison.Name =</span> <span class="st">&quot;Estudi&quot;</span>, <span class="dt">outputDir =</span> outputDir, <span class="dt">anotPackage =</span> <span class="st">&quot;org.Hs.eg&quot;</span>, <span class="dt">my.IDs =</span> entrezTable, <span class="dt">addGeneNames =</span> <span class="ot">TRUE</span>, <span class="dt">fileOfLinks =</span> linksFile, <span class="dt">thrLogFC =</span> <span class="dv">1</span>, <span class="dt">cutoffMethod =</span> <span class="st">&quot;adjusted&quot;</span>, <span class="dt">P.Value.cutoff =</span> <span class="kw">rep</span>(<span class="fl">0.05</span>, <span class="kw">length</span>(wCont)), <span class="dt">pval =</span> <span class="fl">0.05</span>, <span class="dt">min.count =</span> <span class="dv">3</span>, <span class="dt">ontologias =</span> <span class="kw">c</span>(<span class="st">&quot;MF&quot;</span>, <span class="st">&quot;BP&quot;</span>, <span class="st">&quot;CC&quot;</span>), <span class="dt">testDirections =</span> <span class="kw">c</span>(<span class="st">&quot;over&quot;</span>, <span class="st">&quot;under&quot;</span>), <span class="dt">minNumGens =</span> <span class="dv">0</span>)</code></pre></div>
 <pre><code>## Warning: No results met the specified criteria. Returning 0-row data.frame
-
-## Warning: No results met the specified criteria. Returning 0-row data.frame
-
-## Warning: No results met the specified criteria. Returning 0-row data.frame
-
-## Warning: No results met the specified criteria. Returning 0-row data.frame
-
-## Warning: No results met the specified criteria. Returning 0-row data.frame
-
-## Warning: No results met the specified criteria. Returning 0-row data.frame
-
-## Warning: No results met the specified criteria. Returning 0-row data.frame
-
-## Warning: No results met the specified criteria. Returning 0-row data.frame
-
-## Warning: No results met the specified criteria. Returning 0-row data.frame
-
-## Warning: No results met the specified criteria. Returning 0-row data.frame
-
-## Warning: No results met the specified criteria. Returning 0-row data.frame
-
-## Warning: No results met the specified criteria. Returning 0-row data.frame
-
-## Warning: No results met the specified criteria. Returning 0-row data.frame
-
-## Warning: No results met the specified criteria. Returning 0-row data.frame
-
-## Warning: No results met the specified criteria. Returning 0-row data.frame
-
-## Warning: No results met the specified criteria. Returning 0-row data.frame
-
-## Warning: No results met the specified criteria. Returning 0-row data.frame
 
 ## Warning: No results met the specified criteria. Returning 0-row data.frame
 
@@ -954,7 +922,7 @@ GOPar &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt
               <span class="dt">fitMain =</span> <span class="ot">NULL</span>,
               <span class="dt">cutoffMethod =</span> <span class="st">&quot;adjusted&quot;</span>,  
               <span class="dt">P.Value.cutoff =</span> <span class="kw">rep</span>(<span class="fl">0.05</span>, <span class="kw">length</span>(wCont)),
-              <span class="dt">pvalGOterms =</span> <span class="fl">0.01</span>,
+              <span class="dt">pvalGOterms =</span> <span class="fl">0.05</span>,
               <span class="dt">min.count =</span> <span class="dv">3</span>,
               <span class="dt">ontologias =</span> <span class="kw">c</span>(<span class="st">&quot;MF&quot;</span>, <span class="st">&quot;BP&quot;</span>, <span class="st">&quot;CC&quot;</span>),
               <span class="dt">testDirections =</span> <span class="kw">c</span>(<span class="st">&quot;over&quot;</span>, <span class="st">&quot;under&quot;</span>),
@@ -973,38 +941,6 @@ if(runMulticore ==<span class="st"> </span><span class="dv">2</span> ||<span cla
     }
   }</code></pre></div>
 <pre><code>## Warning: No results met the specified criteria. Returning 0-row data.frame
-
-## Warning: No results met the specified criteria. Returning 0-row data.frame
-
-## Warning: No results met the specified criteria. Returning 0-row data.frame
-
-## Warning: No results met the specified criteria. Returning 0-row data.frame
-
-## Warning: No results met the specified criteria. Returning 0-row data.frame
-
-## Warning: No results met the specified criteria. Returning 0-row data.frame
-
-## Warning: No results met the specified criteria. Returning 0-row data.frame
-
-## Warning: No results met the specified criteria. Returning 0-row data.frame
-
-## Warning: No results met the specified criteria. Returning 0-row data.frame
-
-## Warning: No results met the specified criteria. Returning 0-row data.frame
-
-## Warning: No results met the specified criteria. Returning 0-row data.frame
-
-## Warning: No results met the specified criteria. Returning 0-row data.frame
-
-## Warning: No results met the specified criteria. Returning 0-row data.frame
-
-## Warning: No results met the specified criteria. Returning 0-row data.frame
-
-## Warning: No results met the specified criteria. Returning 0-row data.frame
-
-## Warning: No results met the specified criteria. Returning 0-row data.frame
-
-## Warning: No results met the specified criteria. Returning 0-row data.frame
 
 ## Warning: No results met the specified criteria. Returning 0-row data.frame
 
